@@ -1,9 +1,21 @@
 // CLI Tools configuration
-import { getClaudeCodeDefaultModels } from "@omniroute/open-sse/config/providerRegistry";
 import type { CliCatalogEntry } from "@/shared/schemas/cliCatalog";
 import { GROK_BUILD_CLI_TOOL } from "@/shared/constants/cliToolsGrokBuild";
 
-const _cc = getClaudeCodeDefaultModels();
+// Server-free leaf: default Claude model IDs for the CLI catalog UI. The
+// authoritative source is `getClaudeCodeDefaultModels()` in
+// open-sse/config/providerRegistry.ts (derived from the live `claude` registry
+// entry); importing providerRegistry here dragged the full provider barrel —
+// and with it OAuth constants that read `node:fs`/`node:path` — into the
+// dashboard client bundle ("chunking context does not support external
+// modules"). Kept in sync by tests/unit/claude-cli-defaults.test.ts.
+type ClaudeDefaultModels = { fable: string; opus: string; sonnet: string; haiku: string };
+const _cc: ClaudeDefaultModels = {
+  fable: "claude-fable-5-1",
+  opus: "claude-opus-5",
+  sonnet: "claude-sonnet-5",
+  haiku: "claude-haiku-4-5-20251001",
+};
 type CliModel = NonNullable<CliCatalogEntry["defaultModels"]>[number];
 const createCliModel = (id: string, name: string): CliModel => ({ id, name, alias: id });
 

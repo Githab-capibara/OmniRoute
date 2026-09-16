@@ -71,6 +71,8 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# generated initial admin password (local-only secret, never commit)
+.initial-password
 # Local gitleaks artifacts (do not commit)
 gitleaks-local.json
 !.env.example
