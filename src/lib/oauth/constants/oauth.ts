@@ -113,7 +113,8 @@ export const QODER_CONFIG = {
 // (open-sse/services/usage/codebuddy-cn.ts) — a mismatched version string across a
 // single account's auth vs. chat calls is exactly the kind of internally-inconsistent
 // client fingerprint Tencent's WAF flags as anomalous (#12702).
-export const CODEBUDDY_CN_USER_AGENT = "CLI/2.108.1 CodeBuddy/2.108.1";
+import { CODEBUDDY_CN_USER_AGENT as CODEBUDDY_CN_USER_AGENT_RAW } from "@omniroute/open-sse/config/providers/registry/codebuddy-cn/codebuddyUserAgent.ts";
+export const CODEBUDDY_CN_USER_AGENT = CODEBUDDY_CN_USER_AGENT_RAW;
 
 export const CODEBUDDY_CN_CONFIG = {
   baseUrl: "https://copilot.tencent.com",
