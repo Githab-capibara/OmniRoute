@@ -1,0 +1,9 @@
+{
+  "title": "Architecture Decision Records",
+  "pages": [
+    "01-record-architecture-decisions",
+    "02-router-backends-contract",
+    "03-cluster-sidecar-profiles",
+    "04-persistence-boundary"
+  ]
+}

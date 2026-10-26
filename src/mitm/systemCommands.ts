@@ -141,7 +141,7 @@ export function execFileWithPassword(
     // fixed allowlist of executables: "sudo", "certutil", "security",
     // "update-ca-certificates", "update-ca-trust", "cp", "mkdir", "rm".
     // `spawn` is used (not `exec`) so each arg is a separate argv entry and
-    // shell metacharacters do not expand. See docs/security/SOCKET_DEV_FINDINGS.md §3.
+    // shell metacharacters do not expand. See docs/security/14-socket-dev-findings.md §3.
     // nosemgrep
     const child = spawn(finalCommand, finalArgs, {
       // nosemgrep
@@ -242,7 +242,7 @@ export function buildElevatedScriptWrapper(scriptPath: string): string {
 //     `uninstallCertWindows` (src/mitm/cert/install.ts) which themselves only
 //     run when a user explicitly enables or disables the MITM proxy from the
 //     local dashboard at /dashboard/cli-tools/mitm.
-// See docs/security/SOCKET_DEV_FINDINGS.md §3 for the full attestation.
+// See docs/security/14-socket-dev-findings.md §3 for the full attestation.
 export async function runElevatedPowerShell(script: string): Promise<string> {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "omniroute-elevate-"));
   const scriptName = `omniroute-elevate-${crypto.randomUUID()}.ps1`;

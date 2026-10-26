@@ -2,7 +2,7 @@
 
 > **Model Context Protocol server** that exposes OmniRoute's gateway intelligence as **110 tools** for AI agents.
 >
-> **Source of truth for the full tool catalog and REST surface:** [`docs/frameworks/MCP-SERVER.md`](../../docs/frameworks/MCP-SERVER.md). This README focuses on architecture, configuration, and integration examples; the catalog below is a summary subset.
+> **Source of truth for the full tool catalog and REST surface:** [`docs/frameworks/07-mcp-server.md`](../../docs/frameworks/07-mcp-server.md). This README focuses on architecture, configuration, and integration examples; the catalog below is a summary subset.
 
 The MCP Server allows any AI agent (Claude Desktop, Cursor, VS Code Copilot, custom agents) to **monitor, control, and optimize** the OmniRoute AI gateway programmatically.
 
@@ -235,7 +235,7 @@ entirely when the health endpoint reports no adaptive-admission data.
 
 The tables above cover the full `schemas/` catalog (43 entries); the authoritative reference with
 scope-enforcement and transport details lives in
-[`docs/frameworks/MCP-SERVER.md`](../../docs/frameworks/MCP-SERVER.md).
+[`docs/frameworks/07-mcp-server.md`](../../docs/frameworks/07-mcp-server.md).
 
 Agents never need to read this file to find a capability: `omniroute_tool_search` performs keyword
 search across the registered tool set and returns compact one-line signatures (token-efficient

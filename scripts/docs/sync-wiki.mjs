@@ -53,6 +53,11 @@ export const NEW_PAGE_EXCLUDE = new Set([
   "fix-opencode-context",
   "plugins", // docs/dev/plugins.md — internal dev note
   "SOCKET_DEV_FINDINGS",
+  "STEALTH_GUIDE",
+  "03-stealth-guide",
+  "14-socket-dev-findings",
+  "12-mitm-tproxy-decrypt",
+  "04-public-creds-pattern",
 ]);
 
 // Acronyms kept upper-case when minting a NEW page name (existing pages keep their
@@ -168,31 +173,22 @@ export function rewriteWikiLinks(
   );
 
   // 2. Images: ![alt](url "title"?)
-  out = out.replace(
-    /!\[([^\]]*)\]\(([^)\s]+)(\s+["'][^"']*["'])?\)/g,
-    (m, text, href, title) => {
-      const newHref = resolveHref(href, true);
-      return `![${text}](${newHref}${title || ""})`;
-    }
-  );
+  out = out.replace(/!\[([^\]]*)\]\(([^)\s]+)(\s+["'][^"']*["'])?\)/g, (m, text, href, title) => {
+    const newHref = resolveHref(href, true);
+    return `![${text}](${newHref}${title || ""})`;
+  });
 
   // 3. Reference links: ^[label]: href "title"?
-  out = out.replace(
-    /^\[([^\]]+)\]:\s*([^\s]+)(\s+["'][^"']*["'])?$/gm,
-    (m, label, href, title) => {
-      const newHref = resolveHref(href, false);
-      return `[${label}]: ${newHref}${title || ""}`;
-    }
-  );
+  out = out.replace(/^\[([^\]]+)\]:\s*([^\s]+)(\s+["'][^"']*["'])?$/gm, (m, label, href, title) => {
+    const newHref = resolveHref(href, false);
+    return `[${label}]: ${newHref}${title || ""}`;
+  });
 
   // 4. HTML anchors: <a ... href="..." ...>
-  out = out.replace(
-    /<a\b([^>]*\bhref=["'])([^"']+)(["'][^>]*)>/gi,
-    (m, before, href, after) => {
-      const newHref = resolveHref(href, false);
-      return `<a${before}${newHref}${after}>`;
-    }
-  );
+  out = out.replace(/<a\b([^>]*\bhref=["'])([^"']+)(["'][^>]*)>/gi, (m, before, href, after) => {
+    const newHref = resolveHref(href, false);
+    return `<a${before}${newHref}${after}>`;
+  });
 
   return out;
 }
@@ -213,7 +209,9 @@ function read(rel) {
 
 // ---- cover-page counts (source of truth) ----
 function providerCount() {
-  const m = read("docs/reference/PROVIDER_REFERENCE.md").match(/Total providers:\s*\*\*(\d+)\*\*/);
+  const m = read("docs/reference/09-provider-reference.md").match(
+    /Total providers:\s*\*\*(\d+)\*\*/
+  );
   return m ? Number(m[1]) : null;
 }
 function strategyCount() {
@@ -397,7 +395,7 @@ function main() {
 
   // ---- report ----
   // Updating existing pages is opt-in: several docs SOURCES carry stale counts (e.g.
-  // ARCHITECTURE.md still says "177 providers / 37 MCP tools" while the wiki cover was
+  // 01-system-overview.md still says "177 providers / 37 MCP tools" while the wiki cover was
   // hand-patched to 226/87). Overwriting from a staler source would REGRESS the wiki, so
   // by default we only ADD missing pages and sync Home counts. Pass --update-existing
   // once the docs sources are regenerated.

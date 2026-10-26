@@ -7,7 +7,7 @@ let _cached = null;
 let _cachedSalt = null;
 
 /** Mirrors getActiveSalt() in src/lib/machineToken.ts so a rotated
- *  OMNIROUTE_CLI_SALT reaches the CLI too (docs/security/CLI_TOKEN.md). */
+ *  OMNIROUTE_CLI_SALT reaches the CLI too (docs/security/07-cli-token-auth.md). */
 function getActiveSalt() {
   return process.env.OMNIROUTE_CLI_SALT || BUILTIN_DEFAULT_SALT;
 }
@@ -19,8 +19,7 @@ export function deriveCliToken(machineIdModule, salt) {
     // undefined and calling it throws — which the catch below turned into an
     // empty token, silently disabling CLI auth for every management request.
     // Same resolution order as src/lib/machineToken.ts.
-    const machineIdSync =
-      machineIdModule?.machineIdSync || machineIdModule?.default?.machineIdSync;
+    const machineIdSync = machineIdModule?.machineIdSync || machineIdModule?.default?.machineIdSync;
     if (typeof machineIdSync !== "function") return "";
     // machineIdSync(true) returns the original unhashed hardware ID — mirrors
     // getMachineTokenSync() in src/lib/machineToken.ts (#10148 cliToken hardening).

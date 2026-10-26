@@ -3,7 +3,7 @@ import path from "node:path";
 export const GITHUB_REPO_BLOB_URL = "https://github.com/diegosouzapw/OmniRoute/blob/main";
 
 /**
- * Resolves a doc link (e.g. `../routing/AUTO-COMBO.md#14-factors`, `./RESILIENCE_GUIDE.md`,
+ * Resolves a doc link (e.g. `../routing/01-auto-combo.md#14-factors`, `./07-resilience-guide.md`,
  * or `../../src/lib/db/core.ts`) into a proper Next.js Fumadocs route path or GitHub blob URL.
  *
  * - Relative doc links within `docs/` -> `/docs/<section>/<slug>[#anchor]`
@@ -58,7 +58,7 @@ export function resolveDocHref(href: string, currentDocRelPath: string = ""): st
     return `/docs/${resolvedInDocs}${anchorSuffix}`;
   }
 
-  // Relative doc path without leading dots, e.g. "routing/AUTO-COMBO.md"
+  // Relative doc path without leading dots, e.g. "routing/01-auto-combo.md"
   if (rawPath.toLowerCase().endsWith(".md")) {
     return `/docs/${rawPath.slice(0, -3)}${anchorSuffix}`;
   }

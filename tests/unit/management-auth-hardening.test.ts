@@ -280,7 +280,7 @@ test("MCP transport and inspection routes require management authentication", ()
 });
 
 test("management routes sanitize error.message before returning it to clients", () => {
-  // Hard Rule #12 (docs/security/ERROR_SANITIZATION.md): HTTP responses must
+  // Hard Rule #12 (docs/security/05-error-sanitization.md): HTTP responses must
   // route every err.message/err.stack through sanitizeErrorMessage() or
   // buildErrorBody(). Raw error.message can leak absolute paths, stack
   // traces, or upstream provider internals into client-visible JSON bodies.

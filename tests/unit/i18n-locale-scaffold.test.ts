@@ -89,7 +89,7 @@ const indexRows = (lines: string[]): RowRef[] =>
     return code ? [{ index, code }] : [];
   });
 
-// The locale table of docs/guides/I18N.md: its header line and the contiguous rows under it
+// The locale table of docs/guides/22-i18n-guide.md: its header line and the contiguous rows under it
 // (the guide has other tables with backticked first cells, which must not count).
 const guideRows = (lines: string[]): { header: number; rows: RowRef[] } => {
   const header = lines.findIndex((line) =>
@@ -312,7 +312,7 @@ test("insertDocsIndexRow inserts in code order and updates the counts sentence",
 });
 
 test("insertDocsIndexRow inserts at the beginning and the end of the row block and leaves other lines alone", () => {
-  const withTrailer = `${INDEX_FIXTURE}\nSee also [the guide](../guides/I18N.md).\n`;
+  const withTrailer = `${INDEX_FIXTURE}\nSee also [the guide](../guides/22-i18n-guide.md).\n`;
   const lines = withTrailer.split("\n");
   const sentence = lines[0]
     .replace("into 42 languages", "into 43 languages")
@@ -490,11 +490,11 @@ test("insertI18nGuideRow only touches the locale table, not other tables with ba
   );
 });
 
-test("insertI18nGuideRow on the real docs/guides/I18N.md adds one aligned row at the derived position", () => {
+test("insertI18nGuideRow on the real docs/guides/22-i18n-guide.md adds one aligned row at the derived position", () => {
   const config = realConfig();
   const total = config.locales.length;
   const entry: LocaleEntry = { ...el, code: sentinelCode(config) };
-  const before = readRepo("docs/guides/I18N.md").split("\n");
+  const before = readRepo("docs/guides/22-i18n-guide.md").split("\n");
   const after = insertI18nGuideRow(before.join("\n"), entry, total + 1, config.rtl).split("\n");
   assert.equal(after.length, before.length + 1);
 

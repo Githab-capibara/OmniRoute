@@ -15,7 +15,7 @@
 #     the queue cannot see. Retarget to the active release/vX+1 first (Hard Rule #21).
 #   • Never label a PR another session is actively working (Hard Rule #22b).
 #   • Fallback path if Mergify misbehaves or the OSS plan changes: the manual
-#     merge-train runbook (docs/ops/MERGE_TRAIN.md) — remove labels, proceed by hand.
+#     merge-train runbook (docs/ops/05-merge-train-runbook.md) — remove labels, proceed by hand.
 
 # Auto-enqueue (current Mergify model, 2026): auto_merge_conditions in
 # merge_protections_settings — the rules-based queue action / autoqueue path is

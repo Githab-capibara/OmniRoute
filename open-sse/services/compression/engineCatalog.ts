@@ -2,13 +2,13 @@
 // variance disrupts upstream prompt-prefix caching (e.g. Anthropic/OpenAI prompt
 // caching): "none"/"low" = deterministic, cache-friendly; "high" = output shape varies
 // enough across requests (summarization, query-dependent pruning) that cached prefixes
-// are less likely to be reused. Source: docs/compression/COMPRESSION_GUIDE.md,
-// docs/compression/COMPRESSION_ENGINES.md (#7530).
+// are less likely to be reused. Source: docs/compression/01-compression-guide.md,
+// docs/compression/02-compression-engines.md (#7530).
 export type CacheImpact = "none" | "low" | "moderate" | "high";
 
 export interface EngineGuidance {
   // Short, in-product explanation of the quality/latency tradeoff — adapted from
-  // docs/compression/COMPRESSION_GUIDE.md / COMPRESSION_ENGINES.md, not invented.
+  // docs/compression/01-compression-guide.md / 02-compression-engines.md, not invented.
   tradeoffs: string;
   // true = the engine can drop/alter content a later turn might have needed (semantic
   // condensation, summarization, pruning). false = structural/formatting-only, safe to

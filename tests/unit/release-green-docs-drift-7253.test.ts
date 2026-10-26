@@ -2,7 +2,7 @@
 // found the branch genuinely red for `check:fabricated-docs --strict`: two doc
 // files referenced a migration file / API route that no longer exist under
 // those names (docs went stale after src/ moved on):
-//   - docs/routing/REASONING_ROUTING.md:67  -> migration renumbered 125 -> 126
+//   - docs/routing/05-reasoning-routing-rules.md:67  -> migration renumbered 125 -> 126
 //   - docs/INCIDENT_RESPONSE.md / docs/PERF_BUDGETS.md -> `/api/version` route
 //     was renamed to `/api/system/version`
 //
@@ -12,7 +12,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { runFabricatedDocsCheck, formatHumanReport } from "../../scripts/check/check-fabricated-docs.mjs";
+import {
+  runFabricatedDocsCheck,
+  formatHumanReport,
+} from "../../scripts/check/check-fabricated-docs.mjs";
 
 test("#7253 release-green: docs contain zero fabricated API/file-ref drift", () => {
   const result = runFabricatedDocsCheck();
@@ -22,7 +25,7 @@ test("#7253 release-green: docs contain zero fabricated API/file-ref drift", () 
   assert.equal(result.totalFindings, 0);
 });
 
-test("#7253: REASONING_ROUTING.md references the current migration filename (126, not 125)", () => {
+test("#7253: 05-reasoning-routing-rules.md references the current migration filename (126, not 125)", () => {
   const result = runFabricatedDocsCheck();
   const hit = result.files
     .flatMap((f) => f.findings.map((finding) => ({ file: f.rel, ...finding })))

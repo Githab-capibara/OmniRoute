@@ -45,13 +45,16 @@ test("no catalog entry carries a per-row quality rating, under any name", () => 
     [],
     "a new field appeared on catalog entries: " +
       `${unexpected.join(", ")}. If it rates how much a row can be trusted, ` +
-      "docs/reference/FREE_TIERS.md says the opposite and must be revisited; " +
+      "docs/reference/06-free-tiers-directory.md says the opposite and must be revisited; " +
       "if it does not, add it to CATALOG_ENTRY_KEYS."
   );
 });
 
 test("the reference page does not promise a per-row confidence tag", () => {
-  const page = fs.readFileSync(path.resolve(here, "../../docs/reference/FREE_TIERS.md"), "utf8");
+  const page = fs.readFileSync(
+    path.resolve(here, "../../docs/reference/06-free-tiers-directory.md"),
+    "utf8"
+  );
   assert.ok(
     !/confidence tagged per row/i.test(page),
     "the page promises a per-row confidence tag; no catalog entry carries one"

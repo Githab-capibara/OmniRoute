@@ -14,13 +14,13 @@
  *
  * Paths that are not translation targets are dropped from the result: the
  * strict-mirror stubs (`llm.txt`, `CHANGELOG.md`), the operator-only
- * `docs/guides/I18N.md`, and any mirror whose English source no longer exists
+ * `docs/guides/22-i18n-guide.md`, and any mirror whose English source no longer exists
  * at `<root>/<path>`. Synchronous and filesystem-only — no network, no writes.
  */
 import { existsSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 
-export const CORE_SET_EXCLUDED = ["llm.txt", "CHANGELOG.md", "docs/guides/I18N.md"];
+export const CORE_SET_EXCLUDED = ["llm.txt", "CHANGELOG.md", "docs/guides/22-i18n-guide.md"];
 
 function walkFiles(dir, base = dir, out = []) {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {

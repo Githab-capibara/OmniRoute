@@ -5,7 +5,7 @@
 // Credenciais públicas de upstream (OAuth client_id/client_secret de CLIs públicas
 // + Firebase web keys) DEVEM ser embutidas via `resolvePublicCred()` /
 // `resolvePublicCredMulti()` (de open-sse/utils/publicCreds.ts), NUNCA como string
-// literal no código. Ver docs/security/PUBLIC_CREDS.md.
+// literal no código. Ver docs/security/04-public-creds-pattern.md.
 //
 // Literais embutidos (a) disparam scanners de secret/CodeQL a cada release, gerando
 // ruído, e (b) acoplam o valor ao texto-fonte em vez de ao decodificador central —
@@ -193,7 +193,7 @@ function main() {
         `(viola CLAUDE.md Hard Rule #11):\n` +
         allMisses.map((m) => "  ✗ " + m).join("\n") +
         `\n  → embuta via resolvePublicCred()/resolvePublicCredMulti() ` +
-        `(open-sse/utils/publicCreds.ts). Ver docs/security/PUBLIC_CREDS.md.\n` +
+        `(open-sse/utils/publicCreds.ts). Ver docs/security/04-public-creds-pattern.md.\n` +
         `  → se for um literal pré-existente já auditado, congele em KNOWN_LITERAL_CREDS ` +
         `com justificativa (e abra tracking de migração).`
     );

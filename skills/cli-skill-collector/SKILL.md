@@ -417,7 +417,7 @@ fi
 
 ## Notes
 
-- OmniRoute must be running locally on port 20128 (default) — see `docs/frameworks/SKILLS.md` for custom-port setups.
+- OmniRoute must be running locally on port 20128 (default) — see `docs/frameworks/08-skills-framework.md` for custom-port setups.
 - The `/api/skills/collect/*` and `/api/github-skills` endpoints require **management-scoped authentication** the same way every other `/api/skills/*` route does: a dashboard session, the loopback CLI token, or an API key with the `manage` scope (`requireManagementAuth()`). Auth is only bypassed when the server has no login/API-key requirement configured at all.
 - This replaces the standalone Skill Collector Python app — all logic is now inside OmniRoute.
 <!-- skill:custom-end -->

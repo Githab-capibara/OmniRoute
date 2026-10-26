@@ -2,13 +2,13 @@
  * Shared builders for the `🌐 **Languages:** …` bars that head every English
  * doc and every translated mirror. `config` is the parsed `config/i18n.json`
  * (`locales[]` with `code`, `flag`, `native`); all paths are repo-relative POSIX
- * (`docs/guides/USER_GUIDE.md`, `README.md`) and the links are relative to the
+ * (`docs/guides/01-user-guide.md`, `README.md`) and the links are relative to the
  * file that carries the bar.
  *
  *   buildMirrorBar(rel, locale, config)  →  docs/i18n/<locale>/… format:
  *     🌐 **Languages:** 🇺🇸 [English](../../../README.md) · 🇸🇦 [ar](../ar/README.md) · …
  *   buildSourceBar(rel, config)          →  English source format:
- *     🌐 **Languages:** 🇺🇸 [English](./USER_GUIDE.md) | 🇧🇷 [Português (Brasil)](../i18n/pt-BR/docs/guides/USER_GUIDE.md) | …
+ *     🌐 **Languages:** 🇺🇸 [English](./01-user-guide.md) | 🇧🇷 [Português (Brasil)](../i18n/pt-BR/docs/guides/01-user-guide.md) | …
  *   replaceLanguageBar(markdown, bar)    →  swaps EVERY language-bar line (any
  *                                          `🌐 **<label>:** …[…](…)`, translated labels
  *                                          included), `null` when there is none.
@@ -23,7 +23,7 @@ function mirrorPath(relSource, locale) {
 
 /**
  * `hasMirror(relSource, locale)` — optional existence predicate. A bar must not
- * link to a mirror that is not on disk: `docs/guides/I18N.md` is deliberately
+ * link to a mirror that is not on disk: `docs/guides/22-i18n-guide.md` is deliberately
  * English-only (see `DOCS_EXCLUDED_NAMES` in run-translation.mjs) yet carries
  * legacy mirrors for the older locales, so every newly added locale would get a
  * dead link. Omit it and every configured locale is listed, as before.

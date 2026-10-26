@@ -169,6 +169,11 @@ export const DEFAULT_RESILIENCE_SETTINGS: ResilienceSettings = {
     continueMidStream: ["true", "1", "on"].includes(
       (process.env.STREAM_RECOVERY_MIDSTREAM_ENABLED || "").trim().toLowerCase()
     ),
+    // Opt-in (default OFF): re-open a post-commit truncation that delivered no usable
+    // assistant content. Each restart re-spends the upstream work already paid for.
+    contentlessRestart: ["true", "1", "on"].includes(
+      (process.env.STREAM_RECOVERY_CONTENTLESS_RESTART_ENABLED || "").trim().toLowerCase()
+    ),
     throughputWatchdog: {
       enabled: ["true", "1", "on"].includes(
         (process.env.STREAM_THROUGHPUT_WATCHDOG_ENABLED || "").trim().toLowerCase()
@@ -229,8 +234,7 @@ function buildLegacyFallback(settings: JsonRecord): ResilienceSettings {
         DEFAULT_RESILIENCE_SETTINGS.requestQueue.concurrentRequests,
         { min: 1, max: 10_000 }
       ),
-      globalConcurrentRequests:
-        DEFAULT_RESILIENCE_SETTINGS.requestQueue.globalConcurrentRequests,
+      globalConcurrentRequests: DEFAULT_RESILIENCE_SETTINGS.requestQueue.globalConcurrentRequests,
       maxWaitMs: DEFAULT_RESILIENCE_SETTINGS.requestQueue.maxWaitMs,
       executionMaxWaitMs: DEFAULT_RESILIENCE_SETTINGS.requestQueue.executionMaxWaitMs,
       maxQueueDepth: DEFAULT_RESILIENCE_SETTINGS.requestQueue.maxQueueDepth,

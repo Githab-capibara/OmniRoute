@@ -15,7 +15,7 @@ consume OmniRoute via OpenAI-compatible REST in one fetch.
 - **MCP tool**: `omniroute_agent_skills_list` (scope `read:catalog`) — returns the full 45-entry catalog in one call.
 - **A2A skill**: `list-capabilities` — JSON-RPC 2.0 endpoint that returns the agent card with all registered skills.
 
-See [`docs/frameworks/AGENT-SKILLS.md`](../docs/frameworks/AGENT-SKILLS.md) for the full framework reference.
+See [`docs/frameworks/05-agent-skills-catalog.md`](../docs/frameworks/05-agent-skills-catalog.md) for the full framework reference.
 
 ---
 

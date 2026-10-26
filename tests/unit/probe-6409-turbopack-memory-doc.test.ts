@@ -12,13 +12,13 @@
  * modules), matching the class of app that hits this.
  *
  * A working escape hatch already exists (`OMNIROUTE_USE_TURBOPACK=0` reverts to
- * webpack), but docs/reference/ENVIRONMENT.md documents it only as a fix for
+ * webpack), but docs/reference/03-environment-variables.md documents it only as a fix for
  * "native binding / bundler-compat" issues on Windows — it says nothing about
  * memory, so a RAM-constrained contributor building from source (exactly this
  * reporter's scenario) has no signal to reach for it before their build balloons
  * past 14 GB.
  *
- * This probe proves the informational gap: the ENVIRONMENT.md row for
+ * This probe proves the informational gap: the 03-environment-variables.md row for
  * OMNIROUTE_USE_TURBOPACK does not mention memory/RAM at all.
  */
 import test from "node:test";
@@ -29,12 +29,12 @@ import { fileURLToPath } from "node:url";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
-test("#6409 ENVIRONMENT.md documents the memory tradeoff of the Turbopack build default", () => {
-  const envDocPath = path.join(repoRoot, "docs/reference/ENVIRONMENT.md");
+test("#6409 03-environment-variables.md documents the memory tradeoff of the Turbopack build default", () => {
+  const envDocPath = path.join(repoRoot, "docs/reference/03-environment-variables.md");
   const doc = fs.readFileSync(envDocPath, "utf-8");
   const lines = doc.split("\n");
   const row = lines.find((l) => l.includes("OMNIROUTE_USE_TURBOPACK"));
-  assert.ok(row, "ENVIRONMENT.md must document OMNIROUTE_USE_TURBOPACK");
+  assert.ok(row, "03-environment-variables.md must document OMNIROUTE_USE_TURBOPACK");
 
   const mentionsMemory = /\b(memory|RAM|GB)\b/i.test(row ?? "");
   assert.ok(

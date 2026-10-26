@@ -12,7 +12,7 @@
  * extensionless commands — the same spawn-capable class already gated for
  * every sibling route (Hard Rules #15 + #17). Classifying it LOCAL_ONLY closes
  * the remote-RCE vector: a leaked JWT over a Cloudflared/Ngrok tunnel cannot
- * trigger process spawning. See docs/security/ROUTE_GUARD_TIERS.md.
+ * trigger process spawning. See docs/security/06-route-guard-tiers.md.
  */
 import test from "node:test";
 import assert from "node:assert/strict";

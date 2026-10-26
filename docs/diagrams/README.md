@@ -6,20 +6,23 @@ lastUpdated: 2026-07-17
 
 # Diagrams
 
-Mermaid sources (`.mmd`) and exported SVGs for OmniRoute v3.8.0 architecture flows.
+Mermaid sources (`.mmd`) and exported SVGs for the OmniRoute architecture flows.
+
+- **Audience:** Architects, contributors
+- **Doc set index:** [docs/README.md](../README.md)
 
 ## Canonical diagrams
 
-| Source                                             | Exported                                 | Used in                                                                        |
-| -------------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------ |
-| [request-pipeline.mmd](./request-pipeline.mmd)     | [SVG](./exported/request-pipeline.svg)   | docs/architecture/ARCHITECTURE.md, docs/architecture/CODEBASE_DOCUMENTATION.md |
-| [auto-combo-scoring.mmd](./auto-combo-scoring.mmd) | [SVG](./exported/auto-combo-scoring.svg) | docs/routing/AUTO-COMBO.md                                                     |
-| [resilience-3layers.mmd](./resilience-3layers.mmd) | [SVG](./exported/resilience-3layers.svg) | docs/architecture/RESILIENCE_GUIDE.md, CLAUDE.md                               |
-| [i18n-flow.mmd](./i18n-flow.mmd)                   | [SVG](./exported/i18n-flow.svg)          | docs/guides/I18N.md                                                            |
-| [mcp-tools.mmd](./mcp-tools.mmd)                   | [SVG](./exported/mcp-tools.svg)          | docs/frameworks/MCP-SERVER.md                                                  |
-| [cloud-agent-flow.mmd](./cloud-agent-flow.mmd)     | [SVG](./exported/cloud-agent-flow.svg)   | docs/frameworks/CLOUD_AGENT.md                                                 |
-| [authz-pipeline.mmd](./authz-pipeline.mmd)         | [SVG](./exported/authz-pipeline.svg)     | docs/architecture/AUTHZ_GUIDE.md                                               |
-| [db-schema-overview.mmd](./db-schema-overview.mmd) | [SVG](./exported/db-schema-overview.svg) | docs/architecture/CODEBASE_DOCUMENTATION.md                                    |
+| Source                                             | Exported                                 | Used in                                                                                                                                                                |
+| -------------------------------------------------- | ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [request-pipeline.mmd](./request-pipeline.mmd)     | [SVG](./exported/request-pipeline.svg)   | [architecture/01-system-overview.md](../architecture/01-system-overview.md), [architecture/10-codebase-documentation.md](../architecture/10-codebase-documentation.md) |
+| [auto-combo-scoring.mmd](./auto-combo-scoring.mmd) | [SVG](./exported/auto-combo-scoring.svg) | [routing/01-auto-combo.md](../routing/01-auto-combo.md)                                                                                                                |
+| [resilience-3layers.mmd](./resilience-3layers.mmd) | [SVG](./exported/resilience-3layers.svg) | [architecture/07-resilience-guide.md](../architecture/07-resilience-guide.md)                                                                                          |
+| [i18n-flow.mmd](./i18n-flow.mmd)                   | [SVG](./exported/i18n-flow.svg)          | [guides/22-i18n-guide.md](../guides/22-i18n-guide.md)                                                                                                                  |
+| [mcp-tools.mmd](./mcp-tools.mmd)                   | [SVG](./exported/mcp-tools.svg)          | [frameworks/07-mcp-server.md](../frameworks/07-mcp-server.md)                                                                                                          |
+| [cloud-agent-flow.mmd](./cloud-agent-flow.mmd)     | [SVG](./exported/cloud-agent-flow.svg)   | [frameworks/06-cloud-agent-runtime.md](../frameworks/06-cloud-agent-runtime.md)                                                                                        |
+| [authz-pipeline.mmd](./authz-pipeline.mmd)         | [SVG](./exported/authz-pipeline.svg)     | [architecture/04-authorization-pipeline.md](../architecture/04-authorization-pipeline.md)                                                                              |     |
+| [db-schema-overview.mmd](./db-schema-overview.mmd) | [SVG](./exported/db-schema-overview.svg) | docs/architecture/10-codebase-documentation.md                                                                                                                         |
 
 ## Hand-authored animated diagrams
 

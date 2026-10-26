@@ -12,7 +12,7 @@
  * under `/api/oauth/cursor/agent-availability` during planning, then
  * relocated under `/api/providers/` because `/api/oauth/` is PUBLIC-classified
  * (see classify.ts) and never reaches the LOCAL_ONLY gate at all — see
- * docs/security/ROUTE_GUARD_TIERS.md. The classifyRoute assertion below pins
+ * docs/security/06-route-guard-tiers.md. The classifyRoute assertion below pins
  * that decision as a regression guard against ever moving this back.
  */
 import test from "node:test";

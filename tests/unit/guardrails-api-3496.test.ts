@@ -6,7 +6,7 @@ import path from "node:path";
 
 import { makeManagementSessionRequest } from "../helpers/managementSession.ts";
 
-// #3496 — docs/reference/API_REFERENCE.md documented a `/api/guardrails*` and
+// #3496 — docs/reference/01-api-reference.md documented a `/api/guardrails*` and
 // `/api/shadow*` surface that did not exist (doc-fiction, frozen in the
 // check-docs-symbols allowlist). The guardrail pipeline itself is real
 // (src/lib/guardrails), so the fix implements the two routes that map to real
@@ -113,9 +113,9 @@ test("#3496 check-docs-symbols no longer freezes guardrails/shadow + API_REFEREN
     );
   }
 
-  // (2) API_REFERENCE.md no longer references a non-existent guardrails/shadow route
+  // (2) 01-api-reference.md no longer references a non-existent guardrails/shadow route
   const routeFiles = collectRouteFiles();
-  const apiRefRel = "docs/reference/API_REFERENCE.md";
+  const apiRefRel = "docs/reference/01-api-reference.md";
   const src = fs.readFileSync(path.join(process.cwd(), apiRefRel), "utf8");
   const docPathsByFile = [{ file: apiRefRel, paths: extractDocApiPaths(src) }];
   const misses = findStaleDocApiRefs(docPathsByFile, routeFiles, KNOWN_STALE_DOC_REFS);

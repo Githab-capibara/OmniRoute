@@ -3779,7 +3779,9 @@
     "duplicateAutoComboSnapshotMsg": "Tas izveidos momentuzņēmumu no pašlaik pievienotajiem nodrošinātājiem/modeļiem, kas atbilst šim šablonam, veidojot redigējamu kombināciju.",
     "duplicateAutoComboFailedPrefix": "Neizdevās dublēt automātisko kombināciju:",
     "duplicateAutoComboUnknownError": "Nezināma kļūda",
-    "duplicateAutoComboTitle": "Izveidot statisku kombināciju no {name}"
+    "duplicateAutoComboTitle": "Izveidot statisku kombināciju no {name}",
+    "quotaWeighted": "Quota-Weighted",
+    "quotaWeightedDesc": "Skip exhausted accounts, then pick among the rest in proportion to leftover, divided by in-flight load. Existing conversations stay pinned."
   },
   "costs": {
     "title": "Izmaksas",
@@ -6306,7 +6308,8 @@
       "kiro": "Bezmaksas plāns: 50 kredīti/mēnesī (~25K–100K žetoni). ⚠️ Kiro pakalpojuma sniegšanas noteikumi aizliedz trešo pušu proxy/harness lietošanu.",
       "codex": "Savienojiet OpenAI Codex, izmantojot esošo OAuth plūsmu.",
       "qwen": "Savienojiet Qwen Code, izmantojot esošo OAuth plūsmu.",
-      "github-models": "Izveidojiet GitHub PAT ar 'models: read' tvērumu vietnē github.com/settings/tokens"
+      "github-models": "Izveidojiet GitHub PAT ar 'models: read' tvērumu vietnē github.com/settings/tokens",
+      "seekai": "Create an API key at https://seekai.cc, then paste it here as a Bearer token. OpenAI-compatible base URL: https://seekai.cc/v1."
     },
     "passthroughModelsDescription": "{provider} pieņem sniedzēja pamatnes modeļu ID. Importējiet no /models vai pievienojiet pielāgotus ID maršrutēšanai.",
     "bedrockModelsDescription": "Amazon Bedrock modeļi ir ierobežoti pēc AWS reģiona. Importējiet no /models vai pievienojiet Bedrock modeļu ID, kas ir iespējoti izvēlētajā reģionā.",
@@ -6464,7 +6467,14 @@
     "savedModelEndpointSettings": "Modeļa galapunkta iestatījumi saglabāti",
     "searchByModelAria": "Meklēt pēc modeļa",
     "selectSupportedEndpoint": "Izvēlieties vismaz vienu atbalstītu galapunktu",
-    "antigravityClientProfileHarness": "Harness / CLI"
+    "antigravityClientProfileHarness": "Harness / CLI",
+    "importFromFileDownloadTemplate": "Download CSV template",
+    "importFromFileMoreErrors": "+{count} more",
+    "importFromFileSchemaHint": "CSV columns are positional: provider, name, apiKey, baseUrl (optional), priority (optional). The provider column must be an existing managed provider id or an already-registered OpenAI/Anthropic-compatible node id — this import does not create new endpoint nodes.",
+    "dailyQuotaResetTimezoneLabel": "Daily quota reset timezone",
+    "dailyQuotaResetTimezoneHint": "Optional IANA timezone used when the upstream omits X-RateLimit-Reset. Leave empty to keep a short cooldown.",
+    "dailyQuotaResetHourLabel": "Daily quota reset hour",
+    "dailyQuotaResetHourHint": "Local hour 0-23 in the timezone above. Empty means no node-level clock."
   },
   "settings": {
     "title": "Iestatījumi",
@@ -8343,7 +8353,29 @@
     "cliproxyapiHealth": "Veselība",
     "cliproxyapiPort": "Ports",
     "qdrantHost": "Resursdators",
-    "qdrantCollection": "Kolekcija"
+    "qdrantCollection": "Kolekcija",
+    "quotaWeighted": "Quota-Weighted",
+    "quotaWeightedDesc": "Skip exhausted accounts, then pick among the rest in proportion to leftover, divided by in-flight load. Existing conversations stay pinned.",
+    "jsonImportAuthRequired": "Authentication required to import a legacy JSON configuration. Please sign in or complete setup first.",
+    "databaseSettingsAuthRequiredTitle": "Authentication required",
+    "databaseSettingsAuthRequiredBody": "Database settings and JSON import are only available to an authenticated admin. Sign in or complete setup to view and edit them.",
+    "databaseSettingsAuthRequiredCta": "Sign in",
+    "compressionAdaptiveMode": "Adaptive context budget",
+    "compressionAdaptiveModeOff": "Off (legacy auto-trigger)",
+    "compressionAdaptiveModeFloor": "Floor (always guarantee fit)",
+    "compressionAdaptiveModeReplace": "Replace auto-trigger",
+    "compressionAdaptivePolicy": "Budget policy",
+    "compressionAdaptivePolicyReserve": "Reserve output",
+    "compressionAdaptivePolicyPercentage": "Percentage of window",
+    "compressionAdaptivePolicyAbsolute": "Absolute token budget",
+    "headroomProxyTitle": "Headroom proxy",
+    "headroomProxyDesc": "URL of the optional Headroom token-saver proxy. Empty uses HEADROOM_URL or http://localhost:8787.",
+    "headroomProxyUrl": "Headroom URL",
+    "headroomProxyUrlHint": "Loopback URLs can be started from this page. External URLs are probed only.",
+    "headroomProxySave": "Save",
+    "headroomProxyStart": "Start",
+    "headroomProxyStop": "Stop",
+    "headroomProxyExternalHint": "This URL is not loopback, so OmniRoute will not spawn the local CLI."
   },
   "contextRtk": {
     "title": "RTK dzinējs",
@@ -10769,7 +10801,7 @@
     "readingFromCursor": "Nolasa no Cursor IDE vai cursor-agent",
     "tokensAutoDetected": "Pilnvaras veiksmīgi automātiski noteiktas no Cursor IDE!",
     "cursorNotDetected": "Cursor IDE nav noteikts. Ielīmējiet savu piekļuves pilnvaru (un atjaunošanas pilnvaru, ja pieejama).",
-    "dockerImportHint": "Darbojas Docker? Ieteicams izvēlēties Pieteikties ar Cursor. IDE automātiskā importēšana un cursor-agent parasti nav pieejami konteinerā. Skatiet docs/providers/CURSOR-DOCKER.md.",
+    "dockerImportHint": "Darbojas Docker? Ieteicams izvēlēties Pieteikties ar Cursor. IDE automātiskā importēšana un cursor-agent parasti nav pieejami konteinerā. Skatiet docs/providers/06-cursor-docker.md.",
     "accessToken": "Piekļuves tokens",
     "refreshToken": "Atjaunošanas tokens",
     "refreshTokenPlaceholder": "Neobligāti — ieslēdz automātisku tokena atjaunošanu",
@@ -11387,7 +11419,9 @@
       "detailedPayloadInfo": "Vispirms iespējojiet detalizētu žurnalēšanu, ja vēlaties četru posmu klienta/nodrošinātāja derīgās slodzes skatu jauniem pieprasījumiem.",
       "copyAll": "Kopēt visu",
       "copiedAll": "Viss nokopēts"
-    }
+    },
+    "columnsReset": "Reset",
+    "columnsResetHint": "Restore the default columns: Status, Model, Provider, Tokens, TPS, Duration"
   },
   "proxyLogger": {
     "filterAll": "Visi",
@@ -12984,6 +13018,10 @@
       },
       "SKILLS_SANDBOX_NETWORK_ENABLED": {
         "description": "Iespējot tīkla piekļuvi prasmju smilškastē."
+      },
+      "SERVER_OWNED_TOOL_LOOP_ENABLED": {
+        "label": "Server-Owned Tool Loop",
+        "description": "Continue non-streaming server-owned tool calls until the model returns a client-usable response."
       }
     }
   },
@@ -13149,7 +13187,8 @@
       "ok": "Parasti pieļaujams"
     },
     "allProviders": "Visi pakalpojumu sniedzēji",
-    "noApiKeyRequired": "API atslēga nav nepieciešama"
+    "noApiKeyRequired": "API atslēga nav nepieciešama",
+    "gated": "~{tokens}/mo more behind a regional identity check (e.g. mainland-China real-name verification) — real quota, not counted in the headline:"
   },
   "providerHealthAutopilot": {
     "title": "Provider Health Autopilot",
@@ -13442,7 +13481,10 @@
     "localStateSaveFailed": "Neizdevās saglabāt vietējos Radar iestatījumus",
     "guidedCombos": "Ieteiktās kombinācijas",
     "offers": "Piedāvājumi",
-    "intel": "Intel"
+    "intel": "Intel",
+    "limitsUnknownHelp": "Limits reported by Radar feed only; no published limits for this entry",
+    "contextUnknownHelp": "Context window unknown for this entry",
+    "capabilityUnknownHelp": "Capability not reported by the feed"
   },
   "radarCombosPage": {
     "title": "Radar ieteiktās kombinācijas",
@@ -14021,7 +14063,12 @@
     "compareCost": "Izmaksas",
     "compareEvents": "Notikumi",
     "compareDeltaLegend": "Δ labā − kreisā",
-    "noMatches": "Neviena izpilde neatbilst šiem filtriem"
+    "noMatches": "Neviena izpilde neatbilst šiem filtriem",
+    "drawerMemory": "Memory used",
+    "actionRepeat": "Repeat",
+    "repeatConfirm": "Click again to confirm",
+    "repeatDone": "New run created",
+    "repeatUnavailable": "Original input not available"
   },
   "cliproxyProviderExposure": {
     "title": "Pakalpojumu sniedzēju eksponēšana",

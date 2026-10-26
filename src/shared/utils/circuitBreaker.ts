@@ -213,6 +213,10 @@ export interface CircuitBreakerStatus {
   degradationThreshold: number;
   effectiveResetTimeout: number;
   transitionHistory: TransitionRecord[];
+  /** Probe slots still unclaimed in HALF_OPEN. 0 while a probe is in flight. */
+  halfOpenAllowed: number;
+  /** Epoch ms when the in-flight HALF_OPEN probe claimed its last slot. */
+  halfOpenProbeAt: number | null;
 }
 
 export class CircuitBreaker {
@@ -227,6 +231,18 @@ export class CircuitBreaker {
   successCount: number;
   lastFailureTime: number | null;
   halfOpenAllowed: number;
+  /**
+   * Epoch ms of the moment a HALF_OPEN probe claimed its last probe slot.
+   *
+   * The chat path dispatches probes through `execute(..., { classifyResult: "ignore" })`,
+   * which spends `halfOpenAllowed` but deliberately records no outcome — the caller
+   * reports success/failure later (`breaker._onSuccess()` / `recordProviderFailure`).
+   * That hand-off is not guaranteed: a client abort mid-stream, a post-abort
+   * disconnect, or any early return before the caller accounts leaves the probe
+   * in flight forever. `_refreshOpenState()` uses this stamp as a lease so the
+   * slot is re-armed once the lease expires instead of rejecting all traffic.
+   */
+  halfOpenProbeAt: number | null;
   cooldownByKind: Partial<Record<FailureKind, number>>;
   classifyError: ((error: unknown) => FailureKind | undefined) | null;
   lastFailureKind: FailureKind | null;
@@ -257,6 +273,7 @@ export class CircuitBreaker {
     this.successCount = 0;
     this.lastFailureTime = null;
     this.halfOpenAllowed = 0;
+    this.halfOpenProbeAt = null;
     this.cooldownByKind = options.cooldownByKind ?? {};
     this.classifyError = options.classifyError ?? null;
     this.lastFailureKind = null;
@@ -301,6 +318,7 @@ export class CircuitBreaker {
 
         if (this.state === STATE.HALF_OPEN) {
           this.halfOpenAllowed = this.halfOpenRequests;
+          this.halfOpenProbeAt = null;
         }
       }
     } catch {
@@ -364,6 +382,8 @@ export class CircuitBreaker {
 
     if (this.state === STATE.HALF_OPEN) {
       this.halfOpenAllowed--;
+      // Lease start: the caller owns the outcome hand-off, so stamp it now.
+      this.halfOpenProbeAt = Date.now();
     }
 
     try {
@@ -408,6 +428,8 @@ export class CircuitBreaker {
       degradationThreshold: this.degradationThreshold,
       effectiveResetTimeout: this._effectiveResetTimeout(),
       transitionHistory: [...this.transitionHistory],
+      halfOpenAllowed: this.halfOpenAllowed,
+      halfOpenProbeAt: this.halfOpenProbeAt,
     };
   }
 
@@ -425,6 +447,8 @@ export class CircuitBreaker {
     this.lastFailureKind = null;
     this.openCycleCount = 0;
     this.kindFailureCounts = {};
+    this.halfOpenAllowed = 0;
+    this.halfOpenProbeAt = null;
     this._persistToDb();
   }
 
@@ -454,6 +478,8 @@ export class CircuitBreaker {
   }
 
   _onSuccess() {
+    // The probe hand-off landed: the lease is settled either way.
+    this.halfOpenProbeAt = null;
     if (this.state === STATE.OPEN) {
       this._transition(STATE.CLOSED, "success-recovery");
       this.failureCount = 0;
@@ -481,6 +507,7 @@ export class CircuitBreaker {
 
   _onFailure(kind?: FailureKind | null) {
     const failureKind = kind ?? null;
+    this.halfOpenProbeAt = null;
     this.failureCount++;
     this.lastFailureTime = Date.now();
     this.lastFailureKind = failureKind;
@@ -567,6 +594,27 @@ export class CircuitBreaker {
     if (this.state === STATE.OPEN && this._shouldAttemptReset()) {
       this._transition(STATE.HALF_OPEN, "timeout-elapsed");
       this._persistToDb();
+      return;
+    }
+
+    // Stuck-probe recovery. `execute(..., { classifyResult: "ignore" })` spends a
+    // probe slot and hands the outcome off to the caller, so a probe whose result
+    // is never reported (client abort, post-abort disconnect, early return) would
+    // otherwise leave `halfOpenAllowed` at 0 and reject every request forever —
+    // the provider stays bricked with no timer to recover it. Re-arm the slot once
+    // the probe lease outlives the effective cooldown: the next request becomes a
+    // fresh probe, and its own accounting closes the breaker or re-opens it.
+    if (
+      this.state === STATE.HALF_OPEN &&
+      this.halfOpenAllowed <= 0 &&
+      this.halfOpenRequests > 0 &&
+      this.halfOpenProbeAt !== null &&
+      Date.now() - this.halfOpenProbeAt >= this._effectiveCooldown()
+    ) {
+      this.halfOpenAllowed = this.halfOpenRequests;
+      this.halfOpenProbeAt = null;
+      this._persistToDb();
+      this.onStateChange?.(this.name, STATE.HALF_OPEN, STATE.HALF_OPEN);
     }
   }
 
@@ -576,6 +624,7 @@ export class CircuitBreaker {
 
     if (newState === STATE.HALF_OPEN) {
       this.halfOpenAllowed = this.halfOpenRequests;
+      this.halfOpenProbeAt = null;
     }
 
     // Record transition

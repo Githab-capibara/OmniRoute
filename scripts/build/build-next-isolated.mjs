@@ -135,7 +135,7 @@ function runNextBuild() {
 export function resolveNextBuildBundlerFlag(baseEnv = process.env) {
   // Turbopack is the default; OMNIROUTE_USE_TURBOPACK=0 is the documented escape hatch
   // to webpack (Windows, native-binding trouble, RAM-constrained machines — #6409, and
-  // docs/reference/ENVIRONMENT.md). The choice is env-only ON PURPOSE: the variable is
+  // docs/reference/03-environment-variables.md). The choice is env-only ON PURPOSE: the variable is
   // the operator's control and CI sets it explicitly, so sniffing the runtime here would
   // silently override an operator who asked for Turbopack.
   if (baseEnv.OMNIROUTE_USE_TURBOPACK === "0") {
@@ -202,7 +202,7 @@ export function resolveNextBuildEnv(baseEnv = process.env, platform = process.pl
   // NOTE (#6409): --max-old-space-size only bounds V8's JS heap — it does NOT bound
   // Turbopack's native (Rust, off-V8-heap) memory, which is the default bundler as of
   // #6283. On memory-constrained machines, set OMNIROUTE_USE_TURBOPACK=0 (webpack
-  // fallback) instead of raising this heap value; see docs/reference/ENVIRONMENT.md.
+  // fallback) instead of raising this heap value; see docs/reference/03-environment-variables.md.
   if (!/--max-old-space-size/.test(env.NODE_OPTIONS || "")) {
     // Default 8 GB (was 4 GB): the clean module graph peaks ~3.9 GB during the webpack
     // production pass, which brushed the old 4 GB ceiling on a borderline OOM. 8 GB gives

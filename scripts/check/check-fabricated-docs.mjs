@@ -64,13 +64,16 @@ const KNOWN_HOOKS = new Set([
   // onChunk/onFirstChunk — streaming callbacks (playground useStreamMetrics.ts and
   //   ChatTab.tsx); onServerStatus/onPortChanged/onUpdateStatus — Electron
   //   IPC callbacks (src/shared/hooks/useElectron.ts, HomePageClient.tsx);
-  //   onEmpty — model-metadata registry callback (src/lib/modelMetadataRegistry.ts).
+  //   onEmpty — model-metadata registry callback (src/lib/modelMetadataRegistry.ts);
+  //   onActionDone — OrchestrationDrawer actions callback
+  //   (src/app/(dashboard)/dashboard/orchestration/drawer/OrchestrationDrawer.tsx).
   "onChunk",
   "onFirstChunk",
   "onServerStatus",
   "onPortChanged",
   "onUpdateStatus",
   "onEmpty",
+  "onActionDone",
 ]);
 
 // Common false-positives the heuristic would otherwise flag. Add to this
@@ -85,7 +88,7 @@ const ENV_VAR_ALLOWLIST = new Set([
   "NODE_ENV",
   "NODE_PATH",
   "NODE_OPTIONS",
-  "NODE_EXTRA_CA_CERTS", // Node runtime CA var: read by Node itself + passed to a spawned subprocess (cloudflaredTunnel.ts), not via process.env.X (AGENTBRIDGE.md)
+  "NODE_EXTRA_CA_CERTS", // Node runtime CA var: read by Node itself + passed to a spawned subprocess (cloudflaredTunnel.ts), not via process.env.X (04-agentbridge-ide-integration.md)
   "DEBUG",
   "VERBOSE",
   "LOG_LEVEL",
@@ -93,7 +96,7 @@ const ENV_VAR_ALLOWLIST = new Set([
   "DATA_DIR",
   "REQUIRE_API_KEY",
   "OMNIROUTE_BUILD_PROFILE", // build-time only
-  // Docker builder-stage knobs. Both are documented in docs/guides/DOCKER_GUIDE.md
+  // Docker builder-stage knobs. Both are documented in docs/guides/09-docker-guide.md
   // because they are the two levers for a memory-constrained build host, but
   // neither is read through process.env in this repo: OMNIROUTE_BUILD_WORKERS is
   // a Dockerfile ARG that only feeds CIRCLE_NODE_TOTAL, and CIRCLE_NODE_TOTAL is
@@ -110,24 +113,24 @@ const ENV_VAR_ALLOWLIST = new Set([
   // docker-compose/electron-build pipeline, or are injected into a spawned
   // subprocess — never read via `process.env.X` in OmniRoute's own source, so the
   // code-read index can't see them. Documented (correctly) in the relevant guides.
-  "COPILOT_PROVIDER_BASE_URL", // GitHub Copilot CLI ≥v1.0.19's own env var (AGENTBRIDGE.md)
-  "OPENAI_BASE_URL", // env var OmniRoute passes to downstream CLIs (AGENT_PROTOCOLS_GUIDE.md)
-  "NINEROUTER_API_KEY", // injected into the 9router subprocess at spawn (EMBEDDED-SERVICES.md)
-  "CLAUDE_CODE_MAX_OUTPUT_TOKENS", // Claude Code CLI's own env var (CODEX-CLI-CONFIGURATION.md)
-  "CODEX_HOME", // Codex CLI's own config-home env var (CODEX-CLI-CONFIGURATION.md)
+  "COPILOT_PROVIDER_BASE_URL", // GitHub Copilot CLI ≥v1.0.19's own env var (04-agentbridge-ide-integration.md)
+  "OPENAI_BASE_URL", // env var OmniRoute passes to downstream CLIs (03-agent-protocols-guide.md)
+  "NINEROUTER_API_KEY", // injected into the 9router subprocess at spawn (13-embedded-sidecar-services.md)
+  "CLAUDE_CODE_MAX_OUTPUT_TOKENS", // Claude Code CLI's own env var (17-codex-cli-configuration.md)
+  "CODEX_HOME", // Codex CLI's own config-home env var (17-codex-cli-configuration.md)
   // Gemini CLI's own auth-routing env vars. `omniroute run gemini` DELETES them
   // from the spawned child's env (bin/cli/commands/run.mjs) so a stored Vertex /
   // Code Assist session cannot override the OmniRoute-directed launch — a delete
-  // on a copied env object, never a `process.env.X` read. (CLI-INTEGRATIONS.md)
+  // on a copied env object, never a `process.env.X` read. (14-cli-integrations.md)
   "GOOGLE_GENAI_USE_VERTEXAI",
   "GOOGLE_GENAI_USE_GCA",
-  "OPENAI_API_BASE", // legacy OpenAI base-URL env var some downstream tools (e.g. Aider) read (CLI-INTEGRATIONS.md)
-  "PROMPTFOO_PROVIDER_KEY", // promptfoo's own provider-key env var, used by the red-team suite (GUARDRAILS.md)
-  "REDIS_PORT", // docker-compose host-port override (DOCKER_GUIDE.md)
-  "AUTO_UPDATE_HOST_REPO_DIR", // docker-compose self-update mount (DOCKER_GUIDE.md)
-  "LINUX_GPG_KEY", // electron AppImage signing key, CI/build only (ELECTRON_GUIDE.md)
-  "BRANCH_LOCK_TOKEN", // release branch-protection ops token (QUALITY_GATE_PLAYBOOK.md)
-  "NEXT_LOCALE", // next-intl locale cookie name (I18N.md)
+  "OPENAI_API_BASE", // legacy OpenAI base-URL env var some downstream tools (e.g. Aider) read (14-cli-integrations.md)
+  "PROMPTFOO_PROVIDER_KEY", // promptfoo's own provider-key env var, used by the red-team suite (01-guardrails.md)
+  "REDIS_PORT", // docker-compose host-port override (09-docker-guide.md)
+  "AUTO_UPDATE_HOST_REPO_DIR", // docker-compose self-update mount (09-docker-guide.md)
+  "LINUX_GPG_KEY", // electron AppImage signing key, CI/build only (10-electron-guide.md)
+  "BRANCH_LOCK_TOKEN", // release branch-protection ops token (08-quality-gate-playbook.md)
+  "NEXT_LOCALE", // next-intl locale cookie name (22-i18n-guide.md)
   // Telegram Mini App integration (proposal TELEGRAM-MINIAPP.md, not yet implemented): env vars named in the feasibility analysis but no code reads them yet.
   "TELEGRAM_WEBHOOK_URL", // proposal-only: Telegram webhook public endpoint (TELEGRAM-MINIAPP.md, future feature)
   "TELEGRAM_WEBHOOK_SECRET", // proposal-only: Telegram webhook HMAC secret (TELEGRAM-MINIAPP.md, future feature)
@@ -318,24 +321,24 @@ const ENV_VAR_DENYLIST = new Set([
   "PROVIDER_HEALTH_AUTOPILOT_RECOVERY_RETRY_BACKOFF_CEILING",
   "PROVIDER_HEALTH_AUTOPILOT_RECOVERY_RETRY_BACKOFF_CAP",
   // Gate allowlist constant names (JS identifiers, not env vars) — documented in
-  // docs/architecture/QUALITY_GATES.md and docs/research/DISCOVERY_TOOL_DESIGN.md
+  // docs/architecture/08-quality-gates.md and docs/research/DISCOVERY_TOOL_DESIGN.md
   "KNOWN_STALE_DOC_REFS", // export const in check-docs-symbols.mjs
   "KNOWN_MISSING", // export const in check-fetch-targets.mjs
   "KNOWN_RAW_SQL", // export const in check-db-rules.mjs
-  "ROUTER_BACKENDS", // typed router-backend registry constant documented in the ADR (ROUTER_BACKENDS.md); code lands with PR #5868 (#5798)
+  "ROUTER_BACKENDS", // typed router-backend registry constant documented in the ADR (02-router-backends-contract.md); code lands with PR #5868 (#5798)
   // ── Error / Node codes documented in prose (string-literal codes, not env vars) ──
-  "URL_GUARD_BLOCKED", // HTTP 422 guard-violation code (ARCHITECTURE.md)
-  "AUTHZ_NOT_INITIALIZED", // AuthzAssertionError code (AUTHZ_GUIDE.md)
-  "MODULE_NOT_FOUND", // Node runtime error code watched by service supervisor (ELECTRON_GUIDE.md)
-  "ERR_DLOPEN_FAILED", // Node native-module load error code (ELECTRON_GUIDE.md)
-  "SQLITE_FULL", // SQLite result code returned when the disk is full (DATABASE_GUIDE.md)
+  "URL_GUARD_BLOCKED", // HTTP 422 guard-violation code (01-system-overview.md)
+  "AUTHZ_NOT_INITIALIZED", // AuthzAssertionError code (04-authorization-pipeline.md)
+  "MODULE_NOT_FOUND", // Node runtime error code watched by service supervisor (10-electron-guide.md)
+  "ERR_DLOPEN_FAILED", // Node native-module load error code (10-electron-guide.md)
+  "SQLITE_FULL", // SQLite result code returned when the disk is full (11-database-guide.md)
   // ── Code-symbol / naming-convention examples documented in prose ─────────────
-  "UPPER_SNAKE", // the literal naming-convention token in the style guide (CODEBASE_DOCUMENTATION.md)
+  "UPPER_SNAKE", // the literal naming-convention token in the style guide (10-codebase-documentation.md)
   "DEFAULT_TIMEOUT", // example constant name in the UPPER_SNAKE convention row (AGENTS.md)
-  "SIDEBAR_DEFINITIONS", // code constant referenced in prose (MONITORING_SECTIONS.md)
-  "LOCAL_ONLY", // routeGuard classification label (AGENTBRIDGE.md)
-  "SPAWN_CAPABLE", // routeGuard classification label (AGENTBRIDGE.md)
-  "ZEROGRAVITY_SENSITIVE_WORDS", // cross-project constant named in a comparison (STEALTH_GUIDE.md)
+  "SIDEBAR_DEFINITIONS", // code constant referenced in prose (09-monitoring-sections.md)
+  "LOCAL_ONLY", // routeGuard classification label (04-agentbridge-ide-integration.md)
+  "SPAWN_CAPABLE", // routeGuard classification label (04-agentbridge-ide-integration.md)
+  "ZEROGRAVITY_SENSITIVE_WORDS", // cross-project constant named in a comparison (03-stealth-guide.md)
 ]);
 
 /** Endpoints that don't follow the standard route.ts pattern. */
@@ -375,12 +378,12 @@ const ENDPOINT_ALLOWLIST = new Set([
 
 /** Doc files to skip (auto-generated, vendored, or third-party). */
 const SKIP_DOC_FILES = new Set([
-  "docs/reference/PROVIDER_REFERENCE.md", // auto-generated from providers.ts
+  "docs/reference/09-provider-reference.md", // auto-generated from providers.ts
   "docs/openapi.yaml",
   "docs/i18n", // translations — separate workflow
   // Forward-looking coverage plan: a `- [ ]` checklist of test targets and helper
   // components to be created. Same rationale as the design/plan docs above.
-  "docs/ops/COVERAGE_PLAN.md",
+  "docs/ops/10-coverage-plan.md",
 ]);
 
 // ── File discovery ─────────────────────────────────────────────────────────
@@ -553,7 +556,7 @@ export function buildCodebaseIndex(root = ROOT) {
   walkForEnv("tests");
 
   // Env contract maintained by the sibling gate (check-env-doc-sync.mjs): a var
-  // listed in .env.example or docs/reference/ENVIRONMENT.md is, by definition, a
+  // listed in .env.example or docs/reference/03-environment-variables.md is, by definition, a
   // documented OmniRoute env var (including external-CLI / docker / electron vars
   // that are not read via process.env in our own source).
   function readEnvContract() {
@@ -567,7 +570,10 @@ export function buildCodebaseIndex(root = ROOT) {
       /* ignore */
     }
     try {
-      const t = fs.readFileSync(path.join(root, "docs", "reference", "ENVIRONMENT.md"), "utf8");
+      const t = fs.readFileSync(
+        path.join(root, "docs", "reference", "03-environment-variables.md"),
+        "utf8"
+      );
       for (const m of t.matchAll(/`([A-Z][A-Z0-9_]{2,})`/g)) envVars.add(m[1]);
     } catch {
       /* ignore */
@@ -579,7 +585,7 @@ export function buildCodebaseIndex(root = ROOT) {
   // `process.env[definition.key]` (src/shared/utils/featureFlags.ts), never a
   // literal `process.env.<KEY>`, so the code-read index cannot see those reads.
   // Every key in FEATURE_FLAG_DEFINITIONS is therefore a real, env-overridable
-  // knob (docs/reference/FEATURE_FLAGS.md documents the catalog 1:1).
+  // knob (docs/reference/04-feature-flags.md documents the catalog 1:1).
   function readFeatureFlagContract() {
     try {
       const t = fs.readFileSync(

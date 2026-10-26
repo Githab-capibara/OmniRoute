@@ -70,8 +70,8 @@ test("electron docs manifest prunes authoring payloads without removing runtime 
   const bundleRoot = mkdtempSync(join(tmpdir(), "omniroute-electron-docs-"));
   const files = new Map([
     ["docs/openapi.yaml", "openapi: 3.1.0"],
-    ["docs/guides/CODEX-CLI-CONFIGURATION.md", "# Codex CLI"],
-    ["docs/i18n/ko/docs/guides/ELECTRON_GUIDE.md", "# Electron"],
+    ["docs/guides/17-codex-cli-configuration.md", "# Codex CLI"],
+    ["docs/i18n/ko/docs/guides/10-electron-guide.md", "# Electron"],
     ["docs/i18n/ko/CHANGELOG.md", "translated release history"],
     ["docs/i18n/ko/README.md", "translated readme"],
     ["docs/i18n/ko/llm.txt", "translated llm summary"],
@@ -112,8 +112,11 @@ test("electron docs manifest prunes authoring payloads without removing runtime 
     );
 
     assert.equal(existsSync(join(bundleRoot, "docs/openapi.yaml")), true);
-    assert.equal(existsSync(join(bundleRoot, "docs/guides/CODEX-CLI-CONFIGURATION.md")), true);
-    assert.equal(existsSync(join(bundleRoot, "docs/i18n/ko/docs/guides/ELECTRON_GUIDE.md")), true);
+    assert.equal(existsSync(join(bundleRoot, "docs/guides/17-codex-cli-configuration.md")), true);
+    assert.equal(
+      existsSync(join(bundleRoot, "docs/i18n/ko/docs/guides/10-electron-guide.md")),
+      true
+    );
     assert.equal(existsSync(join(bundleRoot, "docs/i18n/ko/CHANGELOG.md")), false);
     assert.equal(existsSync(join(bundleRoot, "docs/i18n/ko/README.md")), false);
     assert.equal(existsSync(join(bundleRoot, "docs/i18n/ko/llm.txt")), false);

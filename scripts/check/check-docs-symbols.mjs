@@ -53,7 +53,7 @@ function isFileRef(p) {
 // o path na doc, ou remover a menção. NÃO adicione novas aqui sem justificativa — esse
 // é o ponto do gate. Issues de tracking devem ser abertas para cada cluster.
 export const KNOWN_STALE_DOC_REFS = new Set([
-  // docs/reference/API_REFERENCE.md — guardrails/shadow doc-fiction RESOLVED in #3496:
+  // docs/reference/01-api-reference.md — guardrails/shadow doc-fiction RESOLVED in #3496:
   // GET /api/guardrails + POST /api/guardrails/test are now REAL routes (wrapping the
   // existing guardrailRegistry); the fictional enable/disable/logs rows and the entire
   // shadow table were removed from the doc (shadow A-B comparison is combo-config +

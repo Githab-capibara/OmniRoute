@@ -79,8 +79,8 @@ export function registerBackup(program) {
     });
 
   // Legacy: `omniroute backup` without a subcommand still creates a backup
-  // (documented as the canonical usage in USER_GUIDE.md / CLI-TOOLS.md /
-  // AGENT-SKILLS.md). No flags are declared here — declaring the same
+  // (documented as the canonical usage in 01-user-guide.md / 02-cli-tools.md /
+  // 05-agent-skills-catalog.md). No flags are declared here — declaring the same
   // option names as `create`/`auto enable` here previously shadowed them
   // (#8512), and no doc shows `omniroute backup` invoked with flags.
   backup.action(async (opts) => {

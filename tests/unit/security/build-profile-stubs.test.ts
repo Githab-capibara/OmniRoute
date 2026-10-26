@@ -2,7 +2,7 @@
  * Regression: when OMNIROUTE_BUILD_PROFILE=minimal is the resolved build
  * profile, the four stub modules throw FeatureDisabledError instead of
  * performing their privileged operations.
- * See docs/security/SOCKET_DEV_FINDINGS.md.
+ * See docs/security/14-socket-dev-findings.md.
  */
 import { test } from "node:test";
 import assert from "node:assert/strict";

@@ -10,7 +10,7 @@
 // message: err.message } }))` (or a result object with `error: <raw msg>`) and does
 // NOT import the sanitizer leaks stack traces / absolute paths / upstream internals.
 // CodeQL's js/stack-trace-exposure does not understand the custom sanitizer, so this
-// static gate is the canonical enforcement. See docs/security/ERROR_SANITIZATION.md.
+// static gate is the canonical enforcement. See docs/security/05-error-sanitization.md.
 //
 // Conservative by design: a file is flagged ONLY when it both (a) appears to forward
 // a RAW error value into a response/result body AND (b) imports nothing from a
@@ -43,7 +43,7 @@ export const KNOWN_MISSING_ERROR_HELPER = new Set([
   // --- original open-sse/executors + handlers scope (pre-6A.8) ---
   // --- 6A.8 expanded scope: src/app/api/**/route.ts pre-existing violations ---
   // (empty — #8233 made open-sse/executors/muse-spark-web.ts import sanitizeErrorMessage,
-  // resolving the last frozen violator; see docs/security/ERROR_SANITIZATION.md)
+  // resolving the last frozen violator; see docs/security/05-error-sanitization.md)
 ]);
 
 // Import specifiers that count as "uses the error helper" (path ends in utils/error).
@@ -261,7 +261,7 @@ function main() {
         `raw err.message/err.stack/body.error.message but do NOT import open-sse/utils/error:\n` +
         violations.map((v) => "  ✗ " + v).join("\n") +
         `\n  → route the message through buildErrorBody()/sanitizeErrorMessage()/` +
-        `makeExecutorErrorResult() (see docs/security/ERROR_SANITIZATION.md), or — if it is a ` +
+        `makeExecutorErrorResult() (see docs/security/05-error-sanitization.md), or — if it is a ` +
         `false positive — add it to KNOWN_MISSING_ERROR_HELPER with a justification.`
     );
     process.exit(1);

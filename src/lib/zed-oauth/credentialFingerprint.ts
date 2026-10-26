@@ -8,13 +8,9 @@ import crypto from "crypto";
  * I am now authorizing to import" without ever exposing the raw token outside
  * the OS keychain. The server re-reads the keychain on the import step and
  * filters by fingerprint, so a discover response cannot be replayed to import
- * a token that no longer exists. See docs/security/SOCKET_DEV_FINDINGS.md §2.
+ * a token that no longer exists. See docs/security/14-socket-dev-findings.md §2.
  */
-export function fingerprintZedCredential(
-  service: string,
-  account: string,
-  token: string
-): string {
+export function fingerprintZedCredential(service: string, account: string, token: string): string {
   return crypto
     .createHash("sha256")
     .update(`${service}|${account}|${token}`)

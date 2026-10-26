@@ -1,4 +1,14 @@
 {
   "title": "Routing",
-  "pages": ["AUTO-COMBO", "QUOTA_SHARE", "REASONING_REPLAY", "REASONING_ROUTING"]
+  "description": "Routing and combo-selection rules",
+  "pages": [
+    "01-auto-combo",
+    "02-routing-policy",
+    "03-quota-share",
+    "04-reasoning-replay-cache",
+    "05-reasoning-routing-rules",
+    "06-strict-zero-cost",
+    "07-subscription-ladder",
+    "08-model-exposure-list"
+  ]
 }

@@ -12,7 +12,7 @@
 #   a cada release (stale-enforcement). Regra: se o finding é um valor real que o
 #   sistema usa em produção, é um verdadeiro positivo — não allowliste, corrija.
 #
-# Referência: docs/security/PUBLIC_CREDS.md (credenciais OAuth públicas conhecidas)
+# Referência: docs/security/04-public-creds-pattern.md (credenciais OAuth públicas conhecidas)
 #             CLAUDE.md Hard Rule #11 (resolvePublicCred obrigatório)
 
 # Herdar TODAS as regras padrão do gitleaks. ATENÇÃO: um config customizado

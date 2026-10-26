@@ -35,6 +35,29 @@ export type FetchStartTimeoutPolicyResult = {
 export const CODEX_CLIENT_ABORT_MS = 120_000;
 export const DEFAULT_FETCH_START_TIMEOUT_CAP_MS = 110_000;
 
+/**
+ * Resolve the headers-phase cap, allowing a deployment to override it.
+ *
+ * The 110s default exists to stay under Codex's ~120s client abort. That is the
+ * right trade-off for Codex, but it is wrong for a gateway fronting a genuinely
+ * slow upstream: a full agent turn (large system prompt + dozens of tools) can
+ * need more than 110s just to produce response headers, and the cap then turns a
+ * working-but-slow provider into a hard 504 that no amount of retrying recovers
+ * from. Operators know their upstream's latency; make the ceiling tunable
+ * without patching, and keep the default untouched so Codex behaviour is
+ * unchanged.
+ *
+ * `OMNIROUTE_FETCH_START_TIMEOUT_CAP_MS` — milliseconds. Invalid, zero or
+ * negative values fall back to the default.
+ */
+export function resolveFetchStartTimeoutCapMs(): number {
+  const raw = process.env.OMNIROUTE_FETCH_START_TIMEOUT_CAP_MS;
+  if (typeof raw !== "string" || raw.trim() === "") return DEFAULT_FETCH_START_TIMEOUT_CAP_MS;
+  const parsed = Number(raw.trim());
+  if (!Number.isFinite(parsed) || parsed <= 0) return DEFAULT_FETCH_START_TIMEOUT_CAP_MS;
+  return Math.floor(parsed);
+}
+
 export function resolveFetchStartTimeout(
   input: FetchStartTimeoutPolicyInput
 ): FetchStartTimeoutPolicyResult {
@@ -43,7 +66,7 @@ export function resolveFetchStartTimeout(
     return { timeoutMs: baseTimeoutMs, baseTimeoutMs, capped: false };
   }
 
-  const capMs = Math.max(0, Math.floor(input.capMs ?? DEFAULT_FETCH_START_TIMEOUT_CAP_MS));
+  const capMs = Math.max(0, Math.floor(input.capMs ?? resolveFetchStartTimeoutCapMs()));
   if (capMs <= 0 || baseTimeoutMs <= capMs) {
     return { timeoutMs: baseTimeoutMs, baseTimeoutMs, capped: false };
   }

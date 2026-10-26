@@ -12,7 +12,7 @@ import path from "node:path";
 // default to "true" requires explicit operator approval — this test is the
 // permanent guard against an accidental on-by-default regression.
 //
-// See docs/security/GUARDRAILS.md and the PII analysis: piiMasker (request),
+// See docs/security/01-guardrails.md and the PII analysis: piiMasker (request),
 // piiSanitizer (response), streamingPiiTransform (SSE) are ALL gated on these
 // two flags; with both off the guardrail runs but never mutates payloads.
 
@@ -21,9 +21,8 @@ import path from "node:path";
 const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "omniroute-test-pii-default-"));
 process.env.DATA_DIR = tmpDir;
 
-const { FEATURE_FLAG_DEFINITIONS } = await import(
-  "../../src/shared/constants/featureFlagDefinitions.ts"
-);
+const { FEATURE_FLAG_DEFINITIONS } =
+  await import("../../src/shared/constants/featureFlagDefinitions.ts");
 
 test("PII data-mutation flags are opt-in (default 'false')", async (t) => {
   const def = (key: string) => FEATURE_FLAG_DEFINITIONS.find((d) => d.key === key);

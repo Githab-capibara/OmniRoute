@@ -23,8 +23,8 @@ test("buildMirrorBar links English back to the source and every other locale sid
   // pre-refactor buildLanguageBar in run-translation.mjs emitted: from
   // docs/i18n/ar/docs/guides/ the English source is four levels up, not "<root>/docs/…".
   assert.equal(
-    buildMirrorBar("docs/guides/USER_GUIDE.md", "ar", config),
-    "🌐 **Languages:** 🇺🇸 [English](../../../../guides/USER_GUIDE.md) · 🇧🇷 [pt-BR](../../../pt-BR/docs/guides/USER_GUIDE.md)"
+    buildMirrorBar("docs/guides/01-user-guide.md", "ar", config),
+    "🌐 **Languages:** 🇺🇸 [English](../../../../guides/01-user-guide.md) · 🇧🇷 [pt-BR](../../../pt-BR/docs/guides/01-user-guide.md)"
   );
   assert.equal(
     buildMirrorBar("README.md", "pt-BR", config),
@@ -34,8 +34,8 @@ test("buildMirrorBar links English back to the source and every other locale sid
 
 test("buildSourceBar lists every locale with its native name and a pipe separator", () => {
   assert.equal(
-    buildSourceBar("docs/guides/USER_GUIDE.md", config),
-    "🌐 **Languages:** 🇺🇸 [English](./USER_GUIDE.md) | 🇸🇦 [العربية](../i18n/ar/docs/guides/USER_GUIDE.md) | 🇧🇷 [Português (Brasil)](../i18n/pt-BR/docs/guides/USER_GUIDE.md)"
+    buildSourceBar("docs/guides/01-user-guide.md", config),
+    "🌐 **Languages:** 🇺🇸 [English](./01-user-guide.md) | 🇸🇦 [العربية](../i18n/ar/docs/guides/01-user-guide.md) | 🇧🇷 [Português (Brasil)](../i18n/pt-BR/docs/guides/01-user-guide.md)"
   );
 });
 
@@ -177,7 +177,7 @@ test("syncLanguageBars rewrites stale bars from config, lists them in dry-run an
   }
 });
 
-// `docs/guides/I18N.md` is deliberately English-only (`DOCS_EXCLUDED_NAMES` in
+// `docs/guides/22-i18n-guide.md` is deliberately English-only (`DOCS_EXCLUDED_NAMES` in
 // run-translation.mjs), yet 41 legacy mirrors of it survive from before that
 // ruling. Listing every configured locale unconditionally therefore pointed the
 // bar at nine mirrors that will never exist, and `check:doc-links` failed on
@@ -185,12 +185,12 @@ test("syncLanguageBars rewrites stale bars from config, lists them in dry-run an
 test("bars skip locales whose mirror does not exist when a predicate is supplied", () => {
   const hasMirror = (_relSource, locale) => locale !== "pt-BR";
   assert.equal(
-    buildSourceBar("docs/guides/I18N.md", config, { hasMirror }),
-    "🌐 **Languages:** 🇺🇸 [English](./I18N.md) | 🇸🇦 [العربية](../i18n/ar/docs/guides/I18N.md)"
+    buildSourceBar("docs/guides/22-i18n-guide.md", config, { hasMirror }),
+    "🌐 **Languages:** 🇺🇸 [English](./22-i18n-guide.md) | 🇸🇦 [العربية](../i18n/ar/docs/guides/22-i18n-guide.md)"
   );
   assert.equal(
-    buildMirrorBar("docs/guides/I18N.md", "ar", config, { hasMirror }),
-    "🌐 **Languages:** 🇺🇸 [English](../../../../guides/I18N.md)"
+    buildMirrorBar("docs/guides/22-i18n-guide.md", "ar", config, { hasMirror }),
+    "🌐 **Languages:** 🇺🇸 [English](../../../../guides/22-i18n-guide.md)"
   );
 });
 
@@ -200,12 +200,12 @@ test("syncLanguageBars drops locales that have no mirror of the file", async () 
     mkdirSync(path.join(root, "config"), { recursive: true });
     writeFileSync(path.join(root, "config", "i18n.json"), JSON.stringify(config), "utf8");
 
-    const enDoc = path.join(root, "docs", "guides", "I18N.md");
+    const enDoc = path.join(root, "docs", "guides", "22-i18n-guide.md");
     mkdirSync(path.dirname(enDoc), { recursive: true });
     writeFileSync(enDoc, "# I18N\n\n🌐 **Languages:** 🇺🇸 [English](./stale.md)\n\nbody\n", "utf8");
 
     // Only `ar` mirrors this file; `pt-BR` never did.
-    const arMirror = path.join(root, "docs", "i18n", "ar", "docs", "guides", "I18N.md");
+    const arMirror = path.join(root, "docs", "i18n", "ar", "docs", "guides", "22-i18n-guide.md");
     mkdirSync(path.dirname(arMirror), { recursive: true });
     writeFileSync(
       arMirror,

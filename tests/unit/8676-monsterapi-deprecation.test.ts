@@ -50,7 +50,7 @@ test("Monster API deprecation uses no undeclared flag name (#8676)", () => {
 
 test("Monster API deprecation matches the flag shape of its sibling entries (#8676)", () => {
   // predibase, in this same catalog, is the reference implementation: its `deprecated`
-  // flag is what makes the generated PROVIDER_REFERENCE.md render its DEPRECATED note.
+  // flag is what makes the generated 09-provider-reference.md render its DEPRECATED note.
   const monsterEntry = APIKEY_PROVIDERS_INFERENCE.monsterapi as Record<string, unknown>;
   const predibaseEntry = APIKEY_PROVIDERS_INFERENCE.predibase as Record<string, unknown>;
   assert.equal(predibaseEntry.deprecated, true, "predibase is the in-file reference for the flag");

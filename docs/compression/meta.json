@@ -1,12 +1,12 @@
 {
   "title": "Compression",
   "pages": [
-    "COMPRESSION_GUIDE",
-    "COMPRESSION_ENGINES",
-    "RTK_COMPRESSION",
-    "COMPRESSION_LANGUAGE_PACKS",
-    "COMPRESSION_RULES_FORMAT",
-    "CONTEXT_EDITING",
-    "EXTENDING_COMPRESSION"
+    "01-compression-guide",
+    "02-compression-engines",
+    "03-compression-rules-format",
+    "04-compression-language-packs",
+    "05-rtk-compression-engine",
+    "06-context-editing",
+    "07-extending-compression"
   ]
 }

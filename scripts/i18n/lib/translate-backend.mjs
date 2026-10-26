@@ -34,7 +34,7 @@ export function requireEnv(name) {
   const v = process.env[name];
   if (!v || !v.trim()) {
     throw new Error(
-      `Missing required env var: ${name}. Set it in .env (see docs/guides/I18N.md → "Translation pipeline").`
+      `Missing required env var: ${name}. Set it in .env (see docs/guides/22-i18n-guide.md → "Translation pipeline").`
     );
   }
   return v.trim();

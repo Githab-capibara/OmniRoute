@@ -6471,7 +6471,10 @@
     "clearConnectionCooldownInProgress": "Clearing…",
     "clearConnectionCooldownTitle": "Clear the cooldown now — use when the quota has already refreshed upstream",
     "connectionCooldownCleared": "Cooldown cleared — connection rejoined routing",
-    "failedClearConnectionCooldown": "Failed to clear cooldown"
+    "failedClearConnectionCooldown": "Failed to clear cooldown",
+    "importFromFileDownloadTemplate": "Download CSV template",
+    "importFromFileMoreErrors": "+{count} more",
+    "importFromFileSchemaHint": "CSV columns are positional: provider, name, apiKey, baseUrl (optional), priority (optional). The provider column must be an existing managed provider id or an already-registered OpenAI/Anthropic-compatible node id — this import does not create new endpoint nodes."
   },
   "settings": {
     "title": "Настройки",
@@ -8368,7 +8371,11 @@
     "headroomProxySave": "__MISSING__:Save",
     "headroomProxyStart": "__MISSING__:Start",
     "headroomProxyStop": "__MISSING__:Stop",
-    "headroomProxyExternalHint": "__MISSING__:This URL is not loopback, so OmniRoute will not spawn the local CLI."
+    "headroomProxyExternalHint": "__MISSING__:This URL is not loopback, so OmniRoute will not spawn the local CLI.",
+    "jsonImportAuthRequired": "Authentication required to import a legacy JSON configuration. Please sign in or complete setup first.",
+    "databaseSettingsAuthRequiredTitle": "Authentication required",
+    "databaseSettingsAuthRequiredBody": "Database settings and JSON import are only available to an authenticated admin. Sign in or complete setup to view and edit them.",
+    "databaseSettingsAuthRequiredCta": "Sign in"
   },
   "contextRtk": {
     "title": "RTK Engine",
@@ -10794,7 +10801,7 @@
     "readingFromCursor": "Чтение из Cursor IDE или курсорного агента",
     "tokensAutoDetected": "Токены успешно автоматически обнаружены в Cursor IDE!",
     "cursorNotDetected": "Курсор IDE не обнаружен. Пожалуйста, вставьте свой токен вручную.",
-    "dockerImportHint": "Running in Docker? Prefer Login with Cursor. IDE auto-import and cursor-agent are usually unavailable inside the container. See docs/providers/CURSOR-DOCKER.md.",
+    "dockerImportHint": "Running in Docker? Prefer Login with Cursor. IDE auto-import and cursor-agent are usually unavailable inside the container. See docs/providers/06-cursor-docker.md.",
     "accessToken": "Токен доступа",
     "refreshToken": "Refresh Token",
     "refreshTokenPlaceholder": "Optional — enables automatic token refresh",
@@ -11412,7 +11419,9 @@
       "detailedPayloadInfo": "Сначала включите детализированный логгинг, если вы хотите получить четырехступенчатый просмотр полезной нагрузки клиента/поставщика для новых запросов.",
       "copyAll": "Copy all",
       "copiedAll": "Copied all"
-    }
+    },
+    "columnsReset": "Reset",
+    "columnsResetHint": "Restore the default columns: Status, Model, Provider, Tokens, TPS, Duration"
   },
   "proxyLogger": {
     "filterAll": "All",
@@ -13009,6 +13018,10 @@
       },
       "SKILLS_SANDBOX_NETWORK_ENABLED": {
         "description": "Enable network access in the skills sandbox."
+      },
+      "SERVER_OWNED_TOOL_LOOP_ENABLED": {
+        "label": "Server-Owned Tool Loop",
+        "description": "Continue non-streaming server-owned tool calls until the model returns a client-usable response."
       }
     }
   },

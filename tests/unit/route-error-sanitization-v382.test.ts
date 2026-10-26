@@ -4,7 +4,7 @@
  * Review findings: two authenticated routes returned raw error text in their
  * HTTP body (`(error as Error).message` / `String(error)`), violating the
  * project's error-sanitization policy (CLAUDE.md hard rule 12,
- * docs/security/ERROR_SANITIZATION.md). These guards pin the fix in source so
+ * docs/security/05-error-sanitization.md). These guards pin the fix in source so
  * the anti-pattern cannot silently return. (Static-source assertions mirror the
  * established style of cli-tools-auth-hardening.test.ts.)
  */

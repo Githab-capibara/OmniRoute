@@ -27,7 +27,7 @@
 //
 // Escape hatch: OMNIROUTE_SKIP_NATIVE_DEP_CHECK=1 (for exotic vendored trees).
 //
-// See: docs/guides/TROUBLESHOOTING.md#npm-v11-better-sqlite3-not-installed-cannot-find-module
+// See: docs/guides/23-troubleshooting.md#npm-v11-better-sqlite3-not-installed-cannot-find-module
 
 import fs from "node:fs";
 import path from "node:path";
@@ -156,7 +156,7 @@ export function formatMissingReport(missing) {
     "",
     "They cannot simply be ignored: each one is listed in serverExternalPackages, and",
     "the bundler must resolve a request before it can externalise it. Without them the",
-    "build fails with \"Module not found\" several minutes from now.",
+    'build fails with "Module not found" several minutes from now.',
     "",
     "Fix (any one of these):",
     `  1. npm install ${missing.join(" ")} --no-save --foreground-scripts`,
@@ -169,7 +169,7 @@ export function formatMissingReport(missing) {
     "  macOS   xcode-select --install",
     "  Windows Build Tools for Visual Studio (Desktop development with C++) + Python",
     "",
-    "More detail: docs/guides/TROUBLESHOOTING.md#npm-v11-better-sqlite3-not-installed-cannot-find-module",
+    "More detail: docs/guides/23-troubleshooting.md#npm-v11-better-sqlite3-not-installed-cannot-find-module",
     "",
     "Escape hatch for vendored trees: OMNIROUTE_SKIP_NATIVE_DEP_CHECK=1",
   ].join("\n");

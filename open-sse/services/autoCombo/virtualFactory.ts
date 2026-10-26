@@ -1039,7 +1039,7 @@ export async function createVirtualAutoComboFromPrepared(
   // AFTER the category/tier narrowing above because, unlike every other tier,
   // these two select on the connection's billing class and its live quota
   // state rather than on the model's catalog price — see
-  // `subscriptionLadder.ts` and `docs/routing/SUBSCRIPTION_LADDER.md`.
+  // `subscriptionLadder.ts` and `docs/routing/07-subscription-ladder.md`.
   if (spec?.tier === "subscription" || spec?.tier === "thrifty") {
     const ladderOptions = buildLadderOptions(prepared, spec.tier);
     const beforeCount = effectivePool.length;

@@ -496,7 +496,7 @@ jobs:
       # patch yet, overwhelmingly local-only and not reachable from the proxy request
       # surface), which is noise an operator cannot act on. trivyignores points at the
       # repo-root .trivyignore so accepted-risk fixable CVEs have one auditable home.
-      # See docs/security/SUPPLY_CHAIN.md.
+      # See docs/security/13-supply-chain-gates.md.
       - name: Trivy image scan (SARIF, advisory)
         if: needs.prepare.outputs.version != 'main'
         continue-on-error: true
@@ -514,11 +514,11 @@ jobs:
       # published image. Narrowed to severity CRITICAL (HIGH stays visible in the
       # SARIF step above, not blocking). ignore-unfixed:true so an unfixable base-image
       # CVE with no upstream patch does not red the release (reduces false-blocks);
-      # a fixable CRITICAL still blocks. Per docs/security/SUPPLY_CHAIN.md. NB: Trivy
+      # a fixable CRITICAL still blocks. Per docs/security/13-supply-chain-gates.md. NB: Trivy
       # scans against a CVE DB that grows continuously — a newly-disclosed CRITICAL on
       # an unchanged base image can red this gate; the fix is to rebuild on a patched
       # base, bump the dep, or add a justified .trivyignore entry (see the CVE-variance
-      # note in docs/security/SUPPLY_CHAIN.md).
+      # note in docs/security/13-supply-chain-gates.md).
       - name: Trivy CRITICAL gate (blocking)
         if: needs.prepare.outputs.version != 'main'
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0

@@ -52,11 +52,11 @@ test("computeDocsCoreSet intersects the locale mirrors and drops excluded / sour
     // English sources.
     for (const rel of [
       "README.md",
-      "docs/guides/USER_GUIDE.md",
+      "docs/guides/01-user-guide.md",
       "docs/ONLY_IN_AA.md",
       "llm.txt",
       "CHANGELOG.md",
-      "docs/guides/I18N.md",
+      "docs/guides/22-i18n-guide.md",
     ]) {
       touch(root, rel);
     }
@@ -66,10 +66,10 @@ test("computeDocsCoreSet intersects the locale mirrors and drops excluded / sour
     for (const locale of ["aa", "bb"]) {
       for (const rel of [
         "README.md",
-        "docs/guides/USER_GUIDE.md",
+        "docs/guides/01-user-guide.md",
         "llm.txt",
         "CHANGELOG.md",
-        "docs/guides/I18N.md",
+        "docs/guides/22-i18n-guide.md",
         "docs/GHOST.md",
       ]) {
         touch(root, `docs/i18n/${locale}/${rel}`);
@@ -85,7 +85,7 @@ test("computeDocsCoreSet intersects the locale mirrors and drops excluded / sour
     assert.deepEqual(docsLocaleDirs({ root, config: CONFIG }), ["aa", "bb"]);
     assert.deepEqual(computeDocsCoreSet({ root, config: CONFIG }), [
       "README.md",
-      "docs/guides/USER_GUIDE.md",
+      "docs/guides/01-user-guide.md",
     ]);
   });
 });

@@ -450,6 +450,18 @@ export const FEATURE_FLAG_DEFINITIONS: FeatureFlagDefinition[] = [
     warningLevel: "danger",
   },
   {
+    key: "STREAM_RECOVERY_CONTENTLESS_RESTART_ENABLED",
+    label: "Contentless Stream Restart",
+    description:
+      "Re-open an upstream stream that ended after the holdback window without delivering any assistant content. Nothing usable reached the client, so the request is retried instead of failing; each restart re-spends the upstream work already paid for.",
+    descriptionI18nKey: "featureFlagStreamRecoveryContentlessRestartEnabledDescription",
+    category: "runtime",
+    defaultValue: "false",
+    type: "boolean",
+    requiresRestart: false,
+    warningLevel: "danger",
+  },
+  {
     key: "MODEL_CATALOG_INCLUDE_NAMES",
     label: "Model Catalog Names",
     description:

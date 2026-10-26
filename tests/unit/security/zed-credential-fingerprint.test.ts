@@ -1,7 +1,7 @@
 /**
  * Regression: fingerprintZedCredential is deterministic, 16 hex chars, and
  * different inputs produce different fingerprints (collision sanity).
- * See docs/security/SOCKET_DEV_FINDINGS.md §2.
+ * See docs/security/14-socket-dev-findings.md §2.
  */
 import { test } from "node:test";
 import assert from "node:assert/strict";

@@ -12,10 +12,11 @@ export const docs = defineDocs({
       "./security/**/*.md",
       // Operator-internal: TLS impersonation, MITM decrypt, supply-chain
       // attestation, XOR-mask recipe. Stay in git; do not compile into /docs.
-      "!./security/STEALTH_GUIDE.md",
-      "!./security/SOCKET_DEV_FINDINGS.md",
-      "!./security/MITM-TPROXY-DECRYPT.md",
-      "!./security/PUBLIC_CREDS.md",
+      "!./security/03-stealth-guide.md",
+      "!./security/14-socket-dev-findings.md",
+      "!./security/12-mitm-tproxy-decrypt.md",
+      "!./security/04-public-creds-pattern.md",
+      "./governance/**/*.md",
       "./compression/**/*.md",
       "./ops/**/*.md",
     ],

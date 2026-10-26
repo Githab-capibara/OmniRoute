@@ -23,7 +23,7 @@ _No CLI subcommands mapped for this family yet._
 
 ## Long-running Codex tasks (#7287)
 
-Two OmniRoute defaults silently break multi-hour Codex sessions. Document them whenever configuring Codex for overnight / multi-hour work. Full guide: `docs/guides/CODEX-CLI-CONFIGURATION.md` → **Long-running tasks**.
+Two OmniRoute defaults silently break multi-hour Codex sessions. Document them whenever configuring Codex for overnight / multi-hour work. Full guide: `docs/guides/17-codex-cli-configuration.md` → **Long-running tasks**.
 
 ### Session affinity (default off)
 

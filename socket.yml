@@ -7,7 +7,7 @@
 # the six `gptMalware` findings raised against v3.8.5. The maintainer-signed
 # attestation lives at:
 #
-#   docs/security/SOCKET_DEV_FINDINGS.md
+#   docs/security/14-socket-dev-findings.md
 #
 # Each flagged function carries an inline `SECURITY-AUDITOR-NOTE:` block.
 version: 2

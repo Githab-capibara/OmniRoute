@@ -65,3 +65,29 @@ test("continueMidStream ignores a non-boolean value", () => {
   });
   assert.equal(resolved.streamRecovery.continueMidStream, false);
 });
+
+test("contentlessRestart is OFF by default and independent of enabled", () => {
+  assert.equal(DEFAULT_RESILIENCE_SETTINGS.streamRecovery.contentlessRestart, false);
+  assert.equal(resolveResilienceSettings({}).streamRecovery.contentlessRestart, false);
+
+  // An operator can want post-commit restarts without paying for the holdback that
+  // powers the early retry, so the two flags must not imply each other.
+  const onlyEarly = resolveResilienceSettings({
+    resilienceSettings: { streamRecovery: { enabled: true } },
+  });
+  assert.equal(onlyEarly.streamRecovery.enabled, true);
+  assert.equal(onlyEarly.streamRecovery.contentlessRestart, false);
+
+  const onlyRestart = resolveResilienceSettings({
+    resilienceSettings: { streamRecovery: { contentlessRestart: true } },
+  });
+  assert.equal(onlyRestart.streamRecovery.enabled, false);
+  assert.equal(onlyRestart.streamRecovery.contentlessRestart, true);
+});
+
+test("contentlessRestart ignores a non-boolean value", () => {
+  const resolved = resolveResilienceSettings({
+    resilienceSettings: { streamRecovery: { contentlessRestart: "yes" } },
+  });
+  assert.equal(resolved.streamRecovery.contentlessRestart, false);
+});

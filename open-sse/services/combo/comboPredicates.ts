@@ -176,7 +176,7 @@ const PROVIDER_BREAKER_FAILURE_STATUSES = new Set([408, 500, 502, 503, 504]);
  *   STREAM_EARLY_EOF (`isStreamEarlyEof`): there the upstream returned HTTP 200, opened the
  *   SSE stream and then hung up without a single non-ping event, which is a genuine upstream
  *   failure. Excluding it made a provider-wide outage invisible to the breaker — see the
- *   STREAM_EARLY_EOF section of RESILIENCE_GUIDE.md.
+ *   STREAM_EARLY_EOF section of 07-resilience-guide.md.
  * - Only whole-provider failure statuses (408/500/502/503/504) count. A plain rate-limit
  *   429 is deliberately EXCLUDED — it belongs to connection cooldown / model lockout scope
  *   (a genuine quota/token-limit 429 is handled there), NOT the whole-provider breaker. This

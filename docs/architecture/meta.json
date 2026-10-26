@@ -1,18 +1,17 @@
 {
   "title": "Architecture",
   "pages": [
-    "ARCHITECTURE",
-    "AUTHZ_GUIDE",
-    "CODEBASE_DOCUMENTATION",
-    "REPOSITORY_MAP",
-    "RESILIENCE_GUIDE",
-    "QUALITY_GATES",
-    "DESIGN_SYSTEM",
-    "MONITORING_SECTIONS",
-    "ROUTER_BACKENDS",
-    "admission-lanes",
-    "cluster-decisions",
-    "persistence-backend-boundary",
-    "ADAPTIVE_ROUTING"
+    "01-system-overview",
+    "02-adaptive-routing",
+    "03-admission-lanes",
+    "04-authorization-pipeline",
+    "05-allocation-handoff",
+    "06-provider-failover",
+    "07-resilience-guide",
+    "08-quality-gates",
+    "09-monitoring-sections",
+    "10-codebase-documentation",
+    "11-repository-map",
+    "12-design-system"
   ]
 }

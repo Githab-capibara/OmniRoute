@@ -250,7 +250,9 @@ try {
 
   // Anti-regression: legacy duplicate docs that have been superseded must not return.
   // Use docs/reference/* as the source of truth.
-  const supersededDocs = [{ legacy: "docs/CLI-TOOLS.md", current: "docs/reference/CLI-TOOLS.md" }];
+  const supersededDocs = [
+    { legacy: "docs/02-cli-tools.md", current: "docs/reference/02-cli-tools.md" },
+  ];
   for (const { legacy, current } of supersededDocs) {
     const legacyAbs = path.resolve(cwd, legacy);
     if (fs.existsSync(legacyAbs)) {

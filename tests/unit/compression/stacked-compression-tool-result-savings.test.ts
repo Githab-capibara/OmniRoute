@@ -5,7 +5,7 @@ import { applyStackedCompression } from "../../../open-sse/services/compression/
 
 /**
  * Regression coverage for the documented 78-95% "stacked" savings range
- * (docs/compression/COMPRESSION_GUIDE.md § "What 'eligible' actually means").
+ * (docs/compression/01-compression-guide.md § "What 'eligible' actually means").
  *
  * A near-zero-savings result was reported on a real Claude Code session and initially looked
  * like a compression-pipeline bug. Investigation showed the pipeline was working correctly —

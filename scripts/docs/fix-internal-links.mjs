@@ -5,7 +5,7 @@
 //
 // Modes:
 //   --internal  Rewrite relative links inside docs/<subfolder>/*.md to point at
-//               the new subfolder paths (e.g. ./AUTO-COMBO.md -> ../routing/AUTO-COMBO.md).
+//               the new subfolder paths (e.g. ./01-auto-combo.md -> ../routing/01-auto-combo.md).
 //   --external  Rewrite absolute-style `docs/<DOC>.md` references in files
 //               outside docs/ (README, CLAUDE.md, .agents, .claude, scripts, src,
 //               tests, etc.) to `docs/<subfolder>/<DOC>.md`.
@@ -41,58 +41,58 @@ if (!RUN_INTERNAL && !RUN_EXTERNAL) {
 // ----------------------------------------------------------------------
 const DOC_TO_SUBFOLDER = {
   // architecture
-  "ARCHITECTURE.md": "architecture",
-  "CODEBASE_DOCUMENTATION.md": "architecture",
-  "REPOSITORY_MAP.md": "architecture",
-  "AUTHZ_GUIDE.md": "architecture",
-  "RESILIENCE_GUIDE.md": "architecture",
+  "01-system-overview.md": "architecture",
+  "10-codebase-documentation.md": "architecture",
+  "11-repository-map.md": "architecture",
+  "04-authorization-pipeline.md": "architecture",
+  "07-resilience-guide.md": "architecture",
   // guides
-  "SETUP_GUIDE.md": "guides",
-  "USER_GUIDE.md": "guides",
-  "DOCKER_GUIDE.md": "guides",
-  "ELECTRON_GUIDE.md": "guides",
-  "TERMUX_GUIDE.md": "guides",
-  "PWA_GUIDE.md": "guides",
-  "TROUBLESHOOTING.md": "guides",
-  "UNINSTALL.md": "guides",
-  "I18N.md": "guides",
-  "FEATURES.md": "guides",
+  "02-setup-guide.md": "guides",
+  "01-user-guide.md": "guides",
+  "09-docker-guide.md": "guides",
+  "10-electron-guide.md": "guides",
+  "11-termux-guide.md": "guides",
+  "12-pwa-guide.md": "guides",
+  "23-troubleshooting.md": "guides",
+  "24-uninstall.md": "guides",
+  "22-i18n-guide.md": "guides",
+  "03-features-overview.md": "guides",
   // reference
-  "API_REFERENCE.md": "reference",
-  "PROVIDER_REFERENCE.md": "reference",
+  "01-api-reference.md": "reference",
+  "09-provider-reference.md": "reference",
   "openapi.yaml": "reference",
-  "ENVIRONMENT.md": "reference",
-  "CLI-TOOLS.md": "reference",
-  "FREE_TIERS.md": "reference",
+  "03-environment-variables.md": "reference",
+  "02-cli-tools.md": "reference",
+  "06-free-tiers-directory.md": "reference",
   // frameworks
-  "MCP-SERVER.md": "frameworks",
-  "A2A-SERVER.md": "frameworks",
-  "AGENT_PROTOCOLS_GUIDE.md": "frameworks",
-  "CLOUD_AGENT.md": "frameworks",
-  "SKILLS.md": "frameworks",
-  "MEMORY.md": "frameworks",
-  "WEBHOOKS.md": "frameworks",
-  "EVALS.md": "frameworks",
+  "07-mcp-server.md": "frameworks",
+  "01-a2a-server.md": "frameworks",
+  "03-agent-protocols-guide.md": "frameworks",
+  "06-cloud-agent-runtime.md": "frameworks",
+  "08-skills-framework.md": "frameworks",
+  "09-persistent-memory.md": "frameworks",
+  "10-webhooks-dispatch.md": "frameworks",
+  "11-evals-suites.md": "frameworks",
   // routing
-  "AUTO-COMBO.md": "routing",
-  "REASONING_REPLAY.md": "routing",
+  "01-auto-combo.md": "routing",
+  "04-reasoning-replay-cache.md": "routing",
   // security
-  "GUARDRAILS.md": "security",
-  "COMPLIANCE.md": "security",
-  "STEALTH_GUIDE.md": "security",
+  "01-guardrails.md": "security",
+  "02-compliance.md": "security",
+  "03-stealth-guide.md": "security",
   // compression
-  "COMPRESSION_GUIDE.md": "compression",
-  "COMPRESSION_ENGINES.md": "compression",
-  "COMPRESSION_RULES_FORMAT.md": "compression",
-  "COMPRESSION_LANGUAGE_PACKS.md": "compression",
-  "RTK_COMPRESSION.md": "compression",
+  "01-compression-guide.md": "compression",
+  "02-compression-engines.md": "compression",
+  "03-compression-rules-format.md": "compression",
+  "04-compression-language-packs.md": "compression",
+  "05-rtk-compression-engine.md": "compression",
   // ops
-  "RELEASE_CHECKLIST.md": "ops",
-  "COVERAGE_PLAN.md": "ops",
-  "FLY_IO_DEPLOYMENT_GUIDE.md": "ops",
-  "VM_DEPLOYMENT_GUIDE.md": "ops",
-  "PROXY_GUIDE.md": "ops",
-  "TUNNELS_GUIDE.md": "ops",
+  "01-release-checklist.md": "ops",
+  "10-coverage-plan.md": "ops",
+  "15-fly-io-deployment.md": "ops",
+  "16-vm-deployment.md": "ops",
+  "17-proxy-guide.md": "ops",
+  "18-tunnels-guide.md": "ops",
 };
 
 // Build alternation regex (longest-first) of file basenames we know about.

@@ -11,12 +11,10 @@ import { join, relative, resolve, sep } from "node:path";
 export const ELECTRON_RUNTIME_DOC_PRUNE_RULES = Object.freeze({
   localeRootFiles: Object.freeze([
     "CHANGELOG.md",
-    "CLAUDE.md",
-    "CODE_OF_CONDUCT.md",
-    "CONTRIBUTING.md",
-    "GEMINI.md",
+    "02-code-of-conduct.md",
+    "01-contributing-guide.md",
     "README.md",
-    "SECURITY.md",
+    "03-security-policy.md",
     "llm.txt",
   ]),
   authoringDirectories: Object.freeze(["docs/research", "docs/superpowers"]),

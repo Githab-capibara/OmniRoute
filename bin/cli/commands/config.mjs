@@ -339,7 +339,7 @@ export function registerConfig(program) {
     });
 
   // Convenience alias: `config opencode` → `config set opencode`
-  // Matches the documented CLI usage in docs/frameworks/OPENCODE.md.
+  // Matches the documented CLI usage in docs/frameworks/17-opencode-integration.md.
   config
     .command("opencode")
     .description("Generate OpenCode config (alias for 'config set opencode')")

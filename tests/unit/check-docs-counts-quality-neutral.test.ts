@@ -13,8 +13,8 @@ type Check = {
 };
 
 describe("quality neutral prose", () => {
-  it("AUTO-COMBO.md prose carries quality neutral 0.5", () => {
-    const doc = readFileSync("docs/routing/AUTO-COMBO.md", "utf8");
+  it("01-auto-combo.md prose carries quality neutral 0.5", () => {
+    const doc = readFileSync("docs/routing/01-auto-combo.md", "utf8");
     assert.match(doc, /quality.*neutral.*0\.5/i);
     assert.match(doc, /quality.*0\.5/);
   });
@@ -31,10 +31,10 @@ describe("quality neutral prose", () => {
     assert.ok(entry, "quality neutral entry missing from buildChecks");
     assert.equal(entry.strict, false, "quality neutral entry must be soft");
     assert.ok(
-      (entry.files ?? []).includes("docs/routing/AUTO-COMBO.md"),
-      "must gate docs/routing/AUTO-COMBO.md"
+      (entry.files ?? []).includes("docs/routing/01-auto-combo.md"),
+      "must gate docs/routing/01-auto-combo.md"
     );
-    const doc = readFileSync("docs/routing/AUTO-COMBO.md", "utf8");
+    const doc = readFileSync("docs/routing/01-auto-combo.md", "utf8");
     const res = entry.validate!(doc);
     assert.equal(res.ok, true, `expected soft gate to pass on current doc: ${res.detail}`);
     const silent = "no mention of quality at all";

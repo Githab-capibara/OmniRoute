@@ -395,7 +395,7 @@ jobs:
       # baseline. --ratchet exits 1 on a measured regression (measured > baseline);
       # it SKIPs (exit 0) when osv-scanner is absent or osv.dev is unreachable (a
       # missing/failed measurement never blocks). See the CVE-variance note in
-      # docs/security/SUPPLY_CHAIN.md — a newly-disclosed CVE on an unchanged dep can
+      # docs/security/13-supply-chain-gates.md — a newly-disclosed CVE on an unchanged dep can
       # red this gate; the fix is to bump the dep or re-baseline metrics.vulnCount.
       - name: Vulnerability ratchet (osv-scanner, ratchet, blocking)
         run: npm run check:vuln-ratchet -- --ratchet
@@ -1238,7 +1238,7 @@ jobs:
     timeout-minutes: 45
     needs: [build, changes]
     # WS3.1 hotfix fast-lane: the 9-shard E2E matrix is the CI critical path (~25min).
-    # It skips for (a) PRs labeled `hotfix` (entry policy in docs/ops/RELEASE_CHECKLIST.md:
+    # It skips for (a) PRs labeled `hotfix` (entry policy in docs/ops/01-release-checklist.md:
     # production-broken only, full-suite evidence from the previous green run linked in the
     # PR) and (b) tests-only diffs outside tests/e2e/ (cannot change the served app).
     if: ${{ needs.changes.outputs.testsOnly != 'true' && !contains(github.event.pull_request.labels.*.name, 'hotfix') }}

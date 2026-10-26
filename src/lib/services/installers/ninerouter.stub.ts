@@ -1,8 +1,8 @@
 /**
  * Stub for `src/lib/services/installers/ninerouter.ts` activated by
  * `OMNIROUTE_BUILD_PROFILE=minimal`. The 9router install / spawn helpers are
- * removed from the built bundle. See SECURITY.md and
- * docs/security/SOCKET_DEV_FINDINGS.md.
+ * removed from the built bundle. See 03-security-policy.md and
+ * docs/security/14-socket-dev-findings.md.
  */
 import { featureDisabledError } from "@/lib/build-profile/featureDisabled";
 

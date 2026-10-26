@@ -5,7 +5,7 @@
  * renewal. It MUST be classified LOCAL_ONLY so loopback enforcement runs
  * unconditionally before any auth check — a leaked JWT via a Cloudflared/
  * Ngrok tunnel cannot trigger a process spawn. Hard Rules #15 + #17. See
- * docs/security/ROUTE_GUARD_TIERS.md.
+ * docs/security/06-route-guard-tiers.md.
  *
  * The refresh-cursor segment sits AFTER the dynamic `[id]` param, so it is
  * matched by a regex in LOCAL_ONLY_API_PATTERNS rather than a flat prefix —

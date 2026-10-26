@@ -31,21 +31,24 @@ test("#8093: .env.example documents INPUT_SANITIZER_ENABLED as enabled by defaul
   );
 });
 
-test("#8093: main ENVIRONMENT.md lists default as true", () => {
-  const envDoc = readFileSync(join(repoRoot, "docs/reference/ENVIRONMENT.md"), "utf8");
+test("#8093: main 03-environment-variables.md lists default as true", () => {
+  const envDoc = readFileSync(join(repoRoot, "docs/reference/03-environment-variables.md"), "utf8");
   const line = envDoc.split("\n").find((l) => l.includes("INPUT_SANITIZER_ENABLED"));
-  assert.ok(line, "ENVIRONMENT.md should have INPUT_SANITIZER_ENABLED entry");
-  assert.ok(line.includes("`true`"), "ENVIRONMENT.md should list default as `true`");
-  assert.ok(!line.includes("`false`"), "ENVIRONMENT.md should NOT list default as `false`");
+  assert.ok(line, "03-environment-variables.md should have INPUT_SANITIZER_ENABLED entry");
+  assert.ok(line.includes("`true`"), "03-environment-variables.md should list default as `true`");
+  assert.ok(
+    !line.includes("`false`"),
+    "03-environment-variables.md should NOT list default as `false`"
+  );
 });
 
-test("#8093: all i18n ENVIRONMENT.md translations list default as true", () => {
+test("#8093: all i18n 03-environment-variables.md translations list default as true", () => {
   const i18nDir = join(repoRoot, "docs/i18n");
   const locales = readdirSync(i18nDir);
 
   const mismatches: string[] = [];
   for (const locale of locales) {
-    const envMd = join(i18nDir, locale, "docs/reference/ENVIRONMENT.md");
+    const envMd = join(i18nDir, locale, "docs/reference/03-environment-variables.md");
     try {
       const content = readFileSync(envMd, "utf8");
       const line = content.split("\n").find((l) => l.includes("INPUT_SANITIZER_ENABLED"));

@@ -206,7 +206,7 @@ test("runEnvDocSync: shipped allowlist ignores ad-hoc BOT_TOKEN and BOT_URL", ()
 });
 
 test("repository contract is in sync (live data)", () => {
-  // Uses the real .env.example, docs/ENVIRONMENT.md, and the bundled
+  // Uses the real .env.example, docs/03-environment-variables.md, and the bundled
   // allowlists. This is the same check that runs in pre-commit / CI.
   const result = runEnvDocSync();
   if (!result.ok) {

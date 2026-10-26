@@ -84,6 +84,10 @@ export function resolveStreamRecoveryDefaults(): StreamRecoverySettings {
   return {
     enabled: resolveBooleanFeatureFlag("STREAM_RECOVERY_ENABLED", false),
     continueMidStream: resolveBooleanFeatureFlag("STREAM_RECOVERY_MIDSTREAM_ENABLED", false),
+    contentlessRestart: resolveBooleanFeatureFlag(
+      "STREAM_RECOVERY_CONTENTLESS_RESTART_ENABLED",
+      false
+    ),
     throughputWatchdog: {
       enabled: resolveBooleanFeatureFlag("STREAM_THROUGHPUT_WATCHDOG_ENABLED", false),
       warmupMs: toInteger(process.env.STREAM_THROUGHPUT_WATCHDOG_WARMUP_MS, 30_000, {
@@ -134,11 +138,10 @@ export function normalizeRequestQueueSettings(
     min: 1,
     max: 24 * 60 * 60 * 1000,
   });
-  const executionMaxWaitMs = toInteger(
-    record.executionMaxWaitMs,
-    fallback.executionMaxWaitMs,
-    { min: 1, max: 24 * 60 * 60 * 1000 }
-  );
+  const executionMaxWaitMs = toInteger(record.executionMaxWaitMs, fallback.executionMaxWaitMs, {
+    min: 1,
+    max: 24 * 60 * 60 * 1000,
+  });
   const maxQueueDepth = toInteger(record.maxQueueDepth, fallback.maxQueueDepth, {
     min: 0,
     max: 100_000,
@@ -409,6 +412,7 @@ export function normalizeStreamRecoverySettings(
   return {
     enabled: toBoolean(record.enabled, fallback.enabled),
     continueMidStream: toBoolean(record.continueMidStream, fallback.continueMidStream),
+    contentlessRestart: toBoolean(record.contentlessRestart, fallback.contentlessRestart),
     throughputWatchdog: {
       enabled: toBoolean(watchdog.enabled, fallback.throughputWatchdog.enabled),
       warmupMs: toInteger(watchdog.warmupMs, fallback.throughputWatchdog.warmupMs, {

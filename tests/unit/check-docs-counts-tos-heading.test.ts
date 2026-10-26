@@ -20,9 +20,12 @@ function escapeRegExp(value: string): string {
 
 describe("ToS caution heading count", () => {
   it("the Caution heading carries the count the gate checks", () => {
-    const txt = readFileSync(join(process.cwd(), "docs/reference/FREE_TIERS.md"), "utf8");
+    const txt = readFileSync(
+      join(process.cwd(), "docs/reference/06-free-tiers-directory.md"),
+      "utf8"
+    );
     const heading = txt.split("\n").find((line) => /^#+ .*Caution/.test(line));
-    assert.ok(heading, "FREE_TIERS.md must keep its Caution heading");
+    assert.ok(heading, "06-free-tiers-directory.md must keep its Caution heading");
     const tos = (buildChecks() as Check[]).find((c) =>
       String(c.docKey ?? "").includes("ToS caution")
     );
@@ -45,7 +48,7 @@ describe("ToS caution heading count", () => {
     assert.equal(pattern.test("### Caution — clauses worth checking (16)"), true);
     assert.equal(pattern.test("### Caution — clauses worth checking ( 16 )"), true);
   });
-  it("buildChecks exposes a soft ToS entry on FREE_TIERS.md with requireClaim", () => {
+  it("buildChecks exposes a soft ToS entry on 06-free-tiers-directory.md with requireClaim", () => {
     const checks = buildChecks() as Check[];
     const tos = checks.find(
       (c) =>
@@ -54,13 +57,13 @@ describe("ToS caution heading count", () => {
     );
     assert.ok(tos, "missing ToS caution entry");
     assert.equal(tos.strict, false);
-    assert.ok((tos.files ?? []).includes("docs/reference/FREE_TIERS.md"));
-    const doc = readFileSync("docs/reference/FREE_TIERS.md", "utf8");
+    assert.ok((tos.files ?? []).includes("docs/reference/06-free-tiers-directory.md"));
+    const doc = readFileSync("docs/reference/06-free-tiers-directory.md", "utf8");
     const v = tos.validate!(doc, "ToS caution (16):(16)");
     assert.equal(v.ok, true);
   });
-  it("FREE_TIERS.md no longer uses legacy providers ToS-flagged phrasing", () => {
-    const txt = readFileSync("docs/reference/FREE_TIERS.md", "utf8");
+  it("06-free-tiers-directory.md no longer uses legacy providers ToS-flagged phrasing", () => {
+    const txt = readFileSync("docs/reference/06-free-tiers-directory.md", "utf8");
     assert.equal(/providers ToS-flagged/i.test(txt), false);
   });
 });

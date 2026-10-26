@@ -1375,7 +1375,7 @@ Returns proxy-level thinking/reasoning **request rewrite** settings:
 | `customBudget` | Fixed budget when `mode=custom` |
 | `effortLevel` | Base effort when `mode=adaptive` |
 
-**Not** compression and **not** "decrypt encrypted reasoning". Full guide: `docs/guides/THINKING_BUDGET.md`.
+**Not** compression and **not** "decrypt encrypted reasoning". Full guide: `docs/guides/04-thinking-budget.md`.
 
 Example — keep client-controlled reasoning (Codex/Desktop):
 

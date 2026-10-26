@@ -155,7 +155,7 @@ export async function GET(request: Request) {
       bypassPrefixes,
       spawnCapablePrefixes: [...SPAWN_CAPABLE_PREFIXES],
       // #5602: surface the effective CORS allowlist so the dashboard can warn
-      // when `CORS_ALLOW_ALL=true` is set (wildcard origins). See docs/security/CORS.md.
+      // when `CORS_ALLOW_ALL=true` is set (wildcard origins). See docs/security/11-cors-configuration.md.
       cors: getCorsStatus(),
     });
   } catch (error) {

@@ -16,7 +16,7 @@ type JsonRecord = Record<string, unknown>;
  * (`resolveAllowedOrigin`): only an allowlisted origin is echoed, and
  * `Allow-Credentials` is emitted ONLY for an EXPLICITLY allowlisted origin —
  * never for a `CORS_ALLOW_ALL` wildcard echo. Same-origin dashboard calls need
- * no ACAO at all. See docs/security/CORS.md.
+ * no ACAO at all. See docs/security/11-cors-configuration.md.
  */
 export function getCloudAgentCorsHeaders(request?: Request): Record<string, string> {
   const requestOrigin = request?.headers.get("origin") ?? null;

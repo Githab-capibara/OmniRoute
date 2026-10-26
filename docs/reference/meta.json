@@ -1,16 +1,20 @@
 {
   "title": "Reference",
+  "description": "API, CLI, environment variables, provider catalog, third-party notices",
   "pages": [
-    "API_REFERENCE",
-    "CLI-TOOLS",
-    "ENVIRONMENT",
-    "FEATURE_FLAGS",
-    "FREE_TIERS",
-    "FREE_PROXIES_API",
-    "PROVIDER_REFERENCE",
-    "REMOVED_PROVIDERS",
-    "PROVIDER_PLUGIN_MANIFEST",
-    "RELAY_BACKEND_STRATEGY",
-    "RELAY_TROUBLESHOOTING"
+    "01-api-reference",
+    "02-cli-tools",
+    "03-environment-variables",
+    "04-feature-flags",
+    "05-embeddings",
+    "06-free-tiers-directory",
+    "07-free-proxies-api",
+    "08-quota-telemetry",
+    "09-provider-reference",
+    "10-provider-plugin-manifest",
+    "11-removed-providers",
+    "12-relay-backend-strategy",
+    "13-relay-troubleshooting",
+    "14-third-party-notices"
   ]
 }

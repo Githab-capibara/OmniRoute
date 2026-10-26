@@ -5,7 +5,7 @@
  *   1. NOT return raw `err.message` / `err.stack` in any NextResponse.json body.
  *   2. Import and use `buildErrorBody` from `@omniroute/open-sse/utils/error`.
  *
- * See docs/security/ERROR_SANITIZATION.md and CLAUDE.md hard rule #12.
+ * See docs/security/05-error-sanitization.md and CLAUDE.md hard rule #12.
  * Pattern mirrors tests/unit/route-error-sanitization-v382.test.ts.
  */
 

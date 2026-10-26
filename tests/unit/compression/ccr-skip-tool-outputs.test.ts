@@ -27,7 +27,7 @@ const LARGE_TOOL_OUTPUT = `Total 247 lines in current working directory.
 drwxr-xr-x  18 herjarsa herjarsa   4096 Jul 20 13:12 .
 drwxr-xr-x  14 root      root        4096 Jul 17 17:59 ..
 drwxr-xr-x   4 herjarsa herjarsa   4096 Jul 18 14:41 .codegraph
--rw-r--r--   1 herjarsa herjarsa   8927 Jul 18 02:10 ARCHITECTURE.md
+-rw-r--r--   1 herjarsa herjarsa   8927 Jul 18 02:10 01-system-overview.md
 -rw-r--r--   1 herjarsa herjarsa 341669 Jul 20 13:12 meta-governor.log
 -rw-r--r--   1 herjarsa herjarsa   81784 Jul 16 13:55 package-lock.json
 -rw-r--r--   1 herjarsa herjarsa   4798 Jul 17 17:59 opencode.json

@@ -22,7 +22,7 @@ import crypto from "node:crypto";
 import { SignJWT } from "jose";
 
 // Ephemeral signing key, injected before any Radar module loads so the sync
-// path verifies against it (the fork override documented in RADAR.md).
+// path verifies against it (the fork override documented in 26-radar-free-model-catalog.md).
 const { publicKey, privateKey } = crypto.generateKeyPairSync("ed25519");
 process.env.RADAR_FEED_PUBKEY = publicKey
   .export({ type: "spki", format: "der" })

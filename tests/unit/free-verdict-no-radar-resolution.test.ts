@@ -81,7 +81,10 @@ function isTypeOnlyClause(clause: string): boolean {
   if (!named) return false;
   const outsideBraces = clause.replace(/\{[^}]*\}/, "").trim();
   if (/[A-Za-z_$*]/.test(outsideBraces)) return false;
-  const bindings = named[1].split(",").map((b) => b.trim()).filter(Boolean);
+  const bindings = named[1]
+    .split(",")
+    .map((b) => b.trim())
+    .filter(Boolean);
   return bindings.length > 0 && bindings.every((b) => /^type\s/.test(b));
 }
 
@@ -196,7 +199,7 @@ test("no deciding surface statically reaches DB-backed catalog resolution", () =
       offenders.map((o) => `  ${o.trail.join("\n    → ")}`).join("\n\n") +
       "\nBreak the chain — deciding reads FREE_MODEL_BUDGETS, never getRadarCatalog. " +
       "If the wiring is intentional, update the contract header on freeModels.ts and " +
-      "FREE_TIERS.md first; if the file counts as well as decides, add it to " +
+      "06-free-tiers-directory.md first; if the file counts as well as decides, add it to " +
       "COUNTING_SURFACES with the reason."
   );
 });

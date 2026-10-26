@@ -114,7 +114,11 @@ test("checkTrackedArtifacts: docs/superpowers/ prefix is flagged", () => {
 });
 
 test("checkTrackedArtifacts: .eslintcache family is flagged", () => {
-  const result = checkTrackedArtifacts([".eslintcache", ".eslintcache-complexity", ".eslintcache-probe"]);
+  const result = checkTrackedArtifacts([
+    ".eslintcache",
+    ".eslintcache-complexity",
+    ".eslintcache-probe",
+  ]);
   assert.equal(result.length, 3);
 });
 
@@ -137,7 +141,7 @@ test("checkTrackedArtifacts: new prefixes are root-anchored — nested legit pat
   const result = checkTrackedArtifacts([
     "src/lib/logs/logger.ts",
     "electron/dist-electron.config.ts",
-    "docs/architecture/ARCHITECTURE.md",
+    "docs/architecture/01-system-overview.md",
     "scripts/check/check-tracked-artifacts.mjs",
     "tests/unit/build/check-tracked-artifacts.test.ts",
     "bin/cli/locales/en.json",

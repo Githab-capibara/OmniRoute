@@ -381,6 +381,16 @@ export const STREAM_RECOVERY = {
    * either (an accidental coincidence at or above this many characters is still accepted).
    */
   MIN_CONTINUATION_OVERLAP_CHARS: 8,
+  /**
+   * Max transparent re-opens of a POST-commit stream that ended without delivering
+   * any assistant content (see STREAM_RECOVERY_CONTENTLESS_RESTART_ENABLED).
+   *
+   * Deliberately small. Each restart re-spends upstream reasoning work that has
+   * already been billed, so an unbounded budget would turn a flapping provider
+   * into an unbounded wait. 2 covers the observed "one bad roll, then a good one"
+   * shape without letting a dead upstream loop for hours.
+   */
+  CONTENTLESS_RESTART_MAX: 2,
 } as const;
 
 /**

@@ -1,7 +1,7 @@
 /**
  * Regression: confirmedAccounts validation helpers reject malformed bodies and
  * filterCredentialsByConfirmation only returns credentials whose fingerprint
- * matches a confirmed entry. See docs/security/SOCKET_DEV_FINDINGS.md §2.
+ * matches a confirmed entry. See docs/security/14-socket-dev-findings.md §2.
  */
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -21,10 +21,7 @@ test("isConfirmedAccount rejects null / wrong-typed entries", () => {
     isConfirmedAccount({ service: "zed-openai", account: "default", fingerprint: "" }),
     false
   );
-  assert.equal(
-    isConfirmedAccount({ service: 123, account: "default", fingerprint: "abc" }),
-    false
-  );
+  assert.equal(isConfirmedAccount({ service: 123, account: "default", fingerprint: "abc" }), false);
 });
 
 test("isConfirmedAccount accepts a fully-formed entry", () => {
@@ -79,10 +76,7 @@ test("filterCredentialsByConfirmation only returns credentials matching the fing
 
   const result = filterCredentialsByConfirmation(credentials, confirmed);
   assert.equal(result.length, 2);
-  assert.deepEqual(
-    result.map((c) => c.provider).sort(),
-    ["anthropic", "openai"]
-  );
+  assert.deepEqual(result.map((c) => c.provider).sort(), ["anthropic", "openai"]);
 });
 
 test("filterCredentialsByConfirmation rejects entries with mismatched fingerprint (token rotation)", () => {

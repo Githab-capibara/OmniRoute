@@ -15,12 +15,12 @@ test("issue #7793: real .env.example is in sync with process.env.* reads in code
   assert.deepEqual(
     result.problems.envMissingDoc,
     [],
-    `Vars in .env.example but missing from ENVIRONMENT.md: ${JSON.stringify(result.problems.envMissingDoc)}`
+    `Vars in .env.example but missing from 03-environment-variables.md: ${JSON.stringify(result.problems.envMissingDoc)}`
   );
   assert.deepEqual(
     result.problems.docMissingEnv,
     [],
-    `Vars in ENVIRONMENT.md but missing from .env.example: ${JSON.stringify(result.problems.docMissingEnv)}`
+    `Vars in 03-environment-variables.md but missing from .env.example: ${JSON.stringify(result.problems.docMissingEnv)}`
   );
   assert.equal(result.ok, true);
 });

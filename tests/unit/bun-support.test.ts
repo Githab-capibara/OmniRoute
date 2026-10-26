@@ -99,7 +99,7 @@ test("createSyncDriverFactory prefers better-sqlite3 when running under Node", (
 // `OMNIROUTE_USE_TURBOPACK` is the operator's only control over the bundler:
 // Turbopack is the default and `0` is the documented escape hatch (webpack), taken
 // for Windows / native-binding trouble / RAM-constrained machines — see
-// docs/reference/ENVIRONMENT.md and #6409. Nothing sniffs the runtime, so pin that:
+// docs/reference/03-environment-variables.md and #6409. Nothing sniffs the runtime, so pin that:
 // a hidden override would silently ignore an explicit `=1` from an operator who set
 // it on purpose (CI does, in build.yml / ci.yml / quality.yml).
 test("resolveNextBuildBundlerFlag is decided by OMNIROUTE_USE_TURBOPACK alone, not by the runtime", async () => {

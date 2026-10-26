@@ -2,10 +2,10 @@
   "title": "Getting Started",
   "description": "Get started with OmniRoute in minutes — no technical background needed",
   "pages": [
-    "QUICK-START",
-    "AUTO-COMBO-GUIDE",
-    "PROVIDERS-GUIDE",
-    "FREE-TIERS-GUIDE",
-    "WEB-COOKIE-GUIDE"
+    "01-quick-start",
+    "02-providers-guide",
+    "03-auto-combo-guide",
+    "04-free-tiers-guide",
+    "05-web-cookie-guide"
   ]
 }

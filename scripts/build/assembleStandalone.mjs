@@ -129,8 +129,8 @@ const EXTRA_MODULE_ENTRIES = [
   })),
   {
     label: "third-party notices",
-    src: ["THIRD_PARTY_NOTICES.md"],
-    dest: ["THIRD_PARTY_NOTICES.md"],
+    src: ["14-third-party-notices.md"],
+    dest: ["14-third-party-notices.md"],
   },
   {
     label: "wreq-js native provenance manifest",

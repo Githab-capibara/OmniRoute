@@ -136,7 +136,7 @@ test("evaluatePrBody: body with only one weak trigger => pass (not enough to fir
 });
 
 test("evaluatePrBody: body describing a pure docs change with no claims => pass", () => {
-  const body = "Updates ARCHITECTURE.md to reflect the new combo routing design.";
+  const body = "Updates 01-system-overview.md to reflect the new combo routing design.";
   const { result } = evaluatePrBody(body);
   assert.equal(result, "pass");
 });

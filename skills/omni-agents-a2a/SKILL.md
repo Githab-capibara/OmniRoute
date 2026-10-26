@@ -87,5 +87,5 @@ curl -X POST $OMNIROUTE_URL/a2a \
 
 ## Reference
 
-Full docs: https://github.com/diegosouzapw/OmniRoute/blob/main/docs/frameworks/A2A-SERVER.md
+Full docs: https://github.com/diegosouzapw/OmniRoute/blob/main/docs/frameworks/01-a2a-server.md
 <!-- skill:custom-end -->

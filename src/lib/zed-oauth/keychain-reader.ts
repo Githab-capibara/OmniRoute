@@ -112,7 +112,7 @@ function extractProviderFromService(service: string): string {
  *   - Reads only Zed editor patterns (`zed-openai`, `ai.zed.anthropic`, …).
  *     The raw token never leaves the host — the `/discover` response carries
  *     only a 16-char fingerprint.
- *   - See docs/security/SOCKET_DEV_FINDINGS.md §2 for the full attestation.
+ *   - See docs/security/14-socket-dev-findings.md §2 for the full attestation.
  *
  * @returns Array of discovered credentials with provider, service, and token
  */

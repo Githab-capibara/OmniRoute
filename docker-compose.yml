@@ -21,7 +21,7 @@
 #    docker compose --profile base --profile memory up -d   # adds Qdrant sidecar
 #    docker compose --profile base --profile bifrost up -d  # adds Bifrost sidecar
 #
-#  See docs/architecture/cluster-decisions.md for the per-component rationale
+#  See docs/architecture/03-cluster-sidecar-profiles.md for the per-component rationale
 #  (Qdrant=opt-in, Bifrost=opt-in, Caddy=upstream LB, no Dragonfly/NATS/PG/Neo4j/MinIO).
 #
 #  Before first run, copy .env.example → .env and edit your secrets.
@@ -180,7 +180,7 @@ services:
       # container the host runs. It is here so the in-container auto-updater
       # (src/lib/system/autoUpdate.ts) can recreate the stack. Only use this
       # profile on a single-tenant workstation you trust, and never publish
-      # its ports beyond 127.0.0.1. See docs/guides/DOCKER_GUIDE.md →
+      # its ports beyond 127.0.0.1. See docs/guides/09-docker-guide.md →
       # "Escape hatch: configure the container's own CLIs" for the threat model.
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/libexec/docker/cli-plugins:/usr/libexec/docker/cli-plugins:ro
@@ -241,7 +241,7 @@ services:
   # store (see src/lib/memory/vectorStore.ts). Enable only when you need
   # cross-instance memory sharing or >1M points — at which point the
   # QDRANT_ENABLED=true flag activates the dual-write path in
-  # src/lib/memory/qdrant.ts:37. See docs/architecture/cluster-decisions.md
+  # src/lib/memory/qdrant.ts:37. See docs/architecture/03-cluster-sidecar-profiles.md
   # for the workload analysis behind this profile.
   qdrant:
     image: docker.io/qdrant/qdrant:v1.12.4
@@ -270,7 +270,7 @@ services:
   # /v1/embeddings to this sidecar instead of handling them in chatCore.
   # The kill switch is the BIFROST_ENABLED env var — flip to false to
   # fall back to the chatCore path with zero code changes. See
-  # docs/architecture/cluster-decisions.md for the activation plan.
+  # docs/architecture/03-cluster-sidecar-profiles.md for the activation plan.
   bifrost:
     image: ghcr.io/maximhq/bifrost:v1.6.11
     container_name: omniroute-bifrost
@@ -370,7 +370,12 @@ services:
     # compose network by the omniroute app.
     healthcheck:
       test:
-        ["CMD", "node", "-e", "require('http').get('http://127.0.0.1:1456/readyz',r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))"]
+        [
+          "CMD",
+          "node",
+          "-e",
+          "require('http').get('http://127.0.0.1:1456/readyz',r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))",
+        ]
       interval: 30s
       timeout: 5s
       retries: 3

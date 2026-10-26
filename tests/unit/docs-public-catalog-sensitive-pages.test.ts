@@ -19,16 +19,16 @@ const META_PATH = path.join(REPO_ROOT, "docs/security/meta.json");
 const DOCKERIGNORE_PATH = path.join(REPO_ROOT, ".dockerignore");
 
 export const SENSITIVE_PUBLIC_DOCS = [
-  "docs/security/STEALTH_GUIDE.md",
-  "docs/security/SOCKET_DEV_FINDINGS.md",
-  "docs/security/MITM-TPROXY-DECRYPT.md",
-  "docs/security/PUBLIC_CREDS.md",
+  "docs/security/03-stealth-guide.md",
+  "docs/security/14-socket-dev-findings.md",
+  "docs/security/12-mitm-tproxy-decrypt.md",
+  "docs/security/04-public-creds-pattern.md",
 ] as const;
 
 const PUBLIC_SECURITY_KEEP = [
-  "docs/security/GUARDRAILS.md",
-  "docs/security/ERROR_SANITIZATION.md",
-  "docs/security/ROUTE_GUARD_TIERS.md",
+  "docs/security/01-guardrails.md",
+  "docs/security/05-error-sanitization.md",
+  "docs/security/06-route-guard-tiers.md",
 ] as const;
 
 function readConfiguredGlobs(): string[] {
@@ -137,28 +137,28 @@ function isIgnored(
 
 test("dockerignore last matching rule wins", () => {
   const laterExclude = parseDockerignore(
-    "!docs/security/STEALTH_GUIDE.md\ndocs/security/STEALTH_GUIDE.md\n"
+    "!docs/security/03-stealth-guide.md\ndocs/security/03-stealth-guide.md\n"
   );
   assert.equal(
-    isIgnored("docs/security/STEALTH_GUIDE.md", laterExclude),
+    isIgnored("docs/security/03-stealth-guide.md", laterExclude),
     true,
     "a later exact exclude must win over an earlier include"
   );
 
   const laterInclude = parseDockerignore(
-    "docs/security/STEALTH_GUIDE.md\n!docs/security/STEALTH_GUIDE.md\n"
+    "docs/security/03-stealth-guide.md\n!docs/security/03-stealth-guide.md\n"
   );
   assert.equal(
-    isIgnored("docs/security/STEALTH_GUIDE.md", laterInclude),
+    isIgnored("docs/security/03-stealth-guide.md", laterInclude),
     false,
     "a later exact include must win over an earlier exclude"
   );
 });
 
 test("segmentMatches anchors the last literal of a * glob", () => {
-  assert.equal(segmentMatches("*.md", "STEALTH_GUIDE.md"), true);
+  assert.equal(segmentMatches("*.md", "03-stealth-guide.md"), true);
   assert.equal(
-    segmentMatches("*.md", "STEALTH_GUIDE.md.bak"),
+    segmentMatches("*.md", "03-stealth-guide.md.bak"),
     false,
     "*.md must not match a longer suffix"
   );
@@ -190,15 +190,20 @@ test("security nav meta.json does not list sensitive pages", () => {
   const meta = JSON.parse(fs.readFileSync(META_PATH, "utf-8")) as {
     pages: string[];
   };
-  const forbidden = ["STEALTH_GUIDE", "SOCKET_DEV_FINDINGS", "MITM-TPROXY-DECRYPT", "PUBLIC_CREDS"];
+  const forbidden = [
+    "03-stealth-guide",
+    "14-socket-dev-findings",
+    "12-mitm-tproxy-decrypt",
+    "04-public-creds-pattern",
+  ];
   const listed = forbidden.filter((id) => meta.pages.includes(id));
   assert.deepEqual(
     listed,
     [],
     `docs/security/meta.json still links operator-internal pages: ${listed.join(", ")}`
   );
-  assert.ok(meta.pages.includes("GUARDRAILS"));
-  assert.ok(meta.pages.includes("ERROR_SANITIZATION"));
+  assert.ok(meta.pages.includes("01-guardrails"));
+  assert.ok(meta.pages.includes("05-error-sanitization"));
 });
 
 test("docker image does not ship sensitive security markdown", () => {
@@ -221,10 +226,27 @@ test("compiled public docs must not markdown-link sensitive pages", () => {
     "docs/security",
     "docs/compression",
     "docs/ops",
+    "docs/governance",
   ];
+  // Root markdown that is NOT part of the docs/ catalog but is still shipped to
+  // users — `README.md` is in the npm `files` allowlist, and every one of these
+  // is mirrored byte-for-byte into `docs/i18n/<locale>/`.
+  const compiledRootFiles = ["README.md", "CHANGELOG.md", "llm.txt"];
   const sensitive = new Set(SENSITIVE_PUBLIC_DOCS.map((rel) => path.basename(rel, ".md")));
-  const href = /\]\((?:\.\.\/)*security\/([A-Z0-9_-]+)\.md\)|\]\(\.\/([A-Z0-9_-]+)\.md\)/g;
+  const href =
+    /\]\((?:\.\.\/)*security\/(\d{2}-[a-z0-9-]+)\.md\)|\]\(\.\/(\d{2}-[a-z0-9-]+)\.md\)/g;
   const leaks: string[] = [];
+  for (const rel of compiledRootFiles) {
+    const full = path.join(REPO_ROOT, rel);
+    if (!fs.existsSync(full)) continue;
+    const text = fs.readFileSync(full, "utf8");
+    for (const match of text.matchAll(href)) {
+      const id = match[1] ?? match[2];
+      if (id && sensitive.has(id)) {
+        leaks.push(`${rel} -> ${id}`);
+      }
+    }
+  }
   for (const root of compiledRoots) {
     const abs = path.join(REPO_ROOT, root);
     if (!fs.existsSync(abs)) continue;

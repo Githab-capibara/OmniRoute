@@ -3779,7 +3779,9 @@
     "duplicateAutoComboSnapshotMsg": "Tai užfiksuos šiuo metu prijungtus teikėjus/modelius, atitinkančius šį šabloną, redaguojamame kombo.",
     "duplicateAutoComboFailedPrefix": "Nepavyko dubliuoti automatinio kombo:",
     "duplicateAutoComboUnknownError": "Nežinoma klaida",
-    "duplicateAutoComboTitle": "Sukurti statinį kombo iš {name}"
+    "duplicateAutoComboTitle": "Sukurti statinį kombo iš {name}",
+    "quotaWeighted": "Quota-Weighted",
+    "quotaWeightedDesc": "Skip exhausted accounts, then pick among the rest in proportion to leftover, divided by in-flight load. Existing conversations stay pinned."
   },
   "costs": {
     "title": "Išlaidos",
@@ -6306,7 +6308,8 @@
       "kiro": "Nemokamas planas: 50 kreditų per mėnesį (~25K–100K žetonų). ⚠️ Kiro ToS draudžia naudoti trečiųjų šalių tarpinius serverius ar valdymo įrankius.",
       "codex": "Prijunkite OpenAI Codex naudodami esamą OAuth procesą.",
       "qwen": "Prijunkite Qwen Code naudodami esamą OAuth procesą.",
-      "github-models": "Sukurkite GitHub PAT su „models: read“ aprėptimi adresu github.com/settings/tokens"
+      "github-models": "Sukurkite GitHub PAT su „models: read“ aprėptimi adresu github.com/settings/tokens",
+      "seekai": "Create an API key at https://seekai.cc, then paste it here as a Bearer token. OpenAI-compatible base URL: https://seekai.cc/v1."
     },
     "passthroughModelsDescription": "{provider} priima teikėjui būdingus modelių ID. Importuokite juos iš /models arba pridėkite pasirinktinius ID maršrutizavimui.",
     "bedrockModelsDescription": "Amazon Bedrock modeliai susieti su AWS regionu. Importuokite juos iš /models arba pridėkite pasirinktame regione įgalintų Bedrock modelių ID.",
@@ -6464,7 +6467,14 @@
     "savedModelEndpointSettings": "Modelio galinio taško nustatymai išsaugoti",
     "searchByModelAria": "Ieškoti pagal modelį",
     "selectSupportedEndpoint": "Pasirinkite bent vieną palaikomą galinį tašką",
-    "antigravityClientProfileHarness": "Testavimo aplinka / CLI"
+    "antigravityClientProfileHarness": "Testavimo aplinka / CLI",
+    "importFromFileDownloadTemplate": "Download CSV template",
+    "importFromFileMoreErrors": "+{count} more",
+    "importFromFileSchemaHint": "CSV columns are positional: provider, name, apiKey, baseUrl (optional), priority (optional). The provider column must be an existing managed provider id or an already-registered OpenAI/Anthropic-compatible node id — this import does not create new endpoint nodes.",
+    "dailyQuotaResetTimezoneLabel": "Daily quota reset timezone",
+    "dailyQuotaResetTimezoneHint": "Optional IANA timezone used when the upstream omits X-RateLimit-Reset. Leave empty to keep a short cooldown.",
+    "dailyQuotaResetHourLabel": "Daily quota reset hour",
+    "dailyQuotaResetHourHint": "Local hour 0-23 in the timezone above. Empty means no node-level clock."
   },
   "settings": {
     "title": "Nustatymai",
@@ -8343,7 +8353,29 @@
     "cliproxyapiHealth": "Būsena",
     "cliproxyapiPort": "Prievadas",
     "qdrantHost": "Pagrindinis kompiuteris",
-    "qdrantCollection": "Rinkinys"
+    "qdrantCollection": "Rinkinys",
+    "quotaWeighted": "Quota-Weighted",
+    "quotaWeightedDesc": "Skip exhausted accounts, then pick among the rest in proportion to leftover, divided by in-flight load. Existing conversations stay pinned.",
+    "jsonImportAuthRequired": "Authentication required to import a legacy JSON configuration. Please sign in or complete setup first.",
+    "databaseSettingsAuthRequiredTitle": "Authentication required",
+    "databaseSettingsAuthRequiredBody": "Database settings and JSON import are only available to an authenticated admin. Sign in or complete setup to view and edit them.",
+    "databaseSettingsAuthRequiredCta": "Sign in",
+    "compressionAdaptiveMode": "Adaptive context budget",
+    "compressionAdaptiveModeOff": "Off (legacy auto-trigger)",
+    "compressionAdaptiveModeFloor": "Floor (always guarantee fit)",
+    "compressionAdaptiveModeReplace": "Replace auto-trigger",
+    "compressionAdaptivePolicy": "Budget policy",
+    "compressionAdaptivePolicyReserve": "Reserve output",
+    "compressionAdaptivePolicyPercentage": "Percentage of window",
+    "compressionAdaptivePolicyAbsolute": "Absolute token budget",
+    "headroomProxyTitle": "Headroom proxy",
+    "headroomProxyDesc": "URL of the optional Headroom token-saver proxy. Empty uses HEADROOM_URL or http://localhost:8787.",
+    "headroomProxyUrl": "Headroom URL",
+    "headroomProxyUrlHint": "Loopback URLs can be started from this page. External URLs are probed only.",
+    "headroomProxySave": "Save",
+    "headroomProxyStart": "Start",
+    "headroomProxyStop": "Stop",
+    "headroomProxyExternalHint": "This URL is not loopback, so OmniRoute will not spawn the local CLI."
   },
   "contextRtk": {
     "title": "RTK variklis",
@@ -10769,7 +10801,7 @@
     "readingFromCursor": "Skaitoma iš Cursor IDE arba cursor-agent",
     "tokensAutoDetected": "Prieigos raktai sėkmingai automatiškai aptikti iš Cursor IDE!",
     "cursorNotDetected": "Cursor IDE neaptikta. Įklijuokite savo prieigos raktą (ir atnaujinimo raktą, jei jį turite).",
-    "dockerImportHint": "Veikia Docker aplinkoje? Rekomenduojama prisijungti naudojant Cursor. IDE automatinis importavimas ir cursor-agent paprastai nepasiekiami konteinerio viduje. Žr. docs/providers/CURSOR-DOCKER.md.",
+    "dockerImportHint": "Veikia Docker aplinkoje? Rekomenduojama prisijungti naudojant Cursor. IDE automatinis importavimas ir cursor-agent paprastai nepasiekiami konteinerio viduje. Žr. docs/providers/06-cursor-docker.md.",
     "accessToken": "Prieigos prieigos raktas",
     "refreshToken": "Atnaujinimo prieigos raktas",
     "refreshTokenPlaceholder": "Neprivaloma — įgalina automatinį prieigos rakto atnaujinimą",
@@ -11387,7 +11419,9 @@
       "detailedPayloadInfo": "Jei norite naujoms užklausoms matyti keturių etapų kliento ir teikėjo turinio rodinį, pirmiausia įjunkite išsamų registravimą.",
       "copyAll": "Kopijuoti viską",
       "copiedAll": "Viskas nukopijuota"
-    }
+    },
+    "columnsReset": "Reset",
+    "columnsResetHint": "Restore the default columns: Status, Model, Provider, Tokens, TPS, Duration"
   },
   "proxyLogger": {
     "filterAll": "Visi",
@@ -12984,6 +13018,10 @@
       },
       "SKILLS_SANDBOX_NETWORK_ENABLED": {
         "description": "Įjungti tinklo prieigą įgūdžių smėlio dėžėje."
+      },
+      "SERVER_OWNED_TOOL_LOOP_ENABLED": {
+        "label": "Server-Owned Tool Loop",
+        "description": "Continue non-streaming server-owned tool calls until the model returns a client-usable response."
       }
     }
   },
@@ -13149,7 +13187,8 @@
       "ok": "Paprastai leidžiama"
     },
     "allProviders": "Visi teikėjai",
-    "noApiKeyRequired": "API rakto nereikia"
+    "noApiKeyRequired": "API rakto nereikia",
+    "gated": "~{tokens}/mo more behind a regional identity check (e.g. mainland-China real-name verification) — real quota, not counted in the headline:"
   },
   "providerHealthAutopilot": {
     "title": "Teikėjų būklės autopilotas",
@@ -13442,7 +13481,10 @@
     "localStateSaveFailed": "Nepavyko išsaugoti vietinių Radar nustatymų",
     "guidedCombos": "Rekomenduojami deriniai",
     "offers": "Pasiūlymai",
-    "intel": "Informacija"
+    "intel": "Informacija",
+    "limitsUnknownHelp": "Limits reported by Radar feed only; no published limits for this entry",
+    "contextUnknownHelp": "Context window unknown for this entry",
+    "capabilityUnknownHelp": "Capability not reported by the feed"
   },
   "radarCombosPage": {
     "title": "Radar rekomenduojami deriniai",
@@ -14021,7 +14063,12 @@
     "compareCost": "Kaina",
     "compareEvents": "Įvykiai",
     "compareDeltaLegend": "Δ dešinė − kairė",
-    "noMatches": "Nė vienas vykdymas neatitinka šių filtrų"
+    "noMatches": "Nė vienas vykdymas neatitinka šių filtrų",
+    "drawerMemory": "Memory used",
+    "actionRepeat": "Repeat",
+    "repeatConfirm": "Click again to confirm",
+    "repeatDone": "New run created",
+    "repeatUnavailable": "Original input not available"
   },
   "cliproxyProviderExposure": {
     "title": "Teikėjo prieinamumas",

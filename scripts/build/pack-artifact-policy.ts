@@ -93,7 +93,7 @@ export const PACK_ARTIFACT_ROOT_ALLOWED_EXACT_PATHS: string[] = [
   ".env.example",
   "LICENSE",
   "README.md",
-  "THIRD_PARTY_NOTICES.md",
+  "14-third-party-notices.md",
   "config/release/wreq-js-native-manifest.json",
   "config/release/wreq-js-rust-license-inventory.json",
   "config/release/wreq-js-rust-notices.md",

@@ -165,7 +165,7 @@ test("backup create — nenhuma opção é sombreada pelo parent backup", async 
 });
 
 // Regressão de documentação: `omniroute backup` sem subcomando é o uso
-// canônico documentado em USER_GUIDE.md / CLI-TOOLS.md / AGENT-SKILLS.md
+// canônico documentado em 01-user-guide.md / 02-cli-tools.md / 05-agent-skills-catalog.md
 // ("omniroute backup # Snapshot config + DB"). Remover só as opções
 // duplicadas do parent (causa real do #8512) não pode remover essa ação.
 test("backup — sem subcomando ainda cria um backup (uso legado documentado)", async () => {

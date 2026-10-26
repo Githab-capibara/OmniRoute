@@ -21,9 +21,9 @@
  * `hardStopGuaranteed`) plus, for quota-based types, a `FreeAccessState`
  * resolved elsewhere. A future provider that ships correct metadata is
  * handled automatically; one that doesn't is excluded automatically — see
- * `docs/routing/STRICT_ZERO_COST.md`.
+ * `docs/routing/06-strict-zero-cost.md`.
  *
- * ## Connection safety (fixed after code review, see `docs/routing/STRICT_ZERO_COST.md`)
+ * ## Connection safety (fixed after code review, see `docs/routing/06-strict-zero-cost.md`)
  *
  * A candidate from `virtualFactory.ts`'s connection-based pool represents ONE
  * provider/model pair with a set of *eligible* connections

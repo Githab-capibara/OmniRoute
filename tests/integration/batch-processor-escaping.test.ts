@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 const batchProcessor = await import("../../open-sse/services/batchProcessor.ts");
 
 test("parseBatchItems handles input with backticks and special characters", () => {
-  const inputText = `# MEMORY.md
+  const inputText = `# 09-persistent-memory.md
 
 ## Index (use memory_search to find details)
 - **Tasks**: memory/tasks.md
@@ -21,8 +21,8 @@ My fundamental commitment is to never settle. I am tasked with questioning, refl
 ## Durable preferences / facts
 - Running directly on \`bashbitch\` (no SSH required for local scripts).
 - Date-stamped memory files decay (half-life ~30 days). Undated files never decay.
-- **Always write it down**: Use \`memory/YYYY-MM-DD.md\` for daily logs; rely on \`MEMORY.md\` only for evergreen facts.
-- Use \`memory_search\` to locate information across MEMORY.md and dated logs before answering questions about prior work, decisions, or todos.
+- **Always write it down**: Use \`memory/YYYY-MM-DD.md\` for daily logs; rely on \`09-persistent-memory.md\` only for evergreen facts.
+- Use \`memory_search\` to locate information across 09-persistent-memory.md and dated logs before answering questions about prior work, decisions, or todos.
 - When searching it may also be that you should search online using the sx skill.
 - **Memory Embeddings**: Use Mistral embedding endpoint (\`https://api.mistral.ai/v1/embeddings\`, model: \`mistral-embed\`) with \`MISTRAL_API_KEY\`. Verified working on 2026-04-18.
 `;
@@ -157,7 +157,7 @@ test("buildRequestBody adds stream:false for chat endpoints", () => {
 });
 
 test("Batch request can be JSON stringified and parsed without data loss", () => {
-  const inputText = `# MEMORY.md
+  const inputText = `# 09-persistent-memory.md
 
 ## Index
 - **Tasks**: memory/tasks.md
@@ -190,7 +190,7 @@ test("Batch request can be JSON stringified and parsed without data loss", () =>
 });
 
 test("Simulated batch dispatch preserves input through JSON.stringify", async () => {
-  const inputText = `# MEMORY.md
+  const inputText = `# 09-persistent-memory.md
 
 ## Index (use memory_search to find details)
 - **Tasks**: memory/tasks.md
@@ -207,8 +207,8 @@ My fundamental commitment is to never settle. I am tasked with questioning, refl
 ## Durable preferences / facts
 - Running directly on \`bashbitch\` (no SSH required for local scripts).
 - Date-stamped memory files decay (half-life ~30 days). Undated files never decay.
-- **Always write it down**: Use \`memory/YYYY-MM-DD.md\` for daily logs; rely on \`MEMORY.md\` only for evergreen facts.
-- Use \`memory_search\` to locate information across MEMORY.md and dated logs before answering questions about prior work, decisions, or todos.
+- **Always write it down**: Use \`memory/YYYY-MM-DD.md\` for daily logs; rely on \`09-persistent-memory.md\` only for evergreen facts.
+- Use \`memory_search\` to locate information across 09-persistent-memory.md and dated logs before answering questions about prior work, decisions, or todos.
 - When searching it may also be that you should search online using the sx skill.
 - **Memory Embeddings**: Use Mistral embedding endpoint (\`https://api.mistral.ai/v1/embeddings\`, model: \`mistral-embed\`) with \`MISTRAL_API_KEY\`. Verified working on 2026-04-18.
 `;

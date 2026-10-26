@@ -1,5 +1,5 @@
 /**
- * Regression guard for docs/reference/REMOVED_PROVIDERS.md.
+ * Regression guard for docs/reference/11-removed-providers.md.
  *
  * Providers removed at their operator's request must never come back: not in the
  * provider catalogs, not in the executor map, not in the registry sources and not
@@ -93,13 +93,13 @@ for (const removed of REMOVED_PROVIDERS) {
     assert.deepEqual(
       offenders,
       [],
-      `reintroduction of "${removed.id}" detected — see docs/reference/REMOVED_PROVIDERS.md`
+      `reintroduction of "${removed.id}" detected — see docs/reference/11-removed-providers.md`
     );
   });
 }
 
 test("the REMOVED_PROVIDERS doc lists every guarded id", () => {
-  const doc = fs.readFileSync(path.join(ROOT, "docs/reference/REMOVED_PROVIDERS.md"), "utf8");
+  const doc = fs.readFileSync(path.join(ROOT, "docs/reference/11-removed-providers.md"), "utf8");
   for (const removed of REMOVED_PROVIDERS) {
     assert.ok(doc.includes(`\`${removed.id}\``), `${removed.id} must have a row in the doc`);
     assert.ok(doc.includes(`#${removed.removalPr}`), `PR #${removed.removalPr} must be linked`);

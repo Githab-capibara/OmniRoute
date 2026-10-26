@@ -73,7 +73,7 @@ test("selectImpacted: includes changed test files directly", () => {
 test("selectImpacted: returns empty array when no files impact tests", () => {
   // A non-source, non-test file that isn't a hub
   const sel = selectImpacted({
-    changed: ["docs/architecture/ARCHITECTURE.md"],
+    changed: ["docs/architecture/01-system-overview.md"],
     map: MAP,
   });
   assert.deepEqual(sel, []);

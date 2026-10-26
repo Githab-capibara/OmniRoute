@@ -340,6 +340,15 @@ export interface RecoverableStreamOptions {
   finalize: () => void;
   /** Max transparent re-opens while the holdback is still uncommitted. */
   maxEarlyRetries?: number;
+  /**
+   * Overrides the opening-window hold duration. `0` commits on the very first chunk
+   * (no added time-to-first-token, and `tryReopen` can no longer fire because the
+   * window is never uncommitted). Used to install the recovery wrapper for
+   * post-commit recovery alone — see chatCore.ts, where an operator who wants only
+   * `contentlessRestart` must not silently inherit STREAM_RECOVERY.HOLDBACK_MS of
+   * latency they never asked for.
+   */
+  holdbackMs?: number;
   /** Injectable clock (ms) threaded to the internal holdback buffers (tests). */
   now?: () => number;
   /** Observability hook fired on each early-retry attempt. */
@@ -356,6 +365,14 @@ export interface RecoverableStreamOptions {
   maxContinuations?: number;
   /** Observability hook fired on each continuation attempt. */
   onContinue?: (attempt: number, assistantSoFar: string) => void;
+  /**
+   * Max re-opens of a POST-commit stream that ended having delivered no usable
+   * assistant content (default STREAM_RECOVERY.CONTENTLESS_RESTART_MAX). Omit or 0
+   * disables the behavior entirely and restores the unchanged passthrough.
+   */
+  maxContentlessRestarts?: number;
+  /** Observability hook fired before each contentless re-open. */
+  onContentlessRestart?: (attempt: number, error: unknown) => void;
   /** Opt-in active-stream output-quality watchdog. Disabled when omitted. */
   throughputWatchdog?: ThroughputWatchdogOptions;
   /** Sanitized observability hook fired before the active attempt is aborted. */
@@ -377,9 +394,13 @@ export function createRecoverableStream(
   options: RecoverableStreamOptions
 ): ReadableStream<Uint8Array> {
   const maxRetries = options.maxEarlyRetries ?? STREAM_RECOVERY.EARLY_RETRY_MAX;
+  // Separate budget from `maxRetries`: that one is spent while the opening window is
+  // still uncommitted, and mixing the two would let an early-retry spree starve the
+  // restart (or the reverse).
+  const maxContentlessRestarts = options.maxContentlessRestarts ?? 0;
 
   let reader: ReadableStreamDefaultReader<Uint8Array> = initialStream.getReader();
-  let holdback = new HoldbackBuffer({ now: options.now });
+  let holdback = new HoldbackBuffer({ now: options.now, holdbackMs: options.holdbackMs });
   let retries = 0;
   let finalized = false;
   let cancelled = false;
@@ -420,6 +441,10 @@ export function createRecoverableStream(
 
   // ── Mid-stream continuation state (no-op unless options.continueStream is set) ──
   const continueEnabled = typeof options.continueStream === "function";
+  // Both post-commit recoveries reason about what the client already received, so the
+  // emitted-bytes scan has to run whenever EITHER is possible. Gating it on
+  // `continueEnabled` alone silently disabled every restart decision.
+  const trackEmitted = continueEnabled || maxContentlessRestarts > 0;
   const maxContinuations = options.maxContinuations ?? STREAM_RECOVERY.EARLY_RETRY_MAX;
   const encoder = new TextEncoder();
   const trackDecoder = new TextDecoder();
@@ -442,7 +467,7 @@ export function createRecoverableStream(
     chunk: Uint8Array
   ): void => {
     controller.enqueue(chunk);
-    if (!continueEnabled) return;
+    if (!trackEmitted) return;
     emittedTail += trackDecoder.decode(chunk, { stream: true });
     const boundary = emittedTail.lastIndexOf("\n\n");
     if (boundary < 0) return;
@@ -498,6 +523,64 @@ export function createRecoverableStream(
     emittedParsedOpenAi &&
     !emittedToolCallInFlight &&
     (emittedText.length > 0 ? !emittedTerminal : hallucinatedEmptyStop());
+
+  // ── Contentless restart state (POST-commit cut with nothing usable delivered) ──
+  let contentlessRestarts = 0;
+
+  /**
+   * Whether a POST-commit truncation is safe to simply re-run.
+   *
+   * Mid-stream continuation cannot help this case: it needs already-emitted text to
+   * prefill, and providers that burn a whole turn in the reasoning channel before
+   * dying leave `emittedText` empty. Nothing usable reached the client, so a plain
+   * re-open of the ORIGINAL body is both safe and the only remaining recovery.
+   *
+   * Every clause is a duplication guard — each one rules out a case where re-opening
+   * would put a second copy of something in front of the client:
+   *  - `emittedParsedOpenAi`: without it we cannot tell an empty stream from a
+   *    non-OpenAI-shaped one (Anthropic/Gemini frames never parse as `choices[]`,
+   *    so their delta text is invisible to `emittedText`). Refusing those keeps this
+   *    to the OpenAI-compatible shape this scanner is proven on.
+   *  - `!emittedToolCallInFlight`: a partial tool call already reached the client.
+   *  - `!emittedSawToolCall`: a complete tool call already reached the client.
+   *  - `!emittedTerminal`: a terminal marker already reached the client.
+   *  - `emittedText.length === 0`: answer text already reached the client.
+   */
+  const canRestartContentless = () =>
+    maxContentlessRestarts > 0 &&
+    contentlessRestarts < maxContentlessRestarts &&
+    emittedParsedOpenAi &&
+    !emittedTerminal &&
+    !emittedSawToolCall &&
+    !emittedToolCallInFlight &&
+    emittedText.length === 0;
+
+  // Re-run the SAME body (nothing was emitted, so there is nothing to prefill or
+  // de-duplicate). Returns true when a fresh attempt is in place; false leaves the
+  // caller on its existing error/close path.
+  const tryRestartContentless = async (error: unknown): Promise<boolean> => {
+    if (cancelled || !canRestartContentless()) return false;
+    contentlessRestarts += 1;
+    options.onContentlessRestart?.(contentlessRestarts, error);
+    try {
+      await reader.cancel(error);
+    } catch {
+      // dead reader — nothing to cancel
+    }
+    let next: ReadableStream<Uint8Array> | null = null;
+    try {
+      next = await reopen();
+    } catch {
+      next = null;
+    }
+    if (!next) return false;
+    reader = next.getReader();
+    throughputWatchdog = createThroughputWatchdog(options.throughputWatchdog);
+    // The commit is a property of the client contract (bytes already flowed), not of
+    // the failed attempt — keep it so the replacement streams straight through.
+    holdback.discard();
+    return true;
+  };
 
   const emitCleanTerminal = (controller: ReadableStreamDefaultController<Uint8Array>) => {
     controller.enqueue(
@@ -597,6 +680,12 @@ export function createRecoverableStream(
               controller.close();
               return;
             }
+            // A retryable cut that delivered nothing usable cannot be continued, but
+            // there is also nothing to duplicate — re-run the request instead of
+            // surfacing the error.
+            if (isRetryableStreamError(error) && (await tryRestartContentless(error))) {
+              continue;
+            }
             runFinalize();
             controller.error(error);
             return;
@@ -623,6 +712,12 @@ export function createRecoverableStream(
               runFinalize();
               controller.close();
               return;
+            }
+            // Same idea for the contentless shape: the upstream closed cleanly after a long
+            // reasoning phase without ever shipping an answer. Continuation is impossible
+            // (no text to prefill), but a re-run is free from the client's point of view.
+            if (await tryRestartContentless(new TruncatedStreamError())) {
+              continue;
             }
             runFinalize();
             controller.close();

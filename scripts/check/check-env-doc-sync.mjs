@@ -3,7 +3,7 @@
  * Strict environment variable contract checker.
  *
  * Enforces that every env var referenced in OmniRoute source code appears in
- * both `.env.example` and `docs/reference/ENVIRONMENT.md`, and that the two files agree
+ * both `.env.example` and `docs/reference/03-environment-variables.md`, and that the two files agree
  * on the documented var set. Falls back to a small allowlist for variables
  * that are intentionally documented but not literally referenced (legacy
  * aliases, future-supported hooks) or vice versa.
@@ -14,8 +14,8 @@
  *
  * Strict mode exits non-zero if any of these are non-empty:
  *  - vars in code but missing from .env.example
- *  - vars in .env.example but missing from ENVIRONMENT.md
- *  - vars in ENVIRONMENT.md but missing from .env.example
+ *  - vars in .env.example but missing from 03-environment-variables.md
+ *  - vars in 03-environment-variables.md but missing from .env.example
  *
  * Programmatic API:
  *  Other Node tests can `import { runEnvDocSync } from "./check-env-doc-sync.mjs"`
@@ -138,7 +138,7 @@ const IGNORE_FROM_CODE = new Set([
   // Homologation E2E suite (npm run homolog) vars — configured via the dedicated
   // .env.homolog file (template: .env.homolog.example), never in the runtime .env.
   // Test/ops-only signals against the homologation VPS, same class as COMBO_LIVE_*.
-  // See docs/ops/HOMOLOGATION.md.
+  // See docs/ops/07-homologation-suite.md.
   "HOMOLOG_BASE_URL",
   "HOMOLOG_ADMIN_PASSWORD",
   "HOMOLOG_API_KEY",
@@ -225,7 +225,7 @@ const IGNORE_FROM_CODE = new Set([
   "OMNIROUTE_OPENCODE_PLUGIN_DIR",
 ]);
 
-// Vars documented in ENVIRONMENT.md but intentionally absent from .env.example.
+// Vars documented in 03-environment-variables.md but intentionally absent from .env.example.
 // Used for past-tense documentation (Audit / Dead vars section), legacy aliases
 // with no runtime hook, and section anchors that look like vars to the regex.
 const DOC_ONLY_ALLOWLIST = new Set([
@@ -271,10 +271,10 @@ const DOC_ONLY_ALLOWLIST = new Set([
   "VACUUM",
 ]);
 
-// Vars present in .env.example but intentionally absent from ENVIRONMENT.md.
+// Vars present in .env.example but intentionally absent from 03-environment-variables.md.
 // Empty today — kept for forward compatibility / explicit exemption.
 const ENV_ONLY_ALLOWLIST = new Set([
-  // Documented in .env.example but not yet in docs/reference/ENVIRONMENT.md
+  // Documented in .env.example but not yet in docs/reference/03-environment-variables.md
   "CODEX_REFRESH_SPACING_MS",
   "DEBUG",
   "HEAP_PRESSURE_THRESHOLD_MB",
@@ -283,7 +283,7 @@ const ENV_ONLY_ALLOWLIST = new Set([
   "PII_WINDOW_SIZE",
   "TRAE_STREAM_TIMEOUT_MS",
   "TRAE_TOKEN",
-  // #12190: Trae host/Origin override. ENVIRONMENT.md documents no Trae variable at
+  // #12190: Trae host/Origin override. 03-environment-variables.md documents no Trae variable at
   // all; this joins its two siblings above under the same .env.example-only tier.
   "TRAE_WEB_ORIGIN",
 ]);
@@ -362,7 +362,10 @@ export function runEnvDocSync(options = {}) {
     options.envDocText ??
     (options.envDocPath
       ? fs.readFileSync(options.envDocPath, "utf8")
-      : fs.readFileSync(path.join(REPO_ROOT, "docs", "reference", "ENVIRONMENT.md"), "utf8"));
+      : fs.readFileSync(
+          path.join(REPO_ROOT, "docs", "reference", "03-environment-variables.md"),
+          "utf8"
+        ));
 
   const envVars = parseEnvExampleVars(envExampleText);
   const docVars = parseEnvDocVars(envDocText);
@@ -413,12 +416,18 @@ function main() {
   console.log("============================");
   console.log(`Code references:          ${result.summary.code} unique vars`);
   console.log(`In .env.example:          ${result.summary.envExample} unique vars`);
-  console.log(`In docs/reference/ENVIRONMENT.md: ${result.summary.doc} unique vars`);
+  console.log(`In docs/reference/03-environment-variables.md: ${result.summary.doc} unique vars`);
   console.log();
 
   printList("In code but missing from .env.example", result.problems.codeMissingEnv);
-  printList("In .env.example but missing from ENVIRONMENT.md", result.problems.envMissingDoc);
-  printList("In ENVIRONMENT.md but missing from .env.example", result.problems.docMissingEnv);
+  printList(
+    "In .env.example but missing from 03-environment-variables.md",
+    result.problems.envMissingDoc
+  );
+  printList(
+    "In 03-environment-variables.md but missing from .env.example",
+    result.problems.docMissingEnv
+  );
 
   if (result.ok) {
     console.log("\n✓ Env / docs contract is in sync.");
@@ -431,7 +440,7 @@ function main() {
   }
 
   console.log(
-    "\n✗ Env / docs contract is out of sync. Update .env.example, docs/reference/ENVIRONMENT.md,"
+    "\n✗ Env / docs contract is out of sync. Update .env.example, docs/reference/03-environment-variables.md,"
   );
   console.log("  or the allowlists in scripts/check/check-env-doc-sync.mjs and try again.");
   process.exit(1);

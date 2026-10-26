@@ -186,7 +186,7 @@ function convertGeminiContent(content) {
 // convertGeminiContent() treats a thought part exactly like a visible text part —
 // merging the model's internal reasoning into the message's regular `content`, which
 // both leaks the private reasoning to whatever the OpenAI pivot forwards to next and
-// prevents Reasoning Replay Cache (docs/routing/REASONING_REPLAY.md) from ever seeing
+// prevents Reasoning Replay Cache (docs/routing/04-reasoning-replay-cache.md) from ever seeing
 // it as `reasoning_content`. Split thought parts out first and re-attach the joined
 // text as `reasoning_content` on the resulting message instead.
 function convertGeminiContentWithReasoning(content) {

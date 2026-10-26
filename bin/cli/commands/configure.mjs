@@ -177,7 +177,7 @@ async function configureCodex(modelId, ctxWindow, opts) {
   printSuccess(`Wrote ${filePath}`);
   printInfo(`Use it:  codex --profile ${profile}`);
   printInfo("Prereq: ~/.codex/config.toml must define the [model_providers.omniroute] block");
-  printInfo("        (run the Codex setup once — see docs/guides/CODEX-CLI-CONFIGURATION.md).");
+  printInfo("        (run the Codex setup once — see docs/guides/17-codex-cli-configuration.md).");
   return 0;
 }
 

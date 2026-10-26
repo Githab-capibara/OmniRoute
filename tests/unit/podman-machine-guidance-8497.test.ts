@@ -92,7 +92,7 @@ test("#8497 entrypoint emits a topology-neutral Podman hint", () => {
 test("#8497 pull example and environment hints stay topology-safe", () => {
   const quadlet = read("contrib/podman/omniroute.container");
   const envExample = read(".env.example");
-  const envReference = read("docs/reference/ENVIRONMENT.md");
+  const envReference = read("docs/reference/03-environment-variables.md");
 
   assert.match(quadlet, /Image=docker\.io\/diegosouzapw\/omniroute:latest/);
   assert.doesNotMatch(quadlet, /diegosouzapw\/omniroute:base/);
@@ -128,7 +128,7 @@ test("#8497 localized quick starts do not retain the remote-unsafe recipe", () =
     assert.match(content, /contrib\/podman\/README\.md#data-directory-permissions-by-topology/);
   }
 
-  const zhEnvironment = read("docs/i18n/zh-CN/docs/reference/ENVIRONMENT.md");
+  const zhEnvironment = read("docs/i18n/zh-CN/docs/reference/03-environment-variables.md");
   assert.doesNotMatch(zhEnvironment, /修复指令使用 `podman unshare chown`/);
   assert.match(zhEnvironment, /任何 Podman 拓扑/);
   assert.match(zhEnvironment, /Podman Machine/);

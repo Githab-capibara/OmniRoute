@@ -93,7 +93,7 @@ test("PUT with an invalid tier value is rejected with 400", async () => {
   assert.ok(body.error, "should return a structured error body");
   assert.ok(
     !JSON.stringify(body).includes("at /"),
-    "error body must not leak a stack trace (ERROR_SANITIZATION.md)"
+    "error body must not leak a stack trace (05-error-sanitization.md)"
   );
 });
 

@@ -6471,7 +6471,10 @@
     "clearConnectionCooldownInProgress": "Clearing…",
     "clearConnectionCooldownTitle": "Clear the cooldown now — use when the quota has already refreshed upstream",
     "connectionCooldownCleared": "Cooldown cleared — connection rejoined routing",
-    "failedClearConnectionCooldown": "Failed to clear cooldown"
+    "failedClearConnectionCooldown": "Failed to clear cooldown",
+    "importFromFileDownloadTemplate": "Download CSV template",
+    "importFromFileMoreErrors": "+{count} more",
+    "importFromFileSchemaHint": "CSV columns are positional: provider, name, apiKey, baseUrl (optional), priority (optional). The provider column must be an existing managed provider id or an already-registered OpenAI/Anthropic-compatible node id — this import does not create new endpoint nodes."
   },
   "settings": {
     "title": "设置",
@@ -8368,7 +8371,11 @@
     "headroomProxySave": "__MISSING__:Save",
     "headroomProxyStart": "__MISSING__:Start",
     "headroomProxyStop": "__MISSING__:Stop",
-    "headroomProxyExternalHint": "__MISSING__:This URL is not loopback, so OmniRoute will not spawn the local CLI."
+    "headroomProxyExternalHint": "__MISSING__:This URL is not loopback, so OmniRoute will not spawn the local CLI.",
+    "jsonImportAuthRequired": "Authentication required to import a legacy JSON configuration. Please sign in or complete setup first.",
+    "databaseSettingsAuthRequiredTitle": "Authentication required",
+    "databaseSettingsAuthRequiredBody": "Database settings and JSON import are only available to an authenticated admin. Sign in or complete setup to view and edit them.",
+    "databaseSettingsAuthRequiredCta": "Sign in"
   },
   "contextRtk": {
     "title": "命令输出过滤引擎",
@@ -10794,7 +10801,7 @@
     "readingFromCursor": "正在从 Cursor IDE 或 cursor-agent 读取",
     "tokensAutoDetected": "已成功从 Cursor IDE 自动检测到令牌！",
     "cursorNotDetected": "未检测到 Cursor IDE。请手动粘贴您的令牌。",
-    "dockerImportHint": "Running in Docker? Prefer Login with Cursor. IDE auto-import and cursor-agent are usually unavailable inside the container. See docs/providers/CURSOR-DOCKER.md.",
+    "dockerImportHint": "Running in Docker? Prefer Login with Cursor. IDE auto-import and cursor-agent are usually unavailable inside the container. See docs/providers/06-cursor-docker.md.",
     "accessToken": "访问令牌",
     "refreshToken": "Refresh Token",
     "refreshTokenPlaceholder": "Optional — enables automatic token refresh",
@@ -11412,7 +11419,9 @@
       "detailedPayloadInfo": "如果您想要新请求的四阶段客户端/提供者负载视图，请先启用详细日志记录。",
       "copyAll": "Copy all",
       "copiedAll": "Copied all"
-    }
+    },
+    "columnsReset": "Reset",
+    "columnsResetHint": "Restore the default columns: Status, Model, Provider, Tokens, TPS, Duration"
   },
   "proxyLogger": {
     "filterAll": "全部",
@@ -13009,6 +13018,10 @@
       },
       "SKILLS_SANDBOX_NETWORK_ENABLED": {
         "description": "在技能沙箱中启用网络访问。"
+      },
+      "SERVER_OWNED_TOOL_LOOP_ENABLED": {
+        "label": "Server-Owned Tool Loop",
+        "description": "Continue non-streaming server-owned tool calls until the model returns a client-usable response."
       }
     }
   },

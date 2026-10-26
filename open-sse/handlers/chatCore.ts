@@ -3290,6 +3290,7 @@ export async function handleChatCore({
                 // resilience settings; the default path is byte-for-byte unchanged.
                 let streamRecoveryEnabled = false;
                 let continueMidStreamEnabled = false;
+                let contentlessRestartEnabled = false;
                 let throughputWatchdog =
                   resolveResilienceSettings(null).streamRecovery.throughputWatchdog;
                 if (okStatus) {
@@ -3306,6 +3307,7 @@ export async function handleChatCore({
                     const goalOverride = !operatorExplicit && agentGoalPolicy.streamRecoveryEnabled;
                     streamRecoveryEnabled = sr.enabled || goalOverride;
                     continueMidStreamEnabled = sr.continueMidStream === true;
+                    contentlessRestartEnabled = sr.contentlessRestart === true;
                     throughputWatchdog = sr.throughputWatchdog;
                     if (goalOverride && !sr.enabled) {
                       log?.info?.(
@@ -3316,13 +3318,18 @@ export async function handleChatCore({
                   } catch {
                     streamRecoveryEnabled = false;
                     continueMidStreamEnabled = false;
+                    contentlessRestartEnabled = false;
                     throughputWatchdog =
                       resolveResilienceSettings(null).streamRecovery.throughputWatchdog;
                   }
                 }
 
                 let clientBody: ReadableStream<Uint8Array>;
-                if (streamRecoveryEnabled || throughputWatchdog.enabled) {
+                if (
+                  streamRecoveryEnabled ||
+                  contentlessRestartEnabled ||
+                  throughputWatchdog.enabled
+                ) {
                   // Run the SAME upstream (same account/creds) with a given body and return
                   // its 2xx stream, or null. Used both by the early-retry re-open (same body)
                   // and the mid-stream continuation (assistant-prefilled body).
@@ -3396,6 +3403,10 @@ export async function handleChatCore({
                     () => runUpstreamStream(bodyToSend),
                     {
                       finalize: releaseAccountSemaphore,
+                      // An operator who asked ONLY for post-commit recovery must not
+                      // silently inherit STREAM_RECOVERY.HOLDBACK_MS of time-to-first-token
+                      // latency from the early-retry holdback. 0 commits on the first chunk.
+                      holdbackMs: streamRecoveryEnabled ? undefined : 0,
                       onRetry: (attempt, err) =>
                         log?.warn?.(
                           "STREAM_RECOVERY",
@@ -3408,6 +3419,18 @@ export async function handleChatCore({
                         log?.warn?.(
                           "STREAM_RECOVERY",
                           `mid-stream continuation attempt ${attempt}/${STREAM_RECOVERY.EARLY_RETRY_MAX}`
+                        ),
+                      maxContentlessRestarts: contentlessRestartEnabled
+                        ? STREAM_RECOVERY.CONTENTLESS_RESTART_MAX
+                        : 0,
+                      onContentlessRestart: (attempt, err) =>
+                        log?.warn?.(
+                          "STREAM_RECOVERY",
+                          `contentless restart ${attempt}/${
+                            STREAM_RECOVERY.CONTENTLESS_RESTART_MAX
+                          } after ${
+                            (err as { name?: string })?.name || "truncation"
+                          } — upstream ended the stream without delivering assistant content`
                         ),
                       throughputWatchdog,
                       onWatchdogAbort: () =>

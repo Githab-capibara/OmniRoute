@@ -3,7 +3,7 @@
  * Extracted so the route handler stays slim and so the rejection paths can be
  * unit-tested without spinning up Next's Request/Response stack.
  *
- * See docs/security/SOCKET_DEV_FINDINGS.md §2.
+ * See docs/security/14-socket-dev-findings.md §2.
  */
 import type { ZedCredential } from "./keychain-reader";
 import { fingerprintZedCredential } from "./credentialFingerprint";

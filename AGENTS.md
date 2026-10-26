@@ -50,14 +50,18 @@ What are we doing? (present tense, affirmative)
 - **Feeds into:** docs/design/03-...
   C. README в подпапках
   Табличный формат с ссылками:
-  | Guide | Purpose |
-  |-------|---------|
-  | [Getting Started](03-getting-started.md) | First engagement in ~5 minutes |
-  D. Основной README проекта
-  Badge/shields (лицензия, звёзды, Discord, website)
-  Hero image/video
-  Benchmark результаты с donut chart
-  Архитектурные диаграммы (SVG)
-  Таблицы со ссылками на docs/" (ЭТО ПРИМЕР!)
-  12 - ВИДИШЬ ЧТО ДОКУМЕНТАЦИЯ НАПИСАНА НЕ В ТОМ СТИЛЕ, ЧТО НАМ НУЖНО? ПРАВЬ ЕЕ!
-  СЛЕДУЙ ЭТИМ ПРИНЦИПАМ ВСЕГДА! ЭТО ДОЛЖЕН БЫТЬ ТВОЙ СВЯТОЙ ГРААЛЬ! НЕ ЛЕНИСЬ!
+  | Guide                                                                          | Purpose                        |
+  | ------------------------------------------------------------------------------ | ------------------------------ |
+  | [Getting Started](03-getting-started.md)                                       | First engagement in ~5 minutes |
+  | D. Основной README проекта                                                     |
+  | Badge/shields (лицензия, звёзды, Discord, website)                             |
+  | Hero image/video                                                               |
+  | Benchmark результаты с donut chart                                             |
+  | Архитектурные диаграммы (SVG)                                                  |
+  | Таблицы со ссылками на docs/" (ЭТО ПРИМЕР!)                                    |
+  | 12 - ВИДИШЬ ЧТО ДОКУМЕНТАЦИЯ НАПИСАНА НЕ В ТОМ СТИЛЕ, ЧТО НАМ НУЖНО? ПРАВЬ ЕЕ! |
+  | СЛЕДУЙ ЭТИМ ПРИНЦИПАМ ВСЕГДА! ЭТО ДОЛЖЕН БЫТЬ ТВОЙ СВЯТОЙ ГРААЛЬ! НЕ ЛЕНИСЬ!   |
+
+---
+
+**Product snapshot (keep in sync with the live counts gate):** OmniRoute — one OpenAI-compatible endpoint over 358 AI providers, 150+ free tiers, 16 Auto-Combo scoring factors, 20 routing strategies, 22 OAuth providers. Counts are enforced by `npm run check:docs-counts`.

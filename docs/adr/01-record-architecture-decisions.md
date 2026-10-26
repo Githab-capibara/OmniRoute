@@ -52,7 +52,7 @@ A decision is captured as an ADR when it:
 - **No ADRs, rely on code comments:** rejected because comments describe
   current behavior, not the trade-offs that produced it, and they are easy to
   delete during refactors.
-- **A single living ARCHITECTURE.md:** rejected because it grows unbounded,
+- **A single living 01-system-overview.md:** rejected because it grows unbounded,
   hides individual decisions, and makes reversals invisible.
 - **ADRs in an external wiki:** rejected because they drift from the code and
   are not reviewed in the same PR that changes the code.

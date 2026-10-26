@@ -9,6 +9,7 @@ import { resolvePreviousResponseState } from "@/lib/db/responsesContinuationStor
 import { normalizeResponsesPreviousResponseIdMode } from "@omniroute/open-sse/utils/responsesStatePolicy.ts";
 import { FORMATS } from "@omniroute/open-sse/translator/formats.ts";
 import { resolveRoutingModel, RoutingModelOps } from "./resolveRoutingModel";
+import { buildEnhancedPrompt, shouldEnhance } from "@/lib/agentEnhancer";
 import {
   getProviderCredentialsWithQuotaPreflight,
   markAccountUnavailable,
@@ -494,6 +495,31 @@ async function handleChatImplementation(
       `model: Expected string, received ${Array.isArray(rawModel) ? "array" : typeof rawModel}`
     );
   }
+
+  // === Agent Enhancer Integration ===
+  // Inject enhanced system prompt for complex queries
+  // Detects task type from last user message and applies appropriate reasoning methods
+  if (body.messages && Array.isArray(body.messages) && body.messages.length > 0) {
+    const lastUserMsg = [...body.messages]
+      .reverse()
+      .find((m: any) => m.role === "user" && typeof m.content === "string");
+    if (lastUserMsg && shouldEnhance(lastUserMsg.content)) {
+      const enhancedPrompt = buildEnhancedPrompt(lastUserMsg.content);
+      // Find existing system message or create new one
+      const systemIdx = body.messages.findIndex((m: any) => m.role === "system");
+      if (systemIdx >= 0) {
+        const existing = body.messages[systemIdx].content || "";
+        body.messages[systemIdx].content = enhancedPrompt + "\n\n" + existing;
+      } else {
+        body.messages.unshift({ role: "system", content: enhancedPrompt });
+      }
+      log.debug(
+        "AGENT_ENHANCER",
+        `Injected enhanced prompt for task: ${lastUserMsg.content.slice(0, 50)}...`
+      );
+    }
+  }
+  // === End Agent Enhancer ===
 
   // Early schema validation for scalar params BEFORE provider/model resolution (#6412).
   // Previously, a bad `temperature: "not-a-number"` on an unknown provider returned
@@ -1014,7 +1040,15 @@ async function handleChatImplementation(
       if (isComboLiveTest) return true;
       // #12886: combo-name allow-list must not skip inner targets (#9057 still
       // checks auto/* / disableNonPublic via comboTargetPassesKeyModelPolicy).
-      if (!(await comboTargetPassesKeyModelPolicy({ apiKey, apiKeyInfo, requestedModelStr: resolvedModelStr, targetModelStr: modelString, isModelAllowedForKey }))) {
+      if (
+        !(await comboTargetPassesKeyModelPolicy({
+          apiKey,
+          apiKeyInfo,
+          requestedModelStr: resolvedModelStr,
+          targetModelStr: modelString,
+          isModelAllowedForKey,
+        }))
+      ) {
         return false;
       }
 

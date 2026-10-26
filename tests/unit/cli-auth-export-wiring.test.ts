@@ -4,7 +4,7 @@
 // the action received ("export", options, command) while its signature expected
 // (options, command) — the classic opts/cmd swap. The fix registers `export` as
 // a proper nested subcommand of `auth`, restoring the documented CLI surface
-// (docs/reference/CLI-TOOLS.md): `omniroute auth export [--force] [--id] [--format] [--out]`.
+// (docs/reference/02-cli-tools.md): `omniroute auth export [--force] [--id] [--format] [--out]`.
 //
 // These tests exercise the REAL commander wiring via createProgram() — no DB is
 // touched on any of these paths (the no-force gate prints and returns before any

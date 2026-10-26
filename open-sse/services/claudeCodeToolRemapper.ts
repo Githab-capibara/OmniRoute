@@ -368,7 +368,7 @@ export function cloakThirdPartyToolNames(
   body: Record<string, unknown>,
   options?: CloakOptions
 ): Map<string, string> {
-  // Operator kill-switch (documented in .env.example / ENVIRONMENT.md). Checked
+  // Operator kill-switch (documented in .env.example / 03-environment-variables.md). Checked
   // here so every call site — native base.ts AND the CLIProxyAPI executor —
   // honours it, rather than each caller having to remember to guard.
   if (process.env.CLAUDE_DISABLE_TOOL_NAME_CLOAK === "true") {

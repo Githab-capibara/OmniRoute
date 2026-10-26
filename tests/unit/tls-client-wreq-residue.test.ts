@@ -73,9 +73,9 @@ test("the distributable pins wreq-js 3.2.0 and carries all nine native lock entr
 
   for (const relativePath of [
     ".env.example",
-    "docs/reference/ENVIRONMENT.md",
-    "docs/security/STEALTH_GUIDE.md",
-    "docs/guides/TROUBLESHOOTING.md",
+    "docs/reference/03-environment-variables.md",
+    "docs/security/03-stealth-guide.md",
+    "docs/guides/23-troubleshooting.md",
   ]) {
     const source = readFileSync(join(ROOT, relativePath), "utf8");
     assert.doesNotMatch(source, /tls-client-node/i, `${relativePath} still names the old sidecar`);

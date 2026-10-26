@@ -1,3 +1,9 @@
+---
+title: "Architecture"
+version: 3.8.51
+lastUpdated: 2026-09-22
+---
+
 # Architecture
 
 How the system is put together — runtime, code layout, resilience model.

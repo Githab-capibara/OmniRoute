@@ -13,53 +13,42 @@ const root = join(__dirname, "..", "..");
  * the flag is not a PII-mutating flag and defaults to `true`). Docs must
  * reflect that truthfully and must not claim the guard blocks unconditionally.
  */
-test("SECURITY.md and ENVIRONMENT.md do not overstate sanitizer defaults", () => {
-  const envDoc = readFileSync(
-    join(root, "docs/reference/ENVIRONMENT.md"),
-    "utf8"
-  );
-  const secDoc = readFileSync(join(root, "SECURITY.md"), "utf8");
+test("03-security-policy.md and 03-environment-variables.md do not overstate sanitizer defaults", () => {
+  const envDoc = readFileSync(join(root, "docs/reference/03-environment-variables.md"), "utf8");
+  const secDoc = readFileSync(join(root, "03-security-policy.md"), "utf8");
 
   // The table row for INPUT_SANITIZER_ENABLED must show `true` (on-by-default per #8093).
-  const envRow = envDoc.match(
-    /\|\s*`INPUT_SANITIZER_ENABLED`\s*\|\s*`(\w+)`\s*\|/
-  );
-  assert.ok(envRow, "INPUT_SANITIZER_ENABLED row not found in ENVIRONMENT.md");
+  const envRow = envDoc.match(/\|\s*`INPUT_SANITIZER_ENABLED`\s*\|\s*`(\w+)`\s*\|/);
+  assert.ok(envRow, "INPUT_SANITIZER_ENABLED row not found in 03-environment-variables.md");
   assert.equal(
     envRow![1],
     "true",
-    "ENVIRONMENT.md must show default `true` for INPUT_SANITIZER_ENABLED (on-by-default per #8093 ruling)"
+    "03-environment-variables.md must show default `true` for INPUT_SANITIZER_ENABLED (on-by-default per #8093 ruling)"
   );
 
-  // SECURITY.md must not claim the guard "blocks" unconditionally.
-  const injectionHeader = secDoc.match(
-    /###\s*🧠\s*Prompt Injection Guard\s*\n\s*\n([^\n]+)/
-  );
+  // 03-security-policy.md must not claim the guard "blocks" unconditionally.
+  const injectionHeader = secDoc.match(/###\s*🧠\s*Prompt Injection Guard\s*\n\s*\n([^\n]+)/);
   assert.ok(injectionHeader, "Prompt Injection Guard section not found");
   assert.ok(
     !/blocks prompt injection attacks/.test(injectionHeader![1]),
-    "SECURITY.md must not claim the guard 'blocks prompt injection attacks' — it is best-effort heuristic"
+    "03-security-policy.md must not claim the guard 'blocks prompt injection attacks' — it is best-effort heuristic"
   );
 });
 
 /** Docs must state severity accurately: role_hijack and jailbreak_dan are Medium, not High. */
-test("SECURITY.md severity table matches code", () => {
-  const secDoc = readFileSync(join(root, "SECURITY.md"), "utf8");
+test("03-security-policy.md severity table matches code", () => {
+  const secDoc = readFileSync(join(root, "03-security-policy.md"), "utf8");
 
-  const roleHijackRow = secDoc.match(
-    /\|\s*Role Hijack\s*\|\s*(\w+)\s*\|/
-  );
-  assert.ok(roleHijackRow, "Role Hijack row not found in SECURITY.md");
+  const roleHijackRow = secDoc.match(/\|\s*Role Hijack\s*\|\s*(\w+)\s*\|/);
+  assert.ok(roleHijackRow, "Role Hijack row not found in 03-security-policy.md");
   assert.equal(
     roleHijackRow![1],
     "Medium",
     "Role Hijack severity must be Medium (code: role_hijack = medium)"
   );
 
-  const danRow = secDoc.match(
-    /\|\s*DAN\/Jailbreak\s*\|\s*(\w+)\s*\|/
-  );
-  assert.ok(danRow, "DAN/Jailbreak row not found in SECURITY.md");
+  const danRow = secDoc.match(/\|\s*DAN\/Jailbreak\s*\|\s*(\w+)\s*\|/);
+  assert.ok(danRow, "DAN/Jailbreak row not found in 03-security-policy.md");
   assert.equal(
     danRow![1],
     "Medium",
@@ -68,21 +57,16 @@ test("SECURITY.md severity table matches code", () => {
 });
 
 /** Docs must not claim redact mode strips injection text from requests. */
-test("ENVIRONMENT.md does not overstate redact mode", () => {
-  const envDoc = readFileSync(
-    join(root, "docs/reference/ENVIRONMENT.md"),
-    "utf8"
-  );
+test("03-environment-variables.md does not overstate redact mode", () => {
+  const envDoc = readFileSync(join(root, "docs/reference/03-environment-variables.md"), "utf8");
 
   // Find the INPUT_SANITIZER_MODE description cell.
-  const modeRow = envDoc.match(
-    /\|\s*`INPUT_SANITIZER_MODE`\s*\|[^\n]*?\|\s*([^\n]+?)\s*\|/
-  );
-  assert.ok(modeRow, "INPUT_SANITIZER_MODE row not found in ENVIRONMENT.md");
+  const modeRow = envDoc.match(/\|\s*`INPUT_SANITIZER_MODE`\s*\|[^\n]*?\|\s*([^\n]+?)\s*\|/);
+  assert.ok(modeRow, "INPUT_SANITIZER_MODE row not found in 03-environment-variables.md");
   const desc = modeRow![1];
   assert.ok(
     !/strip suspicious patterns/.test(desc),
-    "ENVIRONMENT.md must not claim redact mode strips injection text — it only logs + tags"
+    "03-environment-variables.md must not claim redact mode strips injection text — it only logs + tags"
   );
 });
 

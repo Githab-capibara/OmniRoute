@@ -10,6 +10,7 @@ process.env.DATA_DIR = TEST_DATA_DIR;
 
 const { compressContext, estimateTokens, getTokenLimit } =
   await import("../../open-sse/services/contextManager.ts");
+import { setModelContextOverride } from "../../src/lib/db/modelContextOverrides";
 const core = await import("../../src/lib/db/core.ts");
 
 test.after(() => {
@@ -39,6 +40,27 @@ test("getTokenLimit: detects claude", () => {
 
 test("getTokenLimit: detects gemini", () => {
   assert.equal(getTokenLimit("gemini", "gemini-2.5-pro"), 1048576);
+});
+
+// Regression for #19157: MiMo-family models served by passthrough gateways (hcnsec/hnc,
+// GitLawb mirrors, etc.) must resolve to the 1M window via the name hint. Before the
+// `mimo` family hint they fell through to DEFAULT_LIMITS.default (128k), which turned on
+// destructive history purges at ~90k tokens — a fraction of the model's real 1M window —
+// and made agent sessions "forget" their context after only a couple of tool calls.
+test("getTokenLimit: detects mimo family on passthrough gateways", () => {
+  assert.equal(getTokenLimit("hnc", "MiMo-V2.6-Flash"), 1_048_576);
+  assert.equal(getTokenLimit("hcnsec", "MiMo-V2.6-Flash"), 1_048_576);
+  assert.equal(getTokenLimit("hnc", "MiMo-V2.6-Pro"), 1_048_576);
+  assert.equal(getTokenLimit("gitlawb", "mimo-v2.6-flash"), 1_048_576);
+  assert.equal(getTokenLimit("xiaomi-mimo", "mimo-v2.5"), 1_048_576);
+});
+
+test("getTokenLimit: operator context override wins over the mimo name hint", () => {
+  // model_context_overrides (setModelContextOverride, manual) outranks the family
+  // name-hint. 512k is deliberately non-1M so the assert proves the override is what
+  // resolved — not the hint, and not the 128k generic fallback.
+  setModelContextOverride("hnc", "MiMo-V2.6-Flash", 524288, "manual");
+  assert.equal(getTokenLimit("hnc", "MiMo-V2.6-Flash"), 524288);
 });
 
 test("getTokenLimit: uses GPT-5.5 Codex model context", () => {

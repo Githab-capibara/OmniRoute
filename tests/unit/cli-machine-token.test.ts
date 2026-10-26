@@ -97,7 +97,7 @@ test("getCliToken respeita rotação de OMNIROUTE_CLI_SALT", async () => {
     const withDefaultSalt = await getCliToken();
     process.env.OMNIROUTE_CLI_SALT = "rotated-salt-for-test";
     const withRotatedSalt = await getCliToken();
-    // docs/security/CLI_TOKEN.md promete que a rotação alcança os processos CLI;
+    // docs/security/07-cli-token-auth.md promete que a rotação alcança os processos CLI;
     // o SALT hardcoded ignorava a env var e devolvia sempre o mesmo token.
     assert.notEqual(withRotatedSalt, withDefaultSalt);
     // HMAC-SHA256 digest hex = 64 chars (#10148 cliToken hardening).
@@ -274,11 +274,7 @@ test("isLoopback rejeita IP público", async () => {
 test("token derivado de machine-id diferente produz hash diferente", () => {
   const SALT = "omniroute-cli-auth-v1";
   // Mirror the production derivation (#10148): HMAC-SHA256(machineId, SALT) hex.
-  const hash = (mid: string) =>
-    crypto
-      .createHmac("sha256", mid)
-      .update(SALT)
-      .digest("hex");
+  const hash = (mid: string) => crypto.createHmac("sha256", mid).update(SALT).digest("hex");
   const t1 = hash("machine-id-host-A");
   const t2 = hash("machine-id-host-B");
   assert.notEqual(t1, t2);

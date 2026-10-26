@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import { BaseGuardrail, GuardrailRegistry } from "../../src/lib/guardrails/index.ts";
 
 /**
- * `docs/security/GUARDRAILS.md`: "A guardrail signals 'no change' by returning
+ * `docs/security/01-guardrails.md`: "A guardrail signals 'no change' by returning
  * either `void`, `{}`, or ...".
  *
  * The `void` arm of that contract had no test — `guardrails-registry.test.ts`

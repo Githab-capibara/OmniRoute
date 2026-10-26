@@ -1,0 +1,88 @@
+# Katılımcı Sözleşmesi Davranış Kuralları (Türkçe)
+
+🌐 **Languages:** 🇺🇸 [English](../../../02-code-of-conduct.md) · 🇸🇦 [ar](../ar/02-code-of-conduct.md) · 🇦🇿 [az](../az/02-code-of-conduct.md) · 🇧🇬 [bg](../bg/02-code-of-conduct.md) · 🇧🇩 [bn](../bn/02-code-of-conduct.md) · 🇨🇿 [cs](../cs/02-code-of-conduct.md) · 🇩🇰 [da](../da/02-code-of-conduct.md) · 🇩🇪 [de](../de/02-code-of-conduct.md) · 🇬🇷 [el](../el/02-code-of-conduct.md) · 🇪🇸 [es](../es/02-code-of-conduct.md) · 🇪🇪 [et](../et/02-code-of-conduct.md) · 🇮🇷 [fa](../fa/02-code-of-conduct.md) · 🇫🇮 [fi](../fi/02-code-of-conduct.md) · 🇫🇷 [fr](../fr/02-code-of-conduct.md) · 🇮🇪 [ga](../ga/02-code-of-conduct.md) · 🇮🇳 [gu](../gu/02-code-of-conduct.md) · 🇮🇱 [he](../he/02-code-of-conduct.md) · 🇮🇳 [hi](../hi/02-code-of-conduct.md) · 🇭🇷 [hr](../hr/02-code-of-conduct.md) · 🇭🇺 [hu](../hu/02-code-of-conduct.md) · 🇮🇩 [id](../id/02-code-of-conduct.md) · 🇮🇹 [it](../it/02-code-of-conduct.md) · 🇯🇵 [ja](../ja/02-code-of-conduct.md) · 🇰🇷 [ko](../ko/02-code-of-conduct.md) · 🇱🇹 [lt](../lt/02-code-of-conduct.md) · 🇱🇻 [lv](../lv/02-code-of-conduct.md) · 🇮🇳 [mr](../mr/02-code-of-conduct.md) · 🇲🇾 [ms](../ms/02-code-of-conduct.md) · 🇲🇹 [mt](../mt/02-code-of-conduct.md) · 🇳🇱 [nl](../nl/02-code-of-conduct.md) · 🇳🇴 [no](../no/02-code-of-conduct.md) · 🇵🇭 [phi](../phi/02-code-of-conduct.md) · 🇵🇱 [pl](../pl/02-code-of-conduct.md) · 🇵🇹 [pt](../pt/02-code-of-conduct.md) · 🇧🇷 [pt-BR](../pt-BR/02-code-of-conduct.md) · 🇷🇴 [ro](../ro/02-code-of-conduct.md) · 🇷🇺 [ru](../ru/02-code-of-conduct.md) · 🇸🇰 [sk](../sk/02-code-of-conduct.md) · 🇸🇮 [sl](../sl/02-code-of-conduct.md) · 🇷🇸 [sr](../sr/02-code-of-conduct.md) · 🇸🇪 [sv](../sv/02-code-of-conduct.md) · 🇰🇪 [sw](../sw/02-code-of-conduct.md) · 🇮🇳 [ta](../ta/02-code-of-conduct.md) · 🇮🇳 [te](../te/02-code-of-conduct.md) · 🇹🇭 [th](../th/02-code-of-conduct.md) · 🇺🇦 [uk-UA](../uk-UA/02-code-of-conduct.md) · 🇵🇰 [ur](../ur/02-code-of-conduct.md) · 🇻🇳 [vi](../vi/02-code-of-conduct.md) · 🇨🇳 [zh-CN](../zh-CN/02-code-of-conduct.md) · 🇹🇼 [zh-TW](../zh-TW/02-code-of-conduct.md)
+
+---
+
+## Taahhüdümüz
+
+Topluluk üyeleri, katkıda bulunanlar ve liderler olarak; yaş, vücut ölçüsü, görünür veya görünmez engellilik, etnik köken, cinsiyet özellikleri, cinsiyet kimliği ve ifadesi, deneyim düzeyi, eğitim, sosyo-ekonomik durum, milliyet, kişisel görünüm, ırk, din veya cinsel kimlik ve yönelim gözetilmeksizin herkes için topluluğumuza katılımı tacizden uzak bir deneyim haline getirmeyi taahhüt ediyoruz.
+
+Açık, sıcak, çeşitli, kapsayıcı ve sağlıklı bir topluluğa katkıda bulunacak şekilde davranmayı ve etkileşim kurmayı taahhüt ediyoruz.
+
+## Standartlarımız
+
+Topluluğumuz için olumlu bir ortama katkıda bulunan davranış örnekleri şunlardır:
+
+- Diğer insanlara karşı empati ve nezaket göstermek
+- Farklı görüşlere, bakış açılarına ve deneyimlere saygılı olmak
+- Yapıcı geri bildirim vermek ve bunu olgunlukla kabul etmek
+- Hatalarımızdan etkilenenlerden sorumluluk alıp özür dilemek ve bu deneyimden ders çıkarmak
+- Sadece bireysel olarak bizim için değil, tüm topluluk için en iyi olana odaklanmak
+
+Kabul edilemez davranış örnekleri şunlardır:
+
+- Cinselleştirilmiş dil veya görsellerin kullanımı ile her türlü cinsel ilgi veya yakınlaşma
+- Trolleme, aşağılayıcı veya rencide edici yorumlar ve kişisel ya da politik saldırılar
+- Kamuya açık veya özel alanda taciz
+- Açık izinleri olmadan başkalarının fiziksel adres veya e-posta adresi gibi özel bilgilerini yayımlamak
+- Profesyonel bir ortamda makul olarak uygunsuz kabul edilebilecek diğer davranışlar
+
+## Uygulama Sorumlulukları
+
+Topluluk liderleri, kabul edilebilir davranış standartlarımızı açıklığa kavuşturmaktan ve uygulamaktan sorumludur; uygunsuz, tehdit edici, saldırgan veya zararlı gördükleri herhangi bir davranışa karşılık adil ve uygun düzeltici önlemleri alacaklardır.
+
+Topluluk liderleri, bu Davranış Kuralları ile uyumlu olmayan yorumları, commit'leri, kodları, wiki düzenlemelerini, issue'ları ve diğer katkıları kaldırma, düzenleme veya reddetme hakkına ve sorumluluğuna sahiptir ve uygun olduğunda moderasyon kararlarının gerekçelerini ileteceklerdir.
+
+## Kapsam
+
+Bu Davranış Kuralları tüm topluluk alanlarında geçerlidir ve ayrıca bir birey topluluğu kamusal alanlarda resmi olarak temsil ettiğinde de geçerlidir. Topluluğumuzu temsil etme örnekleri arasında resmi bir e-posta adresi kullanmak, resmi bir sosyal medya hesabı aracılığıyla paylaşım yapmak veya çevrimiçi ya da çevrimdışı bir etkinlikte atanmış bir temsilci olarak hareket etmek yer alır.
+
+## Yaptırım
+
+İstismar edici, taciz edici veya başka bir şekilde kabul edilemez davranış durumları, yaptırımdan sorumlu topluluk liderlerine şu adresten özel bir güvenlik bildirimi (security advisory) açılarak bildirilebilir:
+<https://github.com/diegosouzapw/OmniRoute/security/advisories/new>
+veya proje yöneticisine diegosouza.pw@outlook.com adresinden e-posta gönderilebilir.
+Güvenlikle ilgili hassas olaylar için bkz. [`03-security-policy.md`](03-security-policy.md).
+Tüm şikayetler derhal ve adil bir şekilde incelenecek ve araştırılacaktır.
+
+Tüm topluluk liderleri, herhangi bir olayı bildiren kişinin gizliliğine ve güvenliğine saygı duymakla yükümlüdür.
+
+## Yaptırım Yönergeleri
+
+Topluluk liderleri, bu Davranış Kurallarını ihlal ettiğini düşündükleri herhangi bir eylemin sonuçlarını belirlerken aşağıdaki Topluluk Etki Yönergelerini izleyecektir:
+
+### 1. Düzeltme
+
+**Topluluk Etkisi**: Toplulukta uygunsuz veya profesyonellik dışı kabul edilen dil kullanımı veya diğer davranışlar.
+
+**Sonuç**: Topluluk liderlerinden ihlalin niteliğini açıklayan ve davranışın neden uygunsuz olduğunu belirten özel, yazılı bir uyarı. Kamuya açık bir özür talep edilebilir.
+
+### 2. Uyarı
+
+**Topluluk Etkisi**: Tek bir olay veya bir dizi eylem yoluyla yapılan bir ihlal.
+
+**Sonuç**: Davranışın devam etmesi durumunda doğacak sonuçları içeren bir uyarı. Belirli bir süre boyunca, Davranış Kurallarını uygulayan kişilerle talep edilmeyen etkileşimler de dahil olmak üzere, ilgili kişilerle hiçbir etkileşimde bulunulamaz. Buna topluluk alanlarının yanı sıra sosyal medya gibi harici kanallardaki etkileşimlerden kaçınmak da dahildir. Bu koşulların ihlali geçici veya kalıcı bir uzaklaştırmaya yol açabilir.
+
+### 3. Geçici Uzaklaştırma
+
+**Topluluk Etkisi**: Sürekli uygunsuz davranışlar da dahil olmak üzere topluluk standartlarının ciddi bir şekilde ihlali.
+
+**Sonuç**: Belirli bir süre boyunca toplulukla her türlü etkileşimden veya kamusal iletişimden geçici olarak men edilme. Bu süre zarfında, Davranış Kurallarını uygulayan kişilerle talep edilmeyen etkileşimler de dahil olmak üzere, ilgili kişilerle kamuya açık veya özel hiçbir etkileşime izin verilmez. Bu koşulların ihlali kalıcı bir uzaklaştırmaya yol açabilir.
+
+### 4. Kalıcı Uzaklaştırma
+
+**Topluluk Etkisi**: Sürekli uygunsuz davranışlar, bir bireyin taciz edilmesi veya belirli insan gruplarına yönelik saldırganlık ya da aşağılama da dahil olmak üzere topluluk standartlarını sistematik olarak ihlal etme kalıbı sergilemek.
+
+**Sonuç**: Topluluk içindeki her türlü kamusal etkileşimden kalıcı olarak men edilme.
+
+## Kaynak ve Atıf
+
+Bu Davranış Kuralları, [Contributor Covenant][homepage] sürüm 2.1'den uyarlanmıştır; orijinaline şu adresten ulaşılabilir:
+https://www.contributor-covenant.org/version/2/1/code_of_conduct.html.
+
+Topluluk Etki Yönergeleri, [Mozilla'nın davranış kuralları yaptırım merdiveninden](https://github.com/mozilla/diversity) esinlenmiştir.
+
+[homepage]: https://www.contributor-covenant.org
+
+Bu davranış kuralları hakkında sık sorulan soruların yanıtları için https://www.contributor-covenant.org/faq adresindeki SSS bölümüne bakın. Çeviriler https://www.contributor-covenant.org/translations adresinde mevcuttur.

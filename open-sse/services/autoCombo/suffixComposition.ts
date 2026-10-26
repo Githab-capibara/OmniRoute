@@ -34,7 +34,7 @@ export type AutoTier =
   // the CONNECTION's billing class, not the model's price — so they are
   // applied in `virtualFactory.ts` against live connection state rather than
   // by `buildAutoCandidateFilter` below, which only sees (provider, model).
-  // See `subscriptionLadder.ts` and `docs/routing/SUBSCRIPTION_LADDER.md`.
+  // See `subscriptionLadder.ts` and `docs/routing/07-subscription-ladder.md`.
   | "subscription"
   | "thrifty";
 

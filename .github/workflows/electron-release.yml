@@ -230,7 +230,7 @@ jobs:
           # skipped, and the release shipped with ZERO assets. Measured on a 32 GB
           # box the same build passes and peaks past 14 GB. The webpack fallback is
           # the project's documented escape hatch for RAM-constrained machines
-          # (docs/reference/ENVIRONMENT.md, #6409) and is the same remedy already
+          # (docs/reference/03-environment-variables.md, #6409) and is the same remedy already
           # applied to nightly-compat's Node 26 build (#8090).
           OMNIROUTE_USE_TURBOPACK: ${{ matrix.platform == 'linux' && '0' || '1' }}
         run: npm run build

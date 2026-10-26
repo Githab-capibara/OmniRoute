@@ -14,7 +14,7 @@ import { CredentialMaskerGuardrail } from "./credentialMasker";
 /**
  * `preCall`/`postCall` may legitimately return nothing — that is the documented
  * "no change" signal, alongside `{}` and `{ block: false }`
- * (`docs/security/GUARDRAILS.md`), and `CredentialMaskerGuardrail` still declares
+ * (`docs/security/01-guardrails.md`), and `CredentialMaskerGuardrail` still declares
  * the `| void` arm.
  *
  * `void` is not a value the checker lets us inspect, so neither `result?.block`

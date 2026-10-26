@@ -11,7 +11,7 @@
  *   1. Source-shape test on open-sse/config/constants.ts — every required
  *      field is wrapped in envInt() with the documented default.
  *   2. .env.example test — every new env var is listed (env-doc-sync gate).
- *   3. docs/reference/ENVIRONMENT.md test — every new env var is documented
+ *   3. docs/reference/03-environment-variables.md test — every new env var is documented
  *      (env-doc-sync gate).
  *
  * Behavior tests (loading the actual module with controlled env vars) are
@@ -31,10 +31,10 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(__dirname, "..", "..");
 const CONSTANTS_SRC = join(REPO_ROOT, "open-sse", "config", "constants.ts");
 const ENV_EXAMPLE = join(REPO_ROOT, ".env.example");
-const ENVIRONMENT_DOC = join(REPO_ROOT, "docs", "reference", "ENVIRONMENT.md");
+const ENVIRONMENT_DOC = join(REPO_ROOT, "docs", "reference", "03-environment-variables.md");
 
 // Source-of-truth env names (taken verbatim from the constants.ts source /
-// .env.example / docs/reference/ENVIRONMENT.md). Listed explicitly so the test
+// .env.example / docs/reference/03-environment-variables.md). Listed explicitly so the test
 // fails loud if any rename is missed in any of the three files.
 const NEW_ENV_VARS = [
   "OMNIROUTE_PROVIDER_BREAKER_OAUTH_FAILURE_THRESHOLD",
@@ -62,21 +62,18 @@ test("every new OMNIROUTE_PROVIDER_BREAKER_* env var is wired in constants.ts", 
   const src = readConstants();
   for (const envName of NEW_ENV_VARS) {
     const re = new RegExp(
-      `envInt\\(\\s*"${envName.replace(/[.+*?^${}()|[\]\\]/g, "\\$&")}"\\s*,\\s*\\d+\\s*\\)`,
+      `envInt\\(\\s*"${envName.replace(/[.+*?^${}()|[\]\\]/g, "\\$&")}"\\s*,\\s*\\d+\\s*\\)`
     );
-    assert.ok(
-      re.test(src),
-      `constants.ts is missing envInt(...) wrapping for ${envName}`,
-    );
+    assert.ok(re.test(src), `constants.ts is missing envInt(...) wrapping for ${envName}`);
   }
 });
 
-test("all 15 new provider-breaker env vars are documented in ENVIRONMENT.md", () => {
+test("all 15 new provider-breaker env vars are documented in 03-environment-variables.md", () => {
   const env = readFileSync(ENVIRONMENT_DOC, "utf8");
   for (const envName of NEW_ENV_VARS) {
     assert.ok(
       env.includes(`\`${envName}\``),
-      `ENVIRONMENT.md is missing the ${envName} row (env-doc-sync gate will fail)`,
+      `03-environment-variables.md is missing the ${envName} row (env-doc-sync gate will fail)`
     );
   }
 });
@@ -86,7 +83,7 @@ test("all 15 new provider-breaker env vars are listed in .env.example", () => {
   for (const envName of NEW_ENV_VARS) {
     assert.ok(
       env.includes(`# ${envName}=`),
-      `.env.example is missing the commented ${envName} entry (env-doc-sync gate will fail)`,
+      `.env.example is missing the commented ${envName} entry (env-doc-sync gate will fail)`
     );
   }
 });
@@ -110,11 +107,8 @@ test("historical defaults preserved when no OMNIROUTE_PROVIDER_BREAKER_* env var
   ];
   for (const [envName, defaultValue] of defaults) {
     const re = new RegExp(
-      `envInt\\(\\s*"${envName.replace(/[.+*?^${}()|[\]\\]/g, "\\$&")}"\\s*,\\s*${defaultValue}\\s*\\)`,
+      `envInt\\(\\s*"${envName.replace(/[.+*?^${}()|[\]\\]/g, "\\$&")}"\\s*,\\s*${defaultValue}\\s*\\)`
     );
-    assert.ok(
-      re.test(src),
-      `default for ${envName} should be ${defaultValue}; check constants.ts`,
-    );
+    assert.ok(re.test(src), `default for ${envName} should be ${defaultValue}; check constants.ts`);
   }
 });

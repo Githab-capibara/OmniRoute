@@ -1,13 +1,14 @@
 # Plans
 
-Forward-looking design/implementation plans (pre-implementation, may reference not-yet-existing code).
+Forward-looking design/implementation plans (pre-implementation, may reference not-yet-existing code) and the project roadmap.
 
 - **Audience:** Contributors
 - **Doc set index:** [docs/README.md](../README.md)
 
-| Document                                                                       | Purpose                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------ |
-| [01-anysearch-provider-integration.md](./01-anysearch-provider-integration.md) | AnySearch provider integration (PR #11690) |
-| [02-hierarchical-admission.md](./02-hierarchical-admission.md)                 | #7778 hierarchical admission cleanup plan  |
+| Document                                                                       | Purpose                                         |
+| ------------------------------------------------------------------------------ | ----------------------------------------------- |
+| [01-anysearch-provider-integration.md](./01-anysearch-provider-integration.md) | AnySearch provider integration (PR #11690)      |
+| [02-hierarchical-admission.md](./02-hierarchical-admission.md)                 | #7778 hierarchical admission cleanup plan       |
+| [03-roadmap.md](./03-roadmap.md)                                               | OmniRoute roadmap (where the project is headed) |
 
 New here? Copy [template.md](./template.md) to `NN-kebab-case.md`, fill _"Purpose"_ here, in `meta.json` (if rendered), and in the [docs index](../README.md).

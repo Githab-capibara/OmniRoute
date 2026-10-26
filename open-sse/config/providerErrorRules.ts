@@ -41,7 +41,7 @@ export type ProviderErrorRuleMatch = {
    * when the provider has one, since the operator already opted in by declaring
    * the rule. Widening `HONORS_RULE_LOCK_SCOPE_PROVIDERS` itself (for a new
    * built-in catalog rule) is tracked as a follow-up — see
-   * `docs/architecture/RESILIENCE_GUIDE.md` §7.
+   * `docs/architecture/07-resilience-guide.md` §7.
    */
   scope: "model" | "provider" | "connection";
   /** Optional explicit cooldown; falls back to the existing per-reason defaults. */
@@ -199,7 +199,7 @@ function buildMinimaxRules(): ProviderErrorRule[] {
 
 // ─── Cloudflare Workers AI ─────────────────────────────────────────────────────
 // Free tier = 10,000 Neurons/day, shared across the WHOLE account
-// (docs/reference/FREE_TIERS.md; official: developers.cloudflare.com/
+// (docs/reference/06-free-tiers-directory.md; official: developers.cloudflare.com/
 // workers-ai/platform/errors/). The exhaustion body doesn't match any
 // QUOTA_PATTERNS keyword so it falls through to rate_limit and gets
 // retried every ~60s against a budget that only resets at UTC midnight.

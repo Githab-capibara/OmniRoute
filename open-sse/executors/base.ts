@@ -30,7 +30,11 @@ import {
   addParamToBlocklist,
   isAutoLearnGloballyEnabled,
 } from "@/lib/db/paramFilters";
-import { applyFingerprint, isCliCompatEnabled, stripInternalBodyFields } from "../config/cliFingerprints.ts";
+import {
+  applyFingerprint,
+  isCliCompatEnabled,
+  stripInternalBodyFields,
+} from "../config/cliFingerprints.ts";
 import { supportsClaudeMaxEffort, supportsXHighEffort } from "../config/providerModels.ts";
 import { getThinkingBudgetConfig, ThinkingMode } from "../services/thinkingBudget.ts";
 import {
@@ -1675,7 +1679,7 @@ export class BaseExecutor {
         // Intra-URL retry: agentrouter.org WAF returns 400 content-blocked
         // intermittently (burst-sensitive, recovers after cooldown). Retry the
         // same URL with exponential backoff before falling through to the
-        // 429/401/fallback chain. See docs/security/AGENTROUTER_WAF.md.
+        // 429/401/fallback chain. See docs/security/10-agentrouter-waf.md.
         if (
           !skipUpstreamRetry &&
           response.status === HTTP_STATUS.BAD_REQUEST &&

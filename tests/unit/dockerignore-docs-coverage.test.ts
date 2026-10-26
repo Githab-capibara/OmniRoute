@@ -24,13 +24,13 @@ const DOCKERIGNORE = path.resolve(REPO_ROOT, ".dockerignore");
 // Sourced from src/app/docs/lib/docs-auto-generated.ts.
 const REQUIRED_DOCS = [
   "docs/README.md",
-  "docs/providers/CLAUDE_WEB.md",
-  "docs/routing/AUTO-COMBO.md",
-  "docs/guides/SETUP_GUIDE.md",
-  "docs/guides/TROUBLESHOOTING.md",
-  "docs/reference/API_REFERENCE.md",
-  "docs/reference/PROVIDER_REFERENCE.md",
-  "docs/reference/ENVIRONMENT.md",
+  "docs/providers/01-claude-web.md",
+  "docs/routing/01-auto-combo.md",
+  "docs/guides/02-setup-guide.md",
+  "docs/guides/23-troubleshooting.md",
+  "docs/reference/01-api-reference.md",
+  "docs/reference/09-provider-reference.md",
+  "docs/reference/03-environment-variables.md",
 ];
 
 // Referenced from docs/**/*.md — fumadocs-mdx webpack build fails if missing.
@@ -154,7 +154,7 @@ test("#2348 .dockerignore keeps every doc the in-product viewer needs", () => {
 
 test("#2348 .dockerignore still excludes the heavy i18n tree", () => {
   const parsed = parseDockerignore(fs.readFileSync(DOCKERIGNORE, "utf8"));
-  const heavy = "docs/i18n/pt-BR/docs/routing/AUTO-COMBO.md";
+  const heavy = "docs/i18n/pt-BR/docs/routing/01-auto-combo.md";
   assert.ok(
     isIgnored(heavy, parsed),
     `${heavy} should be excluded from Docker context but is not — image size will balloon`

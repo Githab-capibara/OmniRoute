@@ -7,7 +7,7 @@
  * DELIBERATELY DB-FREE and side-effect-free — same shape as the
  * `RADAR_FEED_URL` override already used by `./sync.ts`, so forks/self-hosters
  * point both links at their own deployment via env vars (see
- * docs/frameworks/RADAR.md).
+ * docs/frameworks/26-radar-free-model-catalog.md).
  *
  * These functions are read server-side only (inside a route handler) and the
  * resolved URLs are relayed to the client via GET /api/radar/settings — the

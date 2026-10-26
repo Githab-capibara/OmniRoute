@@ -16,7 +16,7 @@
  *    127.0.0.1 works) and prints a credential blob the Step 2 field accepts;
  * 2. an SSH forward of the dashboard port, after which the callback reaches the server.
  *
- * See docs/guides/REMOTE-MODE.md → "Connecting Antigravity on a remote install".
+ * See docs/guides/13-remote-mode.md → "Connecting Antigravity on a remote install".
  */
 
 import {

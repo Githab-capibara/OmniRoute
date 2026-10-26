@@ -39,7 +39,7 @@ test("cliproxyapi service forwards a management/auth key into its environment", 
   assert.match(
     serviceMatch![0],
     /CLIPROXYAPI_MANAGEMENT_KEY/,
-    "cliproxyapi environment block must forward CLIPROXYAPI_MANAGEMENT_KEY (already documented in docs/reference/ENVIRONMENT.md) instead of leaving auth entirely to the upstream image's undocumented default"
+    "cliproxyapi environment block must forward CLIPROXYAPI_MANAGEMENT_KEY (already documented in docs/reference/03-environment-variables.md) instead of leaving auth entirely to the upstream image's undocumented default"
   );
 });
 

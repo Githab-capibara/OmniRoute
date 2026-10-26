@@ -42,13 +42,13 @@ test("buildDefaultRateLimits: unset / empty env disables implicit fallback limit
   assert.deepEqual(buildDefaultRateLimits("   "), []);
 });
 
-test("ENVIRONMENT.md documents unset DEFAULT_RATE_LIMIT_PER_DAY as unlimited (#11017)", () => {
+test("03-environment-variables.md documents unset DEFAULT_RATE_LIMIT_PER_DAY as unlimited (#11017)", () => {
   const md = fs.readFileSync(
-    new URL("../../docs/reference/ENVIRONMENT.md", import.meta.url),
+    new URL("../../docs/reference/03-environment-variables.md", import.meta.url),
     "utf8"
   );
   const row = md.split("\n").find((line) => line.includes("`DEFAULT_RATE_LIMIT_PER_DAY`"));
-  assert.ok(row, "ENVIRONMENT.md must document DEFAULT_RATE_LIMIT_PER_DAY");
+  assert.ok(row, "03-environment-variables.md must document DEFAULT_RATE_LIMIT_PER_DAY");
   assert.match(
     row,
     /unset|empty|unlimited|no implicit/i,

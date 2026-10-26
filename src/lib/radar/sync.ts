@@ -22,7 +22,7 @@ import { isFeatureFlagEnabled } from "@/shared/utils/featureFlags";
 
 /**
  * Default feed base URL.  Forks and self-hosters point this at their own
- * signed feed with the `RADAR_FEED_URL` env var (see docs/frameworks/RADAR.md).
+ * signed feed with the `RADAR_FEED_URL` env var (see docs/frameworks/26-radar-free-model-catalog.md).
  */
 const DEFAULT_FEED_BASE_URL = "https://radar.omniroute.online";
 

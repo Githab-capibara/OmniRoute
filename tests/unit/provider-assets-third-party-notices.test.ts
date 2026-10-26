@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-const NOTICE_PATH = new URL("../../THIRD_PARTY_NOTICES.md", import.meta.url);
+const NOTICE_PATH = new URL("../../14-third-party-notices.md", import.meta.url);
 const notice = await readFile(NOTICE_PATH, "utf8");
 
 const LOBEHUB_ASSETS = [

@@ -41,6 +41,14 @@ import {
   writeSavedRefreshIntervalSec,
 } from "./requestLoggerPreferences";
 import {
+  LOG_DEFAULT_VISIBLE_COLUMNS,
+  clearSavedColumnVisibility,
+  createDefaultVisibility,
+  readSavedColumnVisibility,
+  writeSavedColumnVisibility,
+  type LogColumnVisibility,
+} from "./logColumnVisibility";
+import {
   LOG_TABLE_CLASS,
   LOG_TABLE_HEAD_CLASS,
   LOG_TABLE_HEADER_BG_STYLE,
@@ -198,26 +206,33 @@ const RequestLoggerV2 = forwardRef<RequestLoggerV2Handle, { initialSelectedId?: 
     // yet" before giving up and closing the modal.
     const pendingBoundaryNavRef = useRef<null | "prev" | "next">(null);
 
-    const [visibleColumns, setVisibleColumns] = useState(() => {
-      const defaultVisible = Object.fromEntries(columns.map((c) => [c.key, true]));
-      if (globalThis.window === undefined) return defaultVisible;
-      try {
-        const saved = localStorage.getItem("loggerVisibleColumns");
-        return saved ? { ...defaultVisible, ...JSON.parse(saved) } : defaultVisible;
-      } catch {
-        return defaultVisible;
-      }
-    });
+    // Column visibility defaults to Status/Model/Provider/Tokens/TPS/Duration.
+    // The previous boot state was "every column on" and it was persisted under
+    // `loggerVisibleColumns`, but that key is deliberately unread: restoring it
+    // would resurrect all 14 columns and cancel the new defaults silently.
+    // Preferences live under the versioned key LOG_COLUMNS_STORAGE_KEY instead.
+    const [visibleColumns, setVisibleColumns] = useState<LogColumnVisibility>(() =>
+      readSavedColumnVisibility(columns.map((c) => c.key))
+    );
 
     const toggleColumn = useCallback((key) => {
       setVisibleColumns((prev) => {
         const next = { ...prev, [key]: !prev[key] };
-        try {
-          localStorage.setItem("loggerVisibleColumns", JSON.stringify(next));
-        } catch {}
+        writeSavedColumnVisibility(next);
         return next;
       });
     }, []);
+
+    // "Reset columns" — drop the persisted map and fall back to the defaults.
+    const resetColumns = useCallback(() => {
+      clearSavedColumnVisibility();
+      setVisibleColumns(
+        createDefaultVisibility(
+          columns.map((c) => c.key),
+          LOG_DEFAULT_VISIBLE_COLUMNS
+        )
+      );
+    }, [columns]);
 
     useEffect(() => {
       const saved = readSavedRefreshIntervalSec();
@@ -1200,6 +1215,15 @@ const RequestLoggerV2 = forwardRef<RequestLoggerV2Handle, { initialSelectedId?: 
               {col.label}
             </button>
           ))}
+          <button
+            onClick={resetColumns}
+            title={t("columnsResetHint")}
+            aria-label={t("columnsReset")}
+            className="px-2 py-0.5 rounded text-[10px] font-medium border transition-all bg-bg-subtle text-text-muted border-border hover:border-text-muted flex items-center gap-1"
+          >
+            <span className="material-symbols-outlined text-[12px]">restart_alt</span>
+            {t("columnsReset")}
+          </button>
         </div>
 
         {/* Table */}

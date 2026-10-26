@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const filePath = path.join(process.cwd(), "docs/guides/CODEX-CLI-CONFIGURATION.md");
+    const filePath = path.join(process.cwd(), "docs/guides/17-codex-cli-configuration.md");
     const content = await readFile(filePath, "utf-8");
     return NextResponse.json({ content });
   } catch {

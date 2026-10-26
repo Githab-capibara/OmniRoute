@@ -1,6 +1,6 @@
 # OmniRoute
 
-> OmniRoute is a free, open-source AI Gateway that acts as a universal API proxy for multi-provider LLMs. It provides smart routing, automatic fallback, load balancing, and format translation across 356 AI providers — all through a single OpenAI-compatible endpoint. Includes a built-in MCP Server (110 tools), A2A v0.3 protocol, Memory/Skills systems, Cloud Agents (codex, cursor, devin, jules), Guardrails framework, and an Electron desktop app.
+> OmniRoute is a free, open-source AI Gateway that acts as a universal API proxy for multi-provider LLMs. It provides smart routing, automatic fallback, load balancing, and format translation across 358 AI providers — all through a single OpenAI-compatible endpoint. Includes a built-in MCP Server (110 tools), A2A v0.3 protocol, Memory/Skills systems, Cloud Agents (codex, cursor, devin, jules), Guardrails framework, and an Electron desktop app.
 
 ## Overview
 
@@ -260,13 +260,13 @@ OmniRoute solves the problem of managing multiple AI provider subscriptions, quo
 │   └── load/                     # Load tests
 ├── docs/                         # Documentation
 │   ├── i18n/                     # 50-language translated docs
-│   ├── architecture/             # ARCHITECTURE.md, CODEBASE_DOCUMENTATION.md, REPOSITORY_MAP.md, AUTHZ_GUIDE.md, RESILIENCE_GUIDE.md, QUALITY_GATES.md
-│   ├── reference/                # API_REFERENCE.md, PROVIDER_REFERENCE.md, CLI-TOOLS.md
-│   ├── frameworks/               # MCP-SERVER.md (110 tools), A2A-SERVER.md, SKILLS.md, MEMORY.md, CLOUD_AGENT.md, EVALS.md, WEBHOOKS.md
-│   ├── routing/                  # AUTO-COMBO.md (16-factor scoring), REASONING_REPLAY.md
-│   ├── security/                 # GUARDRAILS.md, COMPLIANCE.md, STEALTH_GUIDE.md, PUBLIC_CREDS.md, ERROR_SANITIZATION.md
-│   ├── guides/                   # USER_GUIDE.md, TROUBLESHOOTING.md, ELECTRON_GUIDE.md, I18N.md
-│   ├── ops/                      # RELEASE_CHECKLIST.md, TUNNELS_GUIDE.md, VM deployment
+│   ├── architecture/             # 01-system-overview.md, 10-codebase-documentation.md, 11-repository-map.md, 04-authorization-pipeline.md, 07-resilience-guide.md, 08-quality-gates.md
+│   ├── reference/                # 01-api-reference.md, 09-provider-reference.md, 02-cli-tools.md
+│   ├── frameworks/               # 07-mcp-server.md (110 tools), 01-a2a-server.md, 08-skills-framework.md, 09-persistent-memory.md, 06-cloud-agent-runtime.md, 11-evals-suites.md, 10-webhooks-dispatch.md
+│   ├── routing/                  # 01-auto-combo.md (16-factor scoring), 04-reasoning-replay-cache.md
+│   ├── security/                 # 01-guardrails.md, 02-compliance.md, 03-stealth-guide.md, 04-public-creds-pattern.md, 05-error-sanitization.md
+│   ├── guides/                   # 01-user-guide.md, 23-troubleshooting.md, 10-electron-guide.md, 22-i18n-guide.md
+│   ├── ops/                      # 01-release-checklist.md, 18-tunnels-guide.md, VM deployment
 │   ├── openapi.yaml              # OpenAPI specification
 │   └── screenshots/              # Dashboard screenshots
 ├── bin/                          # CLI entry points (omniroute, reset-password)
@@ -277,12 +277,12 @@ OmniRoute solves the problem of managing multiple AI provider subscriptions, quo
 ## Key Features (v3.8.50)
 
 ### Core Proxy
-- **356 AI providers** with automatic format translation
+- **358 AI providers** with automatic format translation
 - **Provider categories**: Free (90+ free tiers), OAuth, API Key, Self-Hosted, Custom (OpenAI/Anthropic-compatible)
 - **19 routing strategies**: priority, weighted, round-robin, fill-first, p2c, random, least-used, cost-optimized, reset-aware, reset-window, headroom, strict-random, auto, lkgp, context-optimized, cache-optimized, context-relay, fusion, pipeline
 - **4-tier fallback**: Subscription → API Key → Cheap → Free
 - **Context Relay strategy**: Session handoff summaries on account rotation for continuity
-- **Auto-combo engine**: Self-healing routing optimization with **16-factor scoring** (see `docs/routing/AUTO-COMBO.md`), bandit exploration, progressive cooldown
+- **Auto-combo engine**: Self-healing routing optimization with **16-factor scoring** (see `docs/routing/01-auto-combo.md`), bandit exploration, progressive cooldown
 - **Semantic caching** with cache hit/miss headers
 - **Idempotency** with configurable dedup window
 - **3-layer resilience**: Provider Circuit Breaker / Connection Cooldown / Model Lockout
@@ -350,12 +350,12 @@ OmniRoute solves the problem of managing multiple AI provider subscriptions, quo
 110 tools across modules: **45 canonical** (health, combos, quotas, routing, cost, models, cache,
 diagnostics) plus **memory**, **skill**, **agentSkill**, **githubSkill**, **pool**, **notion**,
 **obsidian**, **localCorpus**, **gamification**, and **plugin** modules. Full per-tool inventory:
-`docs/frameworks/MCP-SERVER.md`.
+`docs/frameworks/07-mcp-server.md`.
 
 **MCP Auth Scopes (33):** e.g. `read:health`, `read:combos`, `write:combos`, `read:quota`,
 `read:usage`, `read:models`, `execute:completions`, `execute:search`, `write:budget`,
 `write:resilience`, plus memory/skills/pool/plugin scopes — full list in
-`docs/frameworks/MCP-SERVER.md`.
+`docs/frameworks/07-mcp-server.md`.
 
 ### Provider Categories
 
@@ -441,7 +441,7 @@ diagnostics) plus **memory**, **skill**, **agentSkill**, **githubSkill**, **pool
 
 8. **ACP agents** are in `src/lib/acp/registry.ts` with detection cache. Custom agents stored via settings DB.
 
-9. **Auto-combo engine** in `open-sse/services/autoCombo/` — **16-factor scoring** (weights and factors in `docs/routing/AUTO-COMBO.md`), 6 mode packs, bandit exploration, progressive cooldown.
+9. **Auto-combo engine** in `open-sse/services/autoCombo/` — **16-factor scoring** (weights and factors in `docs/routing/01-auto-combo.md`), 6 mode packs, bandit exploration, progressive cooldown.
 
 10. **Docker:** Dockerfile has two targets: `runner-base` and `runner-cli`. `docker-compose.yml` for dev (8 profiles), `docker-compose.prod.yml` for production (port 20130).
 
@@ -465,7 +465,7 @@ diagnostics) plus **memory**, **skill**, **agentSkill**, **githubSkill**, **pool
 
 20. **Guardrails framework** in `src/lib/guardrails/` — hot-reloadable registry. Built-ins (priority-ordered): `vision-bridge` (5) → `audio-bridge` (6) → `video-bridge` (7) → `pii-masker` (10) → `prompt-injection` (20) → `credential-masker` (95). Fail-open model: exceptions never block traffic. Per-request opt-out via `x-omniroute-disabled-guardrails` header.
 
-21. **Authz pipeline** (`src/server/authz/`): every request is classified as `PUBLIC`, `CLIENT_API`, or `MANAGEMENT`, then run through policy + enforce stages. See `docs/architecture/AUTHZ_GUIDE.md`.
+21. **Authz pipeline** (`src/server/authz/`): every request is classified as `PUBLIC`, `CLIENT_API`, or `MANAGEMENT`, then run through policy + enforce stages. See `docs/architecture/04-authorization-pipeline.md`.
 
 22. **Three resilience layers** are distinct (do not conflate them):
     - **Provider Circuit Breaker** (`src/shared/utils/circuitBreaker.ts`) — whole-provider scope.
@@ -493,11 +493,11 @@ diagnostics) plus **memory**, **skill**, **agentSkill**, **githubSkill**, **pool
 
 ### Documentation Index
 
-- **Architecture & Reference**: `docs/architecture/ARCHITECTURE.md`, `docs/architecture/CODEBASE_DOCUMENTATION.md`, `docs/architecture/REPOSITORY_MAP.md`, `docs/reference/API_REFERENCE.md`, `docs/reference/PROVIDER_REFERENCE.md`, `docs/reference/openapi.yaml`
-- **Operator guides**: `docs/guides/USER_GUIDE.md`, `docs/reference/CLI-TOOLS.md`, `docs/guides/TROUBLESHOOTING.md`, `docs/ops/COVERAGE_PLAN.md`
-- **Protocols**: `docs/frameworks/MCP-SERVER.md`, `docs/frameworks/A2A-SERVER.md`, `docs/frameworks/AGENT_PROTOCOLS_GUIDE.md`, `docs/frameworks/CLOUD_AGENT.md`
-- **Routing & resilience**: `docs/routing/AUTO-COMBO.md`, `docs/architecture/RESILIENCE_GUIDE.md`
-- **Security**: `docs/architecture/AUTHZ_GUIDE.md`, `docs/security/GUARDRAILS.md`, `docs/security/COMPLIANCE.md`, `docs/security/STEALTH_GUIDE.md`
-- **Extensibility**: `docs/frameworks/SKILLS.md`, `docs/frameworks/MEMORY.md`, `docs/frameworks/EVALS.md`, `docs/frameworks/WEBHOOKS.md`, `docs/routing/REASONING_REPLAY.md`
-- **Platform**: `docs/guides/ELECTRON_GUIDE.md`, `docs/ops/TUNNELS_GUIDE.md`
+- **Architecture & Reference**: `docs/architecture/01-system-overview.md`, `docs/architecture/10-codebase-documentation.md`, `docs/architecture/11-repository-map.md`, `docs/reference/01-api-reference.md`, `docs/reference/09-provider-reference.md`, `docs/reference/openapi.yaml`
+- **Operator guides**: `docs/guides/01-user-guide.md`, `docs/reference/02-cli-tools.md`, `docs/guides/23-troubleshooting.md`, `docs/ops/10-coverage-plan.md`
+- **Protocols**: `docs/frameworks/07-mcp-server.md`, `docs/frameworks/01-a2a-server.md`, `docs/frameworks/03-agent-protocols-guide.md`, `docs/frameworks/06-cloud-agent-runtime.md`
+- **Routing & resilience**: `docs/routing/01-auto-combo.md`, `docs/architecture/07-resilience-guide.md`
+- **Security**: `docs/architecture/04-authorization-pipeline.md`, `docs/security/01-guardrails.md`, `docs/security/02-compliance.md`, `docs/security/03-stealth-guide.md`
+- **Extensibility**: `docs/frameworks/08-skills-framework.md`, `docs/frameworks/09-persistent-memory.md`, `docs/frameworks/11-evals-suites.md`, `docs/frameworks/10-webhooks-dispatch.md`, `docs/routing/04-reasoning-replay-cache.md`
+- **Platform**: `docs/guides/10-electron-guide.md`, `docs/ops/18-tunnels-guide.md`
 - **AI agents**: `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`

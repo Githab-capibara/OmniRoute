@@ -4,7 +4,7 @@
  * stubbed module should catch the error and return HTTP 503 with a clear
  * message; we don't want the bundle to silently fail.
  *
- * See docs/security/SOCKET_DEV_FINDINGS.md for the build profile rationale.
+ * See docs/security/14-socket-dev-findings.md for the build profile rationale.
  */
 export class FeatureDisabledError extends Error {
   readonly featureName: string;

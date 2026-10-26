@@ -14,7 +14,7 @@ import assert from "node:assert/strict";
 import { classifyPaths } from "../../scripts/quality/classify-pr-changes.mjs";
 
 test("pure docs PR → docs only (no code unit/lint bag)", () => {
-  const c = classifyPaths(["docs/architecture/QUALITY_GATES.md", "README.md"]);
+  const c = classifyPaths(["docs/architecture/08-quality-gates.md", "README.md"]);
   assert.deepEqual(c, { code: false, docs: true, i18n: false, workflow: false, testsOnly: false });
 });
 

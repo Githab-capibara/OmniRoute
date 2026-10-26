@@ -1,0 +1,5 @@
+{
+  "title": "Governance",
+  "description": "Contributor, legal, and security policies",
+  "pages": ["01-contributing-guide", "02-code-of-conduct", "03-security-policy"]
+}

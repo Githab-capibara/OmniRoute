@@ -8372,7 +8372,11 @@
     "headroomProxySave": "Lưu",
     "headroomProxyStart": "Bắt đầu",
     "headroomProxyStop": "Dừng",
-    "headroomProxyExternalHint": "URL này không phải loopback, nên OmniRoute sẽ không khởi chạy CLI cục bộ."
+    "headroomProxyExternalHint": "URL này không phải loopback, nên OmniRoute sẽ không khởi chạy CLI cục bộ.",
+    "jsonImportAuthRequired": "Authentication required to import a legacy JSON configuration. Please sign in or complete setup first.",
+    "databaseSettingsAuthRequiredTitle": "Authentication required",
+    "databaseSettingsAuthRequiredBody": "Database settings and JSON import are only available to an authenticated admin. Sign in or complete setup to view and edit them.",
+    "databaseSettingsAuthRequiredCta": "Sign in"
   },
   "contextRtk": {
     "title": "RTK Engine",
@@ -10798,7 +10802,7 @@
     "readingFromCursor": "Đang đọc token từ Cursor IDE hoặc cursor-agent",
     "tokensAutoDetected": "Đã tự động phát hiện token từ Cursor IDE thành công!",
     "cursorNotDetected": "Không phát hiện thấy Cursor IDE. Vui lòng dán token của bạn thủ công.",
-    "dockerImportHint": "Running in Docker? Prefer Login with Cursor. IDE auto-import and cursor-agent are usually unavailable inside the container. See docs/providers/CURSOR-DOCKER.md.",
+    "dockerImportHint": "Running in Docker? Prefer Login with Cursor. IDE auto-import and cursor-agent are usually unavailable inside the container. See docs/providers/06-cursor-docker.md.",
     "accessToken": "Token truy cập",
     "refreshToken": "Refresh Token",
     "refreshTokenPlaceholder": "Optional — enables automatic token refresh",
@@ -11416,7 +11420,9 @@
       "detailedPayloadInfo": "Hãy bật ghi nhật ký chi tiết trước nếu bạn muốn xem giao diện payload client/nhà cung cấp gồm 4 giai đoạn cho các yêu cầu mới.",
       "copyAll": "Copy all",
       "copiedAll": "Copied all"
-    }
+    },
+    "columnsReset": "Reset",
+    "columnsResetHint": "Restore the default columns: Status, Model, Provider, Tokens, TPS, Duration"
   },
   "proxyLogger": {
     "filterAll": "Tất cả",

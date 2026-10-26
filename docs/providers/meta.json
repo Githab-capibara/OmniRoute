@@ -2,13 +2,14 @@
   "title": "Providers",
   "description": "Provider-specific integration guides",
   "pages": [
-    "ALIBABA-QWEN-PROVIDER-FAMILIES",
-    "CLAUDE_WEB",
-    "CHATGPT_WEB",
-    "AGENTROUTER",
-    "ZED-DOCKER",
-    "CURSOR-DOCKER",
-    "CURSOR-API-KEY-AND-CLI",
-    "CSV-IMPORT"
+    "01-claude-web",
+    "02-chatgpt-web",
+    "03-alibaba-qwen-families",
+    "04-agentrouter-setup",
+    "05-cursor-api-key-and-cli",
+    "06-cursor-docker",
+    "07-cursor-image",
+    "08-zed-docker",
+    "09-csv-import"
   ]
 }

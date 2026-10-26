@@ -284,7 +284,7 @@ describe("API Routes — dashboard and tool consumers", () => {
 
   it("keeps legacy usage history and raw request-log APIs explicitly classified", () => {
     const usageStats = readProjectFile("src/shared/components/UsageStats.tsx");
-    const apiReference = readProjectFile("docs/reference/API_REFERENCE.md");
+    const apiReference = readProjectFile("docs/reference/01-api-reference.md");
     const openApi = readProjectFile("docs/openapi.yaml");
 
     assert.ok(usageStats, "UsageStats compatibility component should exist");

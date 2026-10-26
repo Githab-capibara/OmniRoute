@@ -214,7 +214,7 @@ export const NEWLY_ENABLED_MODELS: FreeModelSpec[] = FREE_MODELS.filter((m) =>
 );
 
 // The gemma-4-31b family across its 3 free hosts on this deployment — the
-// specific model documented (docs/architecture/RESILIENCE_GUIDE.md context,
+// specific model documented (docs/architecture/07-resilience-guide.md context,
 // tests/integration/gemini-large-context-tpm.test.ts) as hitting a hard
 // 16000 tokens/minute free-tier ceiling on Gemini. Benchmarking the same
 // model across hosts isolates whether the TPM wall is a gemma-4 property or

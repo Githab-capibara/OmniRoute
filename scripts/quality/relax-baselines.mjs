@@ -6,7 +6,7 @@
 // engine reads (check-quality-ratchet.mjs skips --require-tighten while the phase is
 // active). The intent: ship fast until v4.0 LTS, where the phase closes and every
 // baseline is re-measured on the pure tip and tightened again (see
-// docs/architecture/QUALITY_GATES.md → "Velocity phase").
+// docs/architecture/08-quality-gates.md → "Velocity phase").
 //
 // What it touches (all counts / caps / percentages, never allowlists):
 //   quality-baseline.json      metrics.*.value  (down: ×(1+pct); up: ÷(1+pct), floors kept)

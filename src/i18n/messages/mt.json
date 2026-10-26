@@ -3779,7 +3779,9 @@
     "duplicateAutoComboSnapshotMsg": "Dan se jieħu stampa tal-fornituri/mudelli konnessi bħalissa li jaqblu ma’ dan il-mudell u joħloq kombinazzjoni li tista’ tiġi editjata.",
     "duplicateAutoComboFailedPrefix": "Ma rnexxiex id-duplikazzjoni tal-kombinazzjoni awtomatika:",
     "duplicateAutoComboUnknownError": "Żball mhux magħruf",
-    "duplicateAutoComboTitle": "Oħloq kombinazzjoni statika minn {name}"
+    "duplicateAutoComboTitle": "Oħloq kombinazzjoni statika minn {name}",
+    "quotaWeighted": "Quota-Weighted",
+    "quotaWeightedDesc": "Skip exhausted accounts, then pick among the rest in proportion to leftover, divided by in-flight load. Existing conversations stay pinned."
   },
   "costs": {
     "title": "Spejjeż",
@@ -6306,7 +6308,8 @@
       "kiro": "Livell bla ħlas: 50 kreditu/xahar (~25K–100K token). ⚠️ It-Termini tas-Servizz ta’ Kiro jipprojbixxu l-użu ta’ proxy/harness ta’ parti terza.",
       "codex": "Qabbad OpenAI Codex mal-fluss OAuth eżistenti.",
       "qwen": "Qabbad Qwen Code mal-fluss OAuth eżistenti.",
-      "github-models": "Oħloq GitHub PAT bl-ambitu 'models: read' fuq github.com/settings/tokens"
+      "github-models": "Oħloq GitHub PAT bl-ambitu 'models: read' fuq github.com/settings/tokens",
+      "seekai": "Create an API key at https://seekai.cc, then paste it here as a Bearer token. OpenAI-compatible base URL: https://seekai.cc/v1."
     },
     "passthroughModelsDescription": "{provider} jaċċetta IDs tal-mudelli nattivi għall-fornitur. Importa minn /models jew żid IDs personalizzati għar-routing.",
     "bedrockModelsDescription": "Il-mudelli ta’ Amazon Bedrock huma limitati skont ir-reġjun AWS. Importa minn /models jew żid IDs tal-mudelli Bedrock attivati fir-reġjun magħżul.",
@@ -6464,7 +6467,14 @@
     "savedModelEndpointSettings": "Is-settings tal-endpoint tal-mudell ġew issejvjati",
     "searchByModelAria": "Fittex skont il-mudell",
     "selectSupportedEndpoint": "Agħżel mill-inqas endpoint wieħed appoġġjat",
-    "antigravityClientProfileHarness": "Harness / CLI"
+    "antigravityClientProfileHarness": "Harness / CLI",
+    "importFromFileDownloadTemplate": "Download CSV template",
+    "importFromFileMoreErrors": "+{count} more",
+    "importFromFileSchemaHint": "CSV columns are positional: provider, name, apiKey, baseUrl (optional), priority (optional). The provider column must be an existing managed provider id or an already-registered OpenAI/Anthropic-compatible node id — this import does not create new endpoint nodes.",
+    "dailyQuotaResetTimezoneLabel": "Daily quota reset timezone",
+    "dailyQuotaResetTimezoneHint": "Optional IANA timezone used when the upstream omits X-RateLimit-Reset. Leave empty to keep a short cooldown.",
+    "dailyQuotaResetHourLabel": "Daily quota reset hour",
+    "dailyQuotaResetHourHint": "Local hour 0-23 in the timezone above. Empty means no node-level clock."
   },
   "settings": {
     "title": "Issettjar",
@@ -8343,7 +8353,29 @@
     "cliproxyapiHealth": "Saħħa",
     "cliproxyapiPort": "Port",
     "qdrantHost": "Ospitant",
-    "qdrantCollection": "Kollezzjoni"
+    "qdrantCollection": "Kollezzjoni",
+    "quotaWeighted": "Quota-Weighted",
+    "quotaWeightedDesc": "Skip exhausted accounts, then pick among the rest in proportion to leftover, divided by in-flight load. Existing conversations stay pinned.",
+    "jsonImportAuthRequired": "Authentication required to import a legacy JSON configuration. Please sign in or complete setup first.",
+    "databaseSettingsAuthRequiredTitle": "Authentication required",
+    "databaseSettingsAuthRequiredBody": "Database settings and JSON import are only available to an authenticated admin. Sign in or complete setup to view and edit them.",
+    "databaseSettingsAuthRequiredCta": "Sign in",
+    "compressionAdaptiveMode": "Adaptive context budget",
+    "compressionAdaptiveModeOff": "Off (legacy auto-trigger)",
+    "compressionAdaptiveModeFloor": "Floor (always guarantee fit)",
+    "compressionAdaptiveModeReplace": "Replace auto-trigger",
+    "compressionAdaptivePolicy": "Budget policy",
+    "compressionAdaptivePolicyReserve": "Reserve output",
+    "compressionAdaptivePolicyPercentage": "Percentage of window",
+    "compressionAdaptivePolicyAbsolute": "Absolute token budget",
+    "headroomProxyTitle": "Headroom proxy",
+    "headroomProxyDesc": "URL of the optional Headroom token-saver proxy. Empty uses HEADROOM_URL or http://localhost:8787.",
+    "headroomProxyUrl": "Headroom URL",
+    "headroomProxyUrlHint": "Loopback URLs can be started from this page. External URLs are probed only.",
+    "headroomProxySave": "Save",
+    "headroomProxyStart": "Start",
+    "headroomProxyStop": "Stop",
+    "headroomProxyExternalHint": "This URL is not loopback, so OmniRoute will not spawn the local CLI."
   },
   "contextRtk": {
     "title": "Magna RTK",
@@ -10769,7 +10801,7 @@
     "readingFromCursor": "Qed jinqraw mill-IDE Cursor jew minn cursor-agent",
     "tokensAutoDetected": "It-tokens ġew identifikati awtomatikament mill-IDE Cursor b'suċċess!",
     "cursorNotDetected": "L-IDE Cursor ma ġiex identifikat. Waħħal it-token tal-aċċess tiegħek (u t-token ta' tiġdid jekk disponibbli).",
-    "dockerImportHint": "Qed taħdem f'Docker? Ippreferi Idħol b'Cursor. L-importazzjoni awtomatika mill-IDE u cursor-agent normalment ma jkunux disponibbli fil-container. Ara docs/providers/CURSOR-DOCKER.md.",
+    "dockerImportHint": "Qed taħdem f'Docker? Ippreferi Idħol b'Cursor. L-importazzjoni awtomatika mill-IDE u cursor-agent normalment ma jkunux disponibbli fil-container. Ara docs/providers/06-cursor-docker.md.",
     "accessToken": "Token ta' Aċċess",
     "refreshToken": "Token ta' Tiġdid",
     "refreshTokenPlaceholder": "Mhux obbligatorju — jippermetti t-tiġdid awtomatiku tat-token",
@@ -11387,7 +11419,9 @@
       "detailedPayloadInfo": "L-ewwel attiva r-reġistrazzjoni dettaljata jekk trid id-dehra tal-payload tal-klijent/fornitur f'erba' stadji għal talbiet ġodda.",
       "copyAll": "Ikkopja kollox",
       "copiedAll": "Kollox ġie kkupjat"
-    }
+    },
+    "columnsReset": "Reset",
+    "columnsResetHint": "Restore the default columns: Status, Model, Provider, Tokens, TPS, Duration"
   },
   "proxyLogger": {
     "filterAll": "Kollha",
@@ -12984,6 +13018,10 @@
       },
       "SKILLS_SANDBOX_NETWORK_ENABLED": {
         "description": "Ippermetti l-aċċess għan-network fis-sandbox tal-ħiliet."
+      },
+      "SERVER_OWNED_TOOL_LOOP_ENABLED": {
+        "label": "Server-Owned Tool Loop",
+        "description": "Continue non-streaming server-owned tool calls until the model returns a client-usable response."
       }
     }
   },
@@ -13149,7 +13187,8 @@
       "ok": "Ġeneralment permissiv"
     },
     "allProviders": "Il-fornituri kollha",
-    "noApiKeyRequired": "Ma hija meħtieġa l-ebda ċavetta tal-API"
+    "noApiKeyRequired": "Ma hija meħtieġa l-ebda ċavetta tal-API",
+    "gated": "~{tokens}/mo more behind a regional identity check (e.g. mainland-China real-name verification) — real quota, not counted in the headline:"
   },
   "providerHealthAutopilot": {
     "title": "Awtopilota tas-Saħħa tal-Fornituri",
@@ -13442,7 +13481,10 @@
     "localStateSaveFailed": "Ma rnexxilux jiġi ssejvjat l-issettjar lokali ta' Radar",
     "guidedCombos": "Kombinazzjonijiet iggwidati",
     "offers": "Offerti",
-    "intel": "Informazzjoni"
+    "intel": "Informazzjoni",
+    "limitsUnknownHelp": "Limits reported by Radar feed only; no published limits for this entry",
+    "contextUnknownHelp": "Context window unknown for this entry",
+    "capabilityUnknownHelp": "Capability not reported by the feed"
   },
   "radarCombosPage": {
     "title": "Kombinazzjonijiet iggwidati minn Radar",
@@ -14021,7 +14063,12 @@
     "compareCost": "Spiża",
     "compareEvents": "Avvenimenti",
     "compareDeltaLegend": "Δ lemin − xellug",
-    "noMatches": "L-ebda tħaddim ma jaqbel ma’ dawn il-filtri"
+    "noMatches": "L-ebda tħaddim ma jaqbel ma’ dawn il-filtri",
+    "drawerMemory": "Memory used",
+    "actionRepeat": "Repeat",
+    "repeatConfirm": "Click again to confirm",
+    "repeatDone": "New run created",
+    "repeatUnavailable": "Original input not available"
   },
   "cliproxyProviderExposure": {
     "title": "Espożizzjoni tal-Fornitur",

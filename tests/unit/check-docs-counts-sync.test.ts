@@ -243,7 +243,7 @@ test("compression-engines and CLI-tools gates catch their v3.8.49 drift", () => 
 });
 
 // --- v3.8.50 hardening: live provider source, llm.txt/package.json, migrations, SVGs --
-// Regression guards for the 2026-08-12 audit: PROVIDER_REFERENCE.md was hand-stale at
+// Regression guards for the 2026-08-12 audit: 09-provider-reference.md was hand-stale at
 // 291 while the live provider modules defined 338, and the gate trusted the doc — so
 // README/AGENTS validated against a stale total and the gate stayed falsely green.
 import {
@@ -514,7 +514,7 @@ test("a required claim cannot be silenced by rewording it away", () => {
 });
 
 // --- Free-tier reference: the two curated facts ----------------------------
-// FREE_TIERS.md is dense with numbers, so these two patterns are deliberately
+// 06-free-tiers-directory.md is dense with numbers, so these two patterns are deliberately
 // narrow. A loose one would gate a token budget by accident, and a gate that
 // fires on the wrong number gets deleted rather than fixed.
 const HARD_STOP_CLAIM = {
@@ -557,7 +557,10 @@ test("a reworded or deleted sentence fails, instead of passing as absent", () =>
 test("the live page actually satisfies both required gates", () => {
   // A unit test on synthetic strings proves the validator; this one proves the
   // document. Without it, the two could drift apart and both stay green.
-  const page = readFileSync(path.resolve(here, "../../docs/reference/FREE_TIERS.md"), "utf8");
+  const page = readFileSync(
+    path.resolve(here, "../../docs/reference/06-free-tiers-directory.md"),
+    "utf8"
+  );
   assert.equal(makeValidator(5, { ...HARD_STOP_CLAIM, requireClaim: true })(page).ok, true);
   assert.equal(makeValidator(13, { ...TRAINING_CLAIM, requireClaim: true })(page).ok, true);
 });

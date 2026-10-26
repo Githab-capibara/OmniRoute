@@ -120,7 +120,7 @@ test("issue-agent preserves the normal chat route provider failure response", as
   // The normal chat-completions route enriches the raw upstream error (adds a
   // "[provider/model] [status]:" prefix and a connection-cooldown hint) rather
   // than passing the mocked JSON through byte-for-byte — that enrichment is the
-  // normal route's own, deliberate behavior (see RESILIENCE_GUIDE.md connection
+  // normal route's own, deliberate behavior (see 07-resilience-guide.md connection
   // cooldown). This test's job is to prove the issue-agent execution wrapper
   // preserves and surfaces THAT real response (status + original message text)
   // rather than swallowing it or substituting its own error — so assert on the

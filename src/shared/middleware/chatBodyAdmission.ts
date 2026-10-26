@@ -636,7 +636,7 @@ const defaultAdmissionController = new ChatAdmissionController(CHAT_MAX_HEAVY_IN
  * Every request — every session, every API key — admits against ONE global
  * ChatAdmissionController, so `CHAT_MAX_HEAVY_IN_FLIGHT` and
  * `CHAT_ADMISSION_MAX_QUEUED_BYTES` are enforced process-wide, exactly as
- * documented in docs/reference/ENVIRONMENT.md. The pre-#10110 design minted a
+ * documented in docs/reference/03-environment-variables.md. The pre-#10110 design minted a
  * per-session controller per request, multiplying the process bound by up to
  * 64 lanes and letting unauthenticated fake credentials shard capacity.
  *

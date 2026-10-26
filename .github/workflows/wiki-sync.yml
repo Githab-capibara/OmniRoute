@@ -7,7 +7,7 @@ name: Wiki Sync
 #   - ADDS any docs/ page missing from the wiki (curated; internal reports excluded),
 #   - syncs the four cover-page counts on Home.md.
 # It does NOT overwrite existing wiki pages by default: several docs sources still carry
-# stale counts (e.g. ARCHITECTURE.md says "177 providers" while the wiki cover is 226),
+# stale counts (e.g. 01-system-overview.md says "177 providers" while the wiki cover is 226),
 # so blind overwrite would regress the wiki. Full content parity (--update-existing) is
 # gated on regenerating those sources first.
 

@@ -1,15 +1,16 @@
 {
   "title": "Security",
+  "description": "Guardrails, egress policy, BAN detection, supply chain, compliance",
   "pages": [
-    "GUARDRAILS",
-    "ERROR_SANITIZATION",
-    "ROUTE_GUARD_TIERS",
-    "BAN_DETECTION",
-    "AGENTROUTER_WAF",
-    "CORS",
-    "EGRESS_POLICY",
-    "SUPPLY_CHAIN",
-    "COMPLIANCE",
-    "CLI_TOKEN"
+    "01-guardrails",
+    "02-compliance",
+    "05-error-sanitization",
+    "06-route-guard-tiers",
+    "07-cli-token-auth",
+    "08-egress-policy",
+    "09-ban-detection",
+    "10-agentrouter-waf",
+    "11-cors-configuration",
+    "13-supply-chain-gates"
   ]
 }

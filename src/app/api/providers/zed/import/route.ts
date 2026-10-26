@@ -18,7 +18,7 @@
  * `app/.next/server/app/api/providers/zed/import/route.js`. The 2-step
  * confirmation flow added in v3.8.6 ensures the operator explicitly authorizes
  * every individual credential before it is persisted to the local SQLite
- * store. See docs/security/SOCKET_DEV_FINDINGS.md §2.
+ * store. See docs/security/14-socket-dev-findings.md §2.
  *
  * Security: protected by requireManagementAuth.
  */

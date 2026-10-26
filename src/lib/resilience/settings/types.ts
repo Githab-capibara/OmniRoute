@@ -219,6 +219,20 @@ export interface StreamRecoverySettings {
    * STREAM_RECOVERY_MIDSTREAM_ENABLED feature flag / env var.
    */
   continueMidStream: boolean;
+  /**
+   * Opt-in restart of a POST-commit truncation that delivered no usable assistant
+   * content (see STREAM_RECOVERY_CONTENTLESS_RESTART_MAX in
+   * open-sse/config/constants.ts). Providers that spend an entire turn in the
+   * reasoning channel and then drop the connection produce a stream that is long
+   * past the holdback window yet carries zero answer text — mid-stream continuation
+   * cannot help (it has nothing to prefill), so the failure reaches the client
+   * verbatim. When enabled, such a stream is transparently re-opened with the same
+   * body because nothing usable was delivered and there is nothing to duplicate.
+   * OFF by default: every restart re-spends the upstream work already paid for, so
+   * operators opt in explicitly. Default seeds from the
+   * STREAM_RECOVERY_CONTENTLESS_RESTART_ENABLED feature flag / env var.
+   */
+  contentlessRestart: boolean;
   throughputWatchdog: StreamThroughputWatchdogSettings;
 }
 

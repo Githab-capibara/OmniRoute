@@ -12,27 +12,27 @@
   {
     "bucket": "A",
     "match": "what does endpoints do",
-    "text": "Endpoints are the OpenAI-compatible surface OmniRoute exposes. You point any client at base http://localhost:20128/v1 with your API key and it behaves like a normal provider. For opencode there is a dedicated guide at docs/frameworks/OPENCODE.md."
+    "text": "Endpoints are the OpenAI-compatible surface OmniRoute exposes. You point any client at base http://localhost:20128/v1 with your API key and it behaves like a normal provider. For opencode there is a dedicated guide at docs/frameworks/17-opencode-integration.md."
   },
   {
     "bucket": "A",
     "match": "setup omniroute in opencode",
-    "text": "You don't need /connect. Run 'omniroute config opencode --base-url http://localhost:20128 --api-key YOUR_KEY' and point opencode at it. The most common bug is ending with /v1/v1, so keep a single /v1. See docs/frameworks/OPENCODE.md."
+    "text": "You don't need /connect. Run 'omniroute config opencode --base-url http://localhost:20128 --api-key YOUR_KEY' and point opencode at it. The most common bug is ending with /v1/v1, so keep a single /v1. See docs/frameworks/17-opencode-integration.md."
   },
   {
     "bucket": "A",
     "match": "best way to integrate jules",
-    "text": "Use the Cloud Agents API: POST /api/v1/agents/tasks with providerId jules and OmniRoute spins a remote agent for that task. Selection is manual per task and control is via REST or the dashboard. See docs/frameworks/CLOUD_AGENT.md."
+    "text": "Use the Cloud Agents API: POST /api/v1/agents/tasks with providerId jules and OmniRoute spins a remote agent for that task. Selection is manual per task and control is via REST or the dashboard. See docs/frameworks/06-cloud-agent-runtime.md."
   },
   {
     "bucket": "A",
     "match": "codex cloud and devin",
-    "text": "Same API, just swap the providerId: jules, devin, codex-cloud or cursor-cloud. Antigravity and Qwen are chat providers, not cloud agents, so they stay on chat routes. The choice is manual per task. See docs/frameworks/CLOUD_AGENT.md."
+    "text": "Same API, just swap the providerId: jules, devin, codex-cloud or cursor-cloud. Antigravity and Qwen are chat providers, not cloud agents, so they stay on chat routes. The choice is manual per task. See docs/frameworks/06-cloud-agent-runtime.md."
   },
   {
     "bucket": "A",
     "match": "handle everything from claude",
-    "text": "Not quite. Cloud agents are controlled through the REST API and the dashboard, not through Claude Code or MCP. So keep them as separate tooling that talks to OmniRoute. See docs/frameworks/CLOUD_AGENT.md."
+    "text": "Not quite. Cloud agents are controlled through the REST API and the dashboard, not through Claude Code or MCP. So keep them as separate tooling that talks to OmniRoute. See docs/frameworks/06-cloud-agent-runtime.md."
   },
   {
     "bucket": "A",
@@ -42,7 +42,7 @@
   {
     "bucket": "A",
     "match": "use this on termux",
-    "text": "In Termux run 'pkg install nodejs' and then 'npx -y omniroute' to start the server. Your phone browser opens the dashboard over localhost afterwards. Walkthrough at docs/guides/TERMUX_GUIDE.md."
+    "text": "In Termux run 'pkg install nodejs' and then 'npx -y omniroute' to start the server. Your phone browser opens the dashboard over localhost afterwards. Walkthrough at docs/guides/11-termux-guide.md."
   },
   {
     "bucket": "A",
@@ -57,7 +57,7 @@
   {
     "bucket": "A",
     "match": "api endpoints allowed",
-    "text": "Endpoints are their own API surface: anyone with a valid API key can call them. To lock it down, set REQUIRE_API_KEY=true so only the keys you issue get access. See docs/getting-started/QUICK-START.md."
+    "text": "Endpoints are their own API surface: anyone with a valid API key can call them. To lock it down, set REQUIRE_API_KEY=true so only the keys you issue get access. See docs/getting-started/01-quick-start.md."
   },
   {
     "bucket": "A",
@@ -67,12 +67,12 @@
   {
     "bucket": "A",
     "match": "hosting web in cpanel",
-    "text": "Self-host anywhere Node runs: a VPS, Docker or Fly.io. cPanel usually can't keep a long-running Node process alive, so prefer a real server or container. See docs/ops/FLY_IO_DEPLOYMENT_GUIDE.md."
+    "text": "Self-host anywhere Node runs: a VPS, Docker or Fly.io. cPanel usually can't keep a long-running Node process alive, so prefer a real server or container. See docs/ops/15-fly-io-deployment.md."
   },
   {
     "bucket": "A",
     "match": "run fly.io docker file",
-    "text": "Use the repo's fly.toml: fly launch and then fly deploy, and the Dockerfile builds the image. Full steps and env vars are in docs/ops/FLY_IO_DEPLOYMENT_GUIDE.md."
+    "text": "Use the repo's fly.toml: fly launch and then fly deploy, and the Dockerfile builds the image. Full steps and env vars are in docs/ops/15-fly-io-deployment.md."
   },
   {
     "bucket": "A",
@@ -87,17 +87,17 @@
   {
     "bucket": "A",
     "match": "2000 models is there a better way",
-    "text": "With that many models, Auto-Combo is the way: set the model to auto, auto/coding, auto/fast or auto/cheap and OmniRoute scores every option per request. The 14-factor scorer is in docs/routing/AUTO-COMBO.md."
+    "text": "With that many models, Auto-Combo is the way: set the model to auto, auto/coding, auto/fast or auto/cheap and OmniRoute scores every option per request. The 14-factor scorer is in docs/routing/01-auto-combo.md."
   },
   {
     "bucket": "A",
     "match": "is there a combo already",
-    "text": "Yes, there is a ready one for exactly this: auto/coding. It picks a good free coding model with no setup. The other auto strategies are explained in docs/routing/AUTO-COMBO.md."
+    "text": "Yes, there is a ready one for exactly this: auto/coding. It picks a good free coding model with no setup. The other auto strategies are explained in docs/routing/01-auto-combo.md."
   },
   {
     "bucket": "A",
     "match": "where do i put auto",
-    "text": "You set it as the model field on your client exactly like a model name: auto/coding, or auto/fast and auto/cheap for other strategies. Their differences are in docs/routing/AUTO-COMBO.md."
+    "text": "You set it as the model field on your client exactly like a model name: auto/coding, or auto/fast and auto/cheap for other strategies. Their differences are in docs/routing/01-auto-combo.md."
   },
   {
     "bucket": "A",
@@ -107,12 +107,12 @@
   {
     "bucket": "A",
     "match": "where is my circuit breaker",
-    "text": "It lives in the dashboard Health tab, in the circuit breaker states section, one status per provider. The closed, open, half-open model is in docs/architecture/RESILIENCE_GUIDE.md."
+    "text": "It lives in the dashboard Health tab, in the circuit breaker states section, one status per provider. The closed, open, half-open model is in docs/architecture/07-resilience-guide.md."
   },
   {
     "bucket": "A",
     "match": "with claude desktop app",
-    "text": "Two ways: Claude Code pointed at OmniRoute via ANTHROPIC_BASE_URL plus setup-claude, or the Claude Desktop app as an MCP client via omniroute --mcp. Both are in docs/guides/CLAUDE-CODE-CONFIGURATION.md."
+    "text": "Two ways: Claude Code pointed at OmniRoute via ANTHROPIC_BASE_URL plus setup-claude, or the Claude Desktop app as an MCP client via omniroute --mcp. Both are in docs/guides/16-claude-code-configuration.md."
   },
   {
     "bucket": "A",
@@ -122,17 +122,17 @@
   {
     "bucket": "A",
     "match": "cliproxyapi is configured",
-    "text": "It is informative, not an error. CLIProxyAPI is an upstream proxy layer, managed at runtime in the CLI Tools and toggled per provider between native, cliproxyapi and fallback modes. See docs/ops/PROXY_GUIDE.md."
+    "text": "It is informative, not an error. CLIProxyAPI is an upstream proxy layer, managed at runtime in the CLI Tools and toggled per provider between native, cliproxyapi and fallback modes. See docs/ops/17-proxy-guide.md."
   },
   {
     "bucket": "A",
     "match": "getaddrinfo enotfound",
-    "text": "That is a doubled URL in the proxy registry: the host field carries the scheme. Use type=http, host=127.0.0.1 with no scheme, and port=20130. Steps are in docs/ops/PROXY_GUIDE.md."
+    "text": "That is a doubled URL in the proxy registry: the host field carries the scheme. Use type=http, host=127.0.0.1 with no scheme, and port=20130. Steps are in docs/ops/17-proxy-guide.md."
   },
   {
     "bucket": "A",
     "match": "proxy connection failed",
-    "text": "The registry expects type, host and port as separate fields, not one combined URL. Set host to 127.0.0.1 with no scheme and port to 20130, and the connection error clears. Same recipe in docs/ops/PROXY_GUIDE.md."
+    "text": "The registry expects type, host and port as separate fields, not one combined URL. Set host to 127.0.0.1 with no scheme and port to 20130, and the connection error clears. Same recipe in docs/ops/17-proxy-guide.md."
   },
   {
     "bucket": "B",

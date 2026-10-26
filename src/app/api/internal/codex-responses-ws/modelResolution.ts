@@ -12,7 +12,7 @@
  * id under the `codex/` prefix so it is treated as codex. Provider-prefixed ids
  * (already containing a "/") are left untouched.
  *
- * See docs/reference/API_REFERENCE.md → "Responses over WebSocket (Codex)".
+ * See docs/reference/01-api-reference.md → "Responses over WebSocket (Codex)".
  */
 
 export interface ResolvedModelInfo {

@@ -3779,7 +3779,9 @@
     "duplicateAutoComboSnapshotMsg": "Αυτό θα αποτυπώσει τους τρέχοντα συνδεδεμένους παρόχους/μοντέλα που ταιριάζουν σε αυτό το πρότυπο σε έναν επεξεργάσιμο συνδυασμό.",
     "duplicateAutoComboFailedPrefix": "Αποτυχία αντιγραφής αυτόματου συνδυασμού:",
     "duplicateAutoComboUnknownError": "Άγνωστο σφάλμα",
-    "duplicateAutoComboTitle": "Δημιουργία στατικού συνδυασμού από {name}"
+    "duplicateAutoComboTitle": "Δημιουργία στατικού συνδυασμού από {name}",
+    "quotaWeighted": "Quota-Weighted",
+    "quotaWeightedDesc": "Skip exhausted accounts, then pick among the rest in proportion to leftover, divided by in-flight load. Existing conversations stay pinned."
   },
   "costs": {
     "title": "Κόστη",
@@ -6306,7 +6308,8 @@
       "kiro": "Δωρεάν επίπεδο: 50 credits/μήνα (~25K–100K tokens). ⚠️ Οι Όροι Χρήσης του Kiro απαγορεύουν τη χρήση proxy/harness τρίτων.",
       "codex": "Σύνδεση του OpenAI Codex με την υπάρχουσα ροή OAuth.",
       "qwen": "Σύνδεση του Qwen Code με την υπάρχουσα ροή OAuth.",
-      "github-models": "Δημιουργήστε ένα GitHub PAT με εμβέλεια 'models: read' στο github.com/settings/tokens"
+      "github-models": "Δημιουργήστε ένα GitHub PAT με εμβέλεια 'models: read' στο github.com/settings/tokens",
+      "seekai": "Create an API key at https://seekai.cc, then paste it here as a Bearer token. OpenAI-compatible base URL: https://seekai.cc/v1."
     },
     "passthroughModelsDescription": "Το {provider} δέχεται αναγνωριστικά μοντέλων native του παρόχου. Εισαγάγετε από το /models ή προσθέστε προσαρμοσμένα αναγνωριστικά για δρομολόγηση.",
     "bedrockModelsDescription": "Τα μοντέλα Amazon Bedrock ορίζονται ανά περιοχή AWS. Εισαγάγετε από το /models ή προσθέστε αναγνωριστικά μοντέλων Bedrock που είναι ενεργοποιημένα στην επιλεγμένη περιοχή.",
@@ -6464,7 +6467,14 @@
     "savedModelEndpointSettings": "Οι ρυθμίσεις τελικού σημείου μοντέλου αποθηκεύτηκαν",
     "searchByModelAria": "Αναζήτηση με βάση το μοντέλο",
     "selectSupportedEndpoint": "Επιλέξτε τουλάχιστον ένα υποστηριζόμενο endpoint",
-    "antigravityClientProfileHarness": "Harness / CLI"
+    "antigravityClientProfileHarness": "Harness / CLI",
+    "importFromFileDownloadTemplate": "Download CSV template",
+    "importFromFileMoreErrors": "+{count} more",
+    "importFromFileSchemaHint": "CSV columns are positional: provider, name, apiKey, baseUrl (optional), priority (optional). The provider column must be an existing managed provider id or an already-registered OpenAI/Anthropic-compatible node id — this import does not create new endpoint nodes.",
+    "dailyQuotaResetTimezoneLabel": "Daily quota reset timezone",
+    "dailyQuotaResetTimezoneHint": "Optional IANA timezone used when the upstream omits X-RateLimit-Reset. Leave empty to keep a short cooldown.",
+    "dailyQuotaResetHourLabel": "Daily quota reset hour",
+    "dailyQuotaResetHourHint": "Local hour 0-23 in the timezone above. Empty means no node-level clock."
   },
   "settings": {
     "title": "Ρυθμίσεις",
@@ -8343,7 +8353,29 @@
     "cliproxyapiHealth": "Κατάσταση λειτουργίας",
     "cliproxyapiPort": "Θύρα",
     "qdrantHost": "Κεντρικός υπολογιστής",
-    "qdrantCollection": "Συλλογή"
+    "qdrantCollection": "Συλλογή",
+    "quotaWeighted": "Quota-Weighted",
+    "quotaWeightedDesc": "Skip exhausted accounts, then pick among the rest in proportion to leftover, divided by in-flight load. Existing conversations stay pinned.",
+    "jsonImportAuthRequired": "Authentication required to import a legacy JSON configuration. Please sign in or complete setup first.",
+    "databaseSettingsAuthRequiredTitle": "Authentication required",
+    "databaseSettingsAuthRequiredBody": "Database settings and JSON import are only available to an authenticated admin. Sign in or complete setup to view and edit them.",
+    "databaseSettingsAuthRequiredCta": "Sign in",
+    "compressionAdaptiveMode": "Adaptive context budget",
+    "compressionAdaptiveModeOff": "Off (legacy auto-trigger)",
+    "compressionAdaptiveModeFloor": "Floor (always guarantee fit)",
+    "compressionAdaptiveModeReplace": "Replace auto-trigger",
+    "compressionAdaptivePolicy": "Budget policy",
+    "compressionAdaptivePolicyReserve": "Reserve output",
+    "compressionAdaptivePolicyPercentage": "Percentage of window",
+    "compressionAdaptivePolicyAbsolute": "Absolute token budget",
+    "headroomProxyTitle": "Headroom proxy",
+    "headroomProxyDesc": "URL of the optional Headroom token-saver proxy. Empty uses HEADROOM_URL or http://localhost:8787.",
+    "headroomProxyUrl": "Headroom URL",
+    "headroomProxyUrlHint": "Loopback URLs can be started from this page. External URLs are probed only.",
+    "headroomProxySave": "Save",
+    "headroomProxyStart": "Start",
+    "headroomProxyStop": "Stop",
+    "headroomProxyExternalHint": "This URL is not loopback, so OmniRoute will not spawn the local CLI."
   },
   "contextRtk": {
     "title": "Μηχανή RTK",
@@ -10769,7 +10801,7 @@
     "readingFromCursor": "Ανάγνωση από το Cursor IDE ή cursor-agent",
     "tokensAutoDetected": "Τα διακριτικά ανιχνεύθηκαν αυτόματα επιτυχώς από το Cursor IDE!",
     "cursorNotDetected": "Το Cursor IDE δεν εντοπίστηκε. Επικολλήστε το διακριτικό πρόσβασής σας (και το διακριτικό ανανέωσης εάν είναι διαθέσιμο).",
-    "dockerImportHint": "Εκτελείτε σε Docker; Προτιμήστε τη Σύνδεση με Cursor. Η αυτόματη εισαγωγή από IDE και το cursor-agent συνήθως δεν είναι διαθέσιμα εντός του container. Δείτε docs/providers/CURSOR-DOCKER.md.",
+    "dockerImportHint": "Εκτελείτε σε Docker; Προτιμήστε τη Σύνδεση με Cursor. Η αυτόματη εισαγωγή από IDE και το cursor-agent συνήθως δεν είναι διαθέσιμα εντός του container. Δείτε docs/providers/06-cursor-docker.md.",
     "accessToken": "Διακριτικό Πρόσβασης",
     "refreshToken": "Διακριτικό Ανανέωσης",
     "refreshTokenPlaceholder": "Προαιρετικό — ενεργοποιεί την αυτόματη ανανέωση διακριτικού",
@@ -11387,7 +11419,9 @@
       "detailedPayloadInfo": "Ενεργοποιήστε πρώτα τη λεπτομερή καταγραφή εάν θέλετε την προβολή ωφέλιμου φορτίου τεσσάρων σταδίων πελάτη/παρόχου για νέα αιτήματα.",
       "copyAll": "Αντιγραφή όλων",
       "copiedAll": "Αντιγράφηκαν όλα"
-    }
+    },
+    "columnsReset": "Reset",
+    "columnsResetHint": "Restore the default columns: Status, Model, Provider, Tokens, TPS, Duration"
   },
   "proxyLogger": {
     "filterAll": "Όλα",
@@ -12984,6 +13018,10 @@
       },
       "SKILLS_SANDBOX_NETWORK_ENABLED": {
         "description": "Ενεργοποίηση πρόσβασης δικτύου στο sandbox δεξιοτήτων."
+      },
+      "SERVER_OWNED_TOOL_LOOP_ENABLED": {
+        "label": "Server-Owned Tool Loop",
+        "description": "Continue non-streaming server-owned tool calls until the model returns a client-usable response."
       }
     }
   },
@@ -13149,7 +13187,8 @@
       "ok": "Γενικά επιτρεπτό"
     },
     "allProviders": "Όλοι οι πάροχοι",
-    "noApiKeyRequired": "Δεν απαιτείται κλειδί API"
+    "noApiKeyRequired": "Δεν απαιτείται κλειδί API",
+    "gated": "~{tokens}/mo more behind a regional identity check (e.g. mainland-China real-name verification) — real quota, not counted in the headline:"
   },
   "providerHealthAutopilot": {
     "title": "Αυτόματος Πιλότος Υγείας Παρόχου",
@@ -13442,7 +13481,10 @@
     "localStateSaveFailed": "Αποτυχία αποθήκευσης τοπικών ρυθμίσεων Radar",
     "guidedCombos": "Καθοδηγούμενοι συνδυασμοί",
     "offers": "Προσφορές",
-    "intel": "Intel"
+    "intel": "Intel",
+    "limitsUnknownHelp": "Limits reported by Radar feed only; no published limits for this entry",
+    "contextUnknownHelp": "Context window unknown for this entry",
+    "capabilityUnknownHelp": "Capability not reported by the feed"
   },
   "radarCombosPage": {
     "title": "Καθοδηγούμενοι συνδυασμοί Radar",
@@ -14021,7 +14063,12 @@
     "compareCost": "Κόστος",
     "compareEvents": "Συμβάντα",
     "compareDeltaLegend": "Δ δεξιά − αριστερά",
-    "noMatches": "Καμία εκτέλεση δεν ταιριάζει με αυτά τα φίλτρα"
+    "noMatches": "Καμία εκτέλεση δεν ταιριάζει με αυτά τα φίλτρα",
+    "drawerMemory": "Memory used",
+    "actionRepeat": "Repeat",
+    "repeatConfirm": "Click again to confirm",
+    "repeatDone": "New run created",
+    "repeatUnavailable": "Original input not available"
   },
   "cliproxyProviderExposure": {
     "title": "Έκθεση Παρόχου",

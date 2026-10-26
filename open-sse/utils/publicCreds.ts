@@ -74,7 +74,7 @@ function looksLikePrintablePlain(s: string): boolean {
  * printable plaintext. Otherwise we return the original value unchanged —
  * `Buffer.from(value, "base64")` is lenient (it silently drops invalid chars
  * instead of throwing) so a raw secret with a unknown format would otherwise
- * be silently mangled. See docs/security/PUBLIC_CREDS.md.
+ * be silently mangled. See docs/security/04-public-creds-pattern.md.
  */
 export function decodePublicCred(value: string | null | undefined): string {
   if (!value || typeof value !== "string") return "";

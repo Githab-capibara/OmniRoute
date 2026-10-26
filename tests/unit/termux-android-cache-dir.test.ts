@@ -210,7 +210,7 @@ test("serve command prepares Android cache before spawning the Next.js server", 
 });
 
 test("TERMUX_GUIDE documents Unsupported platform: android", () => {
-  const guide = readFileSync(join(ROOT, "docs/guides/TERMUX_GUIDE.md"), "utf8");
+  const guide = readFileSync(join(ROOT, "docs/guides/11-termux-guide.md"), "utf8");
   assert.match(guide, /Unsupported platform:\s*android/);
   assert.match(guide, /mkdir -p ~\/\.cache/);
   assert.match(guide, /Do not[\s\S]*dist\/server\.js/i);

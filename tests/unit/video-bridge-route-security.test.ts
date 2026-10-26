@@ -233,7 +233,7 @@ test("public docs describe the exact Video Bridge quota, deadline, and abort con
   assert.match(extractContract, /"503":[\s\S]*Retry-After/);
   assert.match(extractContract, /"504":[\s\S]*deadline/i);
 
-  const guardrails = readFileSync("docs/security/GUARDRAILS.md", "utf8");
+  const guardrails = readFileSync("docs/security/01-guardrails.md", "utf8");
   assert.match(guardrails, /inline[\s\S]{0,120}36 MiB/i);
   assert.match(guardrails, /remote[\s\S]{0,120}50 MiB/i);
   assert.match(guardrails, /`signal\?: AbortSignal`/);

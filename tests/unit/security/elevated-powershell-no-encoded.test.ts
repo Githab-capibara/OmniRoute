@@ -1,7 +1,7 @@
 /**
  * Regression: runElevatedPowerShell() must no longer use -EncodedCommand and
  * must write the elevated payload to a per-call temp .ps1 file referenced via
- * -File. See docs/security/SOCKET_DEV_FINDINGS.md §1.
+ * -File. See docs/security/14-socket-dev-findings.md §1.
  */
 import { test } from "node:test";
 import assert from "node:assert/strict";

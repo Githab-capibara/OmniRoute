@@ -142,7 +142,7 @@ export function resolveSqlJsWasmPath(): string {
       `  * If running locally, rebuild better-sqlite3:\n` +
       `      npm rebuild better-sqlite3\n` +
       `  * Or set OMNIROUTE_SQLJS_WASM_PATH to the path of sql-wasm.wasm.\n` +
-      `  * See docs/guides/TROUBLESHOOTING.md for details.`
+      `  * See docs/guides/23-troubleshooting.md for details.`
   );
 }
 

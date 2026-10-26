@@ -287,7 +287,7 @@ test("npm, standalone, Electron, and container assembly carry the wreq license e
     );
   }
 
-  const topLevelNotices = readFileSync(join(ROOT, "THIRD_PARTY_NOTICES.md"), "utf8");
+  const topLevelNotices = readFileSync(join(ROOT, "14-third-party-notices.md"), "utf8");
   assert.match(topLevelNotices, /^## wreq-js 3\.2\.0 native transport$/m);
   assert.match(topLevelNotices, /Copyright \(c\) 2025 will-work-for-meal/);
   assert.match(topLevelNotices, /Copyright \(c\) 2025 Oleksandr Herasymov/);
@@ -296,7 +296,7 @@ test("npm, standalone, Electron, and container assembly carry the wreq license e
   const fixtureRoot = mkdtempSync(join(tmpdir(), "omniroute-wreq-notices-source-"));
   const outputRoot = mkdtempSync(join(tmpdir(), "omniroute-wreq-notices-output-"));
   try {
-    const copiedPaths = ["THIRD_PARTY_NOTICES.md", ...RELEASE_EVIDENCE_PATHS];
+    const copiedPaths = ["14-third-party-notices.md", ...RELEASE_EVIDENCE_PATHS];
     for (const relativePath of copiedPaths) {
       const target = join(fixtureRoot, relativePath);
       mkdirSync(dirname(target), { recursive: true });

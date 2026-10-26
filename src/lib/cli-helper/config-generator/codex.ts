@@ -10,7 +10,7 @@ import { parse, stringify } from "smol-toml";
  * the YAML `~/.codex/config.yaml` this generator used to emit belongs to the
  * legacy npm codex-cli and is silently ignored by current binaries. The shape
  * below matches the documented OmniRoute block
- * (docs/guides/CODEX-CLI-CONFIGURATION.md → "Ready-to-paste config.toml").
+ * (docs/guides/17-codex-cli-configuration.md → "Ready-to-paste config.toml").
  *
  * Two deliberate safety properties:
  * - The API key is NEVER written into the file. Codex reads it from the env

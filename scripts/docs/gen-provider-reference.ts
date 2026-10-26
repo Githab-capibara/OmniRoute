@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Generates docs/reference/PROVIDER_REFERENCE.md from src/shared/constants/providers.ts.
+// Generates docs/reference/09-provider-reference.md from src/shared/constants/providers.ts.
 // Run: node --import tsx scripts/docs/gen-provider-reference.ts
 
 import fs from "node:fs";
@@ -27,7 +27,7 @@ import {
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..", "..");
-const OUT_FILE = path.join(ROOT, "docs", "reference", "PROVIDER_REFERENCE.md");
+const OUT_FILE = path.join(ROOT, "docs", "reference", "09-provider-reference.md");
 
 type ProviderRecord = {
   id: string;
@@ -222,9 +222,9 @@ function main() {
     "",
     "## See Also",
     "",
-    "- [FREE_TIERS.md](./FREE_TIERS.md) — curated free-tier guide",
-    "- [USER_GUIDE.md](../guides/USER_GUIDE.md) — provider setup walkthrough",
-    "- [ARCHITECTURE.md](../architecture/ARCHITECTURE.md) — overall architecture",
+    "- [06-free-tiers-directory.md](./06-free-tiers-directory.md) — curated free-tier guide",
+    "- [01-user-guide.md](../guides/01-user-guide.md) — provider setup walkthrough",
+    "- [01-system-overview.md](../architecture/01-system-overview.md) — overall architecture",
     "",
   ].join("\n");
 

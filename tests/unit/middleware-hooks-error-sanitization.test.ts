@@ -5,7 +5,7 @@ import { readFileSync } from "node:fs";
 /**
  * Hard Rule #12: catch-block error responses must route through
  * `sanitizeErrorMessage()` (or `buildErrorBody()`), never return raw
- * `err.message`. See docs/security/ERROR_SANITIZATION.md.
+ * `err.message`. See docs/security/05-error-sanitization.md.
  *
  * These two routes wrap DB writes + registry `registerHook`, whose
  * SQLite failures can surface with internal path fragments (e.g.

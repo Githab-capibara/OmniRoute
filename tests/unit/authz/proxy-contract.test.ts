@@ -18,7 +18,7 @@
  * contract down here so a future rename / refactor cannot regress it
  * unnoticed.
  *
- * @see docs/security/ROUTE_GUARD_TIERS.md
+ * @see docs/security/06-route-guard-tiers.md
  * @see https://nextjs.org/docs/app/api-reference/file-conventions/proxy
  */
 

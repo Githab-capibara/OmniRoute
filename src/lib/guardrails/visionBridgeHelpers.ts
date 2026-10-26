@@ -813,7 +813,7 @@ async function callVisionModelSingle(
                   // image_url.detail and is deliberately scoped). "high" is
                   // requested unconditionally because the describe prompt asks
                   // the vision model to transcribe visible text
-                  // (`modalityBridgeVisionTaskAware`, see docs/security/GUARDRAILS.md)
+                  // (`modalityBridgeVisionTaskAware`, see docs/security/01-guardrails.md)
                   // — low-detail sampling degrades OCR accuracy for every
                   // describe call, not just OpenCode-originated ones. This path
                   // only affects the OpenAI-compatible wire format branch; the

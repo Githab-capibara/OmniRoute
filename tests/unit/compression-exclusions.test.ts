@@ -43,20 +43,39 @@ test("isCompressionExcluded: provider/* wildcard matches every model of that pro
   );
 
   const everything = normalizeCompressionExclusions(["*"]);
-  assert.equal(isCompressionExcluded({ provider: "anthropic", model: "claude-opus" }, everything), true);
+  assert.equal(
+    isCompressionExcluded({ provider: "anthropic", model: "claude-opus" }, everything),
+    true
+  );
   assert.equal(isCompressionExcluded({ model: "anything" }, everything), true);
+});
+
+// #19157 — passthrough gateways (hcnsec/hnc) must skip the lossy stacked pipeline so a
+// 1M-window MiMo agent keeps its context instead of being rewritten every turn. The
+// operator opted in with a `hnc/*` exclusion; verify the wildcard matches real model ids.
+test("isCompressionExcluded: hnc/* exclusion matches hnc passthrough models", () => {
+  const exclusions = normalizeCompressionExclusions(["hnc/*"]);
+  assert.equal(
+    isCompressionExcluded({ provider: "hnc", model: "MiMo-V2.6-Flash" }, exclusions),
+    true
+  );
+  assert.equal(
+    isCompressionExcluded({ provider: "hnc", model: "glm-5.3-flash" }, exclusions),
+    true
+  );
+  // Bare model id alone does not match the provider-qualified wildcard.
+  assert.equal(isCompressionExcluded({ model: "MiMo-V2.6-Flash" }, exclusions), false);
+  // Other providers remain compressible.
+  assert.equal(
+    isCompressionExcluded({ provider: "xiaomi-mimo", model: "mimo-v2.6-flash" }, exclusions),
+    false
+  );
 });
 
 test("isCompressionExcluded: case-insensitive match", () => {
   const exclusions = normalizeCompressionExclusions(["OpenAI/GPT-5-6"]);
-  assert.equal(
-    isCompressionExcluded({ provider: "openai", model: "gpt-5-6" }, exclusions),
-    true
-  );
-  assert.equal(
-    isCompressionExcluded({ provider: "OPENAI", model: "GPT-5-6" }, exclusions),
-    true
-  );
+  assert.equal(isCompressionExcluded({ provider: "openai", model: "gpt-5-6" }, exclusions), true);
+  assert.equal(isCompressionExcluded({ provider: "OPENAI", model: "GPT-5-6" }, exclusions), true);
 });
 
 test("isCompressionExcluded: empty / absent / malformed exclusions => false (default unchanged)", () => {

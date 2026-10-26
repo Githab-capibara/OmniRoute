@@ -103,7 +103,7 @@ export function resolveAllowedOrigin(requestOrigin: string | null | undefined): 
  * is the merged, normalized, sorted, deduped env + runtime allowlist.
  *
  * A `true` `allowAll` is what the dashboard surfaces as a wildcard-CORS warning.
- * See `docs/security/CORS.md`.
+ * See `docs/security/11-cors-configuration.md`.
  */
 export interface CorsStatus {
   allowAll: boolean;

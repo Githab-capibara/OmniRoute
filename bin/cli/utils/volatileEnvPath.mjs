@@ -11,7 +11,7 @@ import { sep } from "node:path";
  * Two conditions, both required, so a development checkout never sees this:
  *  - the file sits inside the package root, and that root is inside a
  *    `node_modules` directory — i.e. an installed package, not a checkout,
- *    where the same path is stable and documented in SETUP_GUIDE.md;
+ *    where the same path is stable and documented in 02-setup-guide.md;
  *  - the file actually supplied at least one value. First writer wins, so a
  *    file entirely shadowed by a durable one supplied nothing, and losing it
  *    costs nothing.

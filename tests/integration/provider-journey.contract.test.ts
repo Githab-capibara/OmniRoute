@@ -35,7 +35,7 @@
  * `RUN_CONTRACT_INT=1` (same gating convention as the RUN_SERVICES_INT suites), so
  * it never runs unopted in CI.
  *
- * Related: docs/architecture/QUALITY_GATES.md.
+ * Related: docs/architecture/08-quality-gates.md.
  */
 
 import test from "node:test";

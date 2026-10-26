@@ -3,7 +3,7 @@ import { ok } from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
 describe("Management auth documentation (#7786)", () => {
-  const docPath = "docs/guides/MANAGEMENT-AUTH.md";
+  const docPath = "docs/guides/21-management-auth.md";
   const content = readFileSync(docPath, "utf-8");
 
   it("exists and has content", () => {

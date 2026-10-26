@@ -23,6 +23,10 @@ const DEFAULT_LIMITS: Record<string, number> = {
   // through to 128k and blocking normal agentic tool loops with huge catalogs.
   hyperagent: 1_000_000,
   ha: 1_000_000,
+  // Xiaomi MiMo family (v2, v2.5, v2.6) — 1M; passthrough gateways (hcnsec/opencode
+  // mirrors) would otherwise fall through to 128k and trigger destructive history
+  // purges at a fraction of the model's real window.
+  mimo: 1_000_000,
   default: 128000,
 };
 
@@ -421,6 +425,7 @@ export function resolveTokenLimit(
   if (model) {
     if (lowerModel.includes("claude")) return { limit: DEFAULT_LIMITS.claude, specific: true };
     if (lowerModel.includes("gemini")) return { limit: DEFAULT_LIMITS.gemini, specific: true };
+    if (lowerModel.includes("mimo")) return { limit: DEFAULT_LIMITS.mimo, specific: true };
     if (
       lowerModel.includes("gpt") ||
       lowerModel.includes("o1") ||

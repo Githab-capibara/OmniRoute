@@ -20,7 +20,7 @@
  *            for an explicit list) — then the llm.txt / CHANGELOG.md mirror stubs
  *   cli      bin/cli/locales/<code>.json — generate-locales --code scaffold, then the
  *            common + program sections (--cli-full: every section) translated in batches
- *   readme   README flag link, docs/i18n/README.md row, docs/guides/I18N.md row, and the
+ *   readme   README flag link, docs/i18n/README.md row, docs/guides/22-i18n-guide.md row, and the
  *            locale counts in llm.txt (+ sync-llm-mirrors), docs/README.md and
  *            docs/diagrams/i18n-flow.mmd
  *   bars     sync-language-bars — every 🌐 Languages bar gains the new locale
@@ -33,7 +33,7 @@
  * nothing: no files, no network, no child processes.
  *
  * The translating phases (ui, docs, cli, site) need OMNIROUTE_TRANSLATION_API_URL,
- * _API_KEY and _MODEL (docs/guides/I18N.md → "Translation pipeline"); `.env` is loaded
+ * _API_KEY and _MODEL (docs/guides/22-i18n-guide.md → "Translation pipeline"); `.env` is loaded
  * automatically. Child scripts run through execFileSync with an argument array —
  * nothing is ever interpolated into a shell.
  */
@@ -80,7 +80,7 @@ const MIRROR_STUBS = [
 ];
 const PLACEHOLDER_PREFIX = "__MISSING__:";
 const LOCALE_CODE = /^[a-z]{2,3}(-[A-Z][A-Za-z]{1,3})?$/;
-// docs/guides/I18N.md locale table row, capturing the code between backticks.
+// docs/guides/22-i18n-guide.md locale table row, capturing the code between backticks.
 // Static on purpose: the code is compared as a string, so no CLI value ever
 // reaches a RegExp constructor.
 const I18N_GUIDE_ROW_RE = /^\| `([^`]+)` +\|/;
@@ -109,7 +109,7 @@ const USAGE = `Usage: node scripts/i18n/add-locale.mjs --code=<code> --english=<
 
 Phases, in order: ${PHASES.join(", ")}
 The translating phases (${PHASES_TRANSLATING.join(", ")}) need OMNIROUTE_TRANSLATION_API_URL / _API_KEY / _MODEL
-(docs/guides/I18N.md → "Translation pipeline"); .env is loaded automatically.`;
+(docs/guides/22-i18n-guide.md → "Translation pipeline"); .env is loaded automatically.`;
 
 // ----- .env loader ---------------------------------------------------------
 // Same semantics as sync-ui-keys.mjs / run-translation.mjs: variables already
@@ -605,7 +605,7 @@ async function phaseReadme(ctx) {
       (t) => (t.includes(`(\`${code}\`)`) ? t : insertDocsIndexRow(t, entry, total)),
     ],
     [
-      "docs/guides/I18N.md",
+      "docs/guides/22-i18n-guide.md",
       (t) => (hasGuideRow(t) ? t : insertI18nGuideRow(t, entry, total, ctx.config.rtl)),
     ],
     ["llm.txt", (t) => bumpCounts(t, total)],

@@ -6,7 +6,7 @@
 // blocks CI is the node:test copy of this file at
 // tests/unit/combo-select-all-batch-8526.test.ts (this file's location,
 // tests/unit/ui/*.test.tsx, is only collected by the advisory
-// `test:vitest:ui` — see CONTRIBUTING.md "Both test runners must pass").
+// `test:vitest:ui` — see 01-contributing-guide.md "Both test runners must pass").
 import { describe, expect, it } from "vitest";
 import {
   computeBatchAddModelSteps,

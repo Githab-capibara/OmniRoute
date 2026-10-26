@@ -1,3 +1,9 @@
+---
+title: "Guides"
+version: 3.8.51
+lastUpdated: 2026-09-22
+---
+
 # Guides
 
 Per-topic operator guides: setup, deployment surfaces, CLI integrations, troubleshooting.

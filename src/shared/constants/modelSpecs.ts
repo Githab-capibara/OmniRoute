@@ -610,6 +610,20 @@ export const MODEL_SPECS: Record<string, ModelSpec> = {
     supportsTools: true,
     supportsVision: true,
   },
+  // ── Xiaomi MiMo V2.6 (1M context; models.dev 2026-09-22 — both Pro and Flash
+  // declare multimodal text/image/audio/video input, output 131072) ──
+  "mimo-v2.6-pro": {
+    maxOutputTokens: 131072,
+    contextWindow: 1048576,
+    supportsTools: true,
+    supportsVision: true,
+  },
+  "mimo-v2.6-flash": {
+    maxOutputTokens: 131072,
+    contextWindow: 1048576,
+    supportsTools: true,
+    supportsVision: true,
+  },
   "mimo-v2-pro": {
     maxOutputTokens: 131072,
     contextWindow: 262144,

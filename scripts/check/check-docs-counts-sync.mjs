@@ -4,7 +4,7 @@
 // Two tiers of checks:
 //   • STRICT (always blocking — exit 1 on drift): high-confidence, slow-moving counts
 //     that historically caused the worst drift across user-facing documentation.
-//       - provider count (source of truth: docs/reference/PROVIDER_REFERENCE.md total,
+//       - provider count (source of truth: docs/reference/09-provider-reference.md total,
 //         which is auto-generated from src/shared/constants/providers.ts)
 //       - i18n locale count (source of truth: config/i18n.json `locales`)
 //   • SOFT (heuristic — only fails with --strict): file-count based assertions that can
@@ -18,7 +18,7 @@
 // Exits 0 on success, 1 on STRICT drift (or any drift with --strict).
 // Run: node scripts/check/check-docs-counts-sync.mjs
 //
-// NOTE: PROVIDER_REFERENCE.md is no longer blindly trusted — a STRICT check compares
+// NOTE: 09-provider-reference.md is no longer blindly trusted — a STRICT check compares
 // the doc's `Total providers` against the live provider modules (the same collections
 // the generator reads), so a hand-stale doc is a red, not a silently propagated total.
 // Fix by running `npm run gen:provider-reference`. Additional STRICT coverage added in
@@ -123,7 +123,7 @@ export function parseProviderTotal(referenceText) {
 
 // STRICT: canonical provider total, read from the auto-generated catalog.
 export function readProviderTotal() {
-  const abs = path.join(ROOT, "docs", "reference", "PROVIDER_REFERENCE.md");
+  const abs = path.join(ROOT, "docs", "reference", "09-provider-reference.md");
   if (!fs.existsSync(abs)) return 0;
   return parseProviderTotal(fs.readFileSync(abs, "utf8"));
 }
@@ -585,7 +585,7 @@ export function buildChecks() {
       actual: countLocales(),
       docKey: "i18n locales",
       strict: true,
-      files: ["docs/README.md", "docs/guides/I18N.md"],
+      files: ["docs/README.md", "docs/guides/22-i18n-guide.md"],
     },
     ...(() => {
       const f = readCodeFacts();
@@ -624,10 +624,10 @@ export function buildChecks() {
           files: [
             "README.md",
             "llm.txt",
-            "docs/guides/FEATURES.md",
-            "docs/architecture/ARCHITECTURE.md",
-            "docs/architecture/REPOSITORY_MAP.md",
-            "docs/routing/AUTO-COMBO.md",
+            "docs/guides/03-features-overview.md",
+            "docs/architecture/01-system-overview.md",
+            "docs/architecture/11-repository-map.md",
+            "docs/routing/01-auto-combo.md",
           ],
           validate: makeNumberClaimValidator(packs.length, {
             what: "mode packs",
@@ -646,7 +646,7 @@ export function buildChecks() {
           actual: packs.length,
           docKey: "mode packs",
           strict: true,
-          files: ["docs/routing/AUTO-COMBO.md"],
+          files: ["docs/routing/01-auto-combo.md"],
           validate: makeNumberClaimValidator(packs.length, {
             what: "mode packs",
             pattern: MODE_PACK_CLAIM_PATTERN,
@@ -658,7 +658,7 @@ export function buildChecks() {
           actual: packs.length,
           docKey: "mode packs",
           strict: true,
-          files: ["docs/routing/AUTO-COMBO.md"],
+          files: ["docs/routing/01-auto-combo.md"],
           validate: makeModePackNamesValidator(packs),
         },
         {
@@ -682,7 +682,7 @@ export function buildChecks() {
           actual: f.providers,
           docKey: "providers (live)",
           strict: true,
-          files: ["docs/reference/PROVIDER_REFERENCE.md"],
+          files: ["docs/reference/09-provider-reference.md"],
           validate: makeProviderReferenceValidator(f.providers),
         },
         // Gate: manifest emission vs catalogue intersection. Both numbers are
@@ -723,7 +723,7 @@ export function buildChecks() {
           actual: `~${(f.freeSteady / 1e9).toFixed(2)}B steady / ${f.freePools} pools / ${Math.round(f.freeGated / 1e6)}M gated`,
           docKey: "free-tier headline",
           strict: true,
-          files: ["README.md", "docs/reference/FREE_TIERS.md"],
+          files: ["README.md", "docs/reference/06-free-tiers-directory.md"],
           validate: (content) =>
             checkFreeTierHeadline(content, { s: f.freeSteady, m: f.freeFirst, g: f.freeGated }),
         },
@@ -750,7 +750,7 @@ export function buildChecks() {
           [
             "README.md",
             "AGENTS.md",
-            "docs/frameworks/MCP-SERVER.md",
+            "docs/frameworks/07-mcp-server.md",
             "llm.txt",
             "open-sse/mcp-server/README.md",
             "skills/omni-mcp/SKILL.md",
@@ -784,12 +784,16 @@ export function buildChecks() {
             // positive-budget SUBSET, not the recurring-pool total — never gate it.
             skipAfter: /^\s+with a published positive/i,
           },
-          ["README.md", "docs/diagrams/free-tier-budget.svg", "docs/reference/FREE_TIERS.md"]
+          [
+            "README.md",
+            "docs/diagrams/free-tier-budget.svg",
+            "docs/reference/06-free-tiers-directory.md",
+          ]
         ),
         // The reference page says what an entry vouches for. These two facts are
         // curated by hand rather than inferred, so the page quotes their counts —
         // and quoting a count is how a page goes stale. The patterns are deliberately
-        // narrow: FREE_TIERS.md is full of numbers, and a loose one would gate a
+        // narrow: 06-free-tiers-directory.md is full of numbers, and a loose one would gate a
         // token budget by accident.
         claim(
           f.hardStop,
@@ -802,7 +806,7 @@ export function buildChecks() {
             pattern:
               /(\d+) entr(?:y|ies) (?:that )?(?:carry|carries) an? independently documented hard stop/gi,
           },
-          ["docs/reference/FREE_TIERS.md"]
+          ["docs/reference/06-free-tiers-directory.md"]
         ),
         claim(
           f.trainsOnPrompts,
@@ -812,7 +816,7 @@ export function buildChecks() {
             pattern:
               /(\d+) entr(?:y|ies) (?:that )?(?:carry|carries) a (?:prompt-)?training disclosure/gi,
           },
-          ["docs/reference/FREE_TIERS.md"]
+          ["docs/reference/06-free-tiers-directory.md"]
         ),
         {
           label: "Free provider rankings sortBy (live code)",
@@ -863,7 +867,7 @@ export function buildChecks() {
       actual: 16,
       docKey: "ToS caution (16)",
       strict: false,
-      files: ["docs/reference/FREE_TIERS.md"],
+      files: ["docs/reference/06-free-tiers-directory.md"],
       validate: makeNumberClaimValidator(16, {
         what: "ToS caution (16)",
         pattern: /Caution[^\n]*\(\s*(16)\s*\)/gi,
@@ -875,7 +879,7 @@ export function buildChecks() {
       actual: "quality neutral 0.5",
       docKey: "quality neutral",
       strict: false,
-      files: ["docs/routing/AUTO-COMBO.md"],
+      files: ["docs/routing/01-auto-combo.md"],
       validate: (content) =>
         /quality.*neutral.*0\.5/is.test(content)
           ? { ok: true, detail: "quality neutral 0.5 mentioned" }
@@ -889,7 +893,10 @@ export function buildChecks() {
       actual: countFiles("open-sse/executors"),
       docKey: "executors",
       strict: false,
-      files: ["docs/architecture/ARCHITECTURE.md", "docs/architecture/CODEBASE_DOCUMENTATION.md"],
+      files: [
+        "docs/architecture/01-system-overview.md",
+        "docs/architecture/10-codebase-documentation.md",
+      ],
     },
     {
       // The Auto-Combo engine is advertised as "N-factor" in a dozen places, in
@@ -905,18 +912,18 @@ export function buildChecks() {
       files: [
         "README.md",
         "AGENTS.md",
-        "docs/routing/AUTO-COMBO.md",
-        "docs/guides/TIERS.md",
-        "docs/guides/FEATURES.md",
-        "docs/guides/FREE_PROVIDER_RANKINGS.md",
+        "docs/routing/01-auto-combo.md",
+        "docs/guides/06-tiers-overview.md",
+        "docs/guides/03-features-overview.md",
+        "docs/guides/27-free-provider-rankings.md",
         "docs/diagrams/strategies-grid.svg",
         "docs/diagrams/auto-combo-scoring.mmd",
         "llm.txt",
-        "docs/architecture/ARCHITECTURE.md",
-        "docs/architecture/REPOSITORY_MAP.md",
-        "docs/architecture/RESILIENCE_GUIDE.md",
-        "docs/frameworks/OPEN_SSE_ARCHITECTURE.md",
-        "docs/getting-started/AUTO-COMBO-GUIDE.md",
+        "docs/architecture/01-system-overview.md",
+        "docs/architecture/11-repository-map.md",
+        "docs/architecture/07-resilience-guide.md",
+        "docs/frameworks/18-open-sse-streaming-engine.md",
+        "docs/getting-started/03-auto-combo-guide.md",
         "skills/omni-combos-routing/SKILL.md",
         "open-sse/services/autoCombo/routerStrategy.ts",
         "open-sse/services/taskAwareRouter.ts",
@@ -933,28 +940,35 @@ export function buildChecks() {
       actual: countRoutingStrategies(),
       docKey: "strategies",
       strict: false,
-      files: ["docs/routing/AUTO-COMBO.md", "docs/architecture/RESILIENCE_GUIDE.md", "llm.txt"],
+      files: [
+        "docs/routing/01-auto-combo.md",
+        "docs/architecture/07-resilience-guide.md",
+        "llm.txt",
+      ],
     },
     {
       label: "OAuth providers count",
       actual: countFiles("src/lib/oauth/providers"),
       docKey: "OAuth providers",
       strict: false,
-      files: ["docs/architecture/ARCHITECTURE.md"],
+      files: ["docs/architecture/01-system-overview.md"],
     },
     {
       label: "A2A skills count",
       actual: countFiles("src/lib/a2a/skills"),
       docKey: "A2A skills",
       strict: false,
-      files: ["docs/frameworks/A2A-SERVER.md"],
+      files: ["docs/frameworks/01-a2a-server.md"],
     },
     {
       label: "Cloud agents count",
       actual: countFiles("src/lib/cloudAgent/agents"),
       docKey: "cloud agents",
       strict: false,
-      files: ["docs/frameworks/CLOUD_AGENT.md", "docs/frameworks/AGENT_PROTOCOLS_GUIDE.md"],
+      files: [
+        "docs/frameworks/06-cloud-agent-runtime.md",
+        "docs/frameworks/03-agent-protocols-guide.md",
+      ],
     },
   ];
 }

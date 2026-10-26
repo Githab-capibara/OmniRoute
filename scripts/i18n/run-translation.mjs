@@ -3,7 +3,7 @@
  * OmniRoute — Docs translation pipeline (hash-based, incremental).
  *
  * Source of truth: `config/i18n.json` (locale list) and the original English
- * markdown files at the repo root (`CLAUDE.md`, `GEMINI.md`, `README.md`, …)
+ * markdown files at the repo root (`AGENTS.md`, `README.md`, …)
  * plus `docs/*.md`.
  *
  * Targets land in `docs/i18n/<locale>/...` mirroring the source layout, with a
@@ -18,7 +18,7 @@
  * Usage (driven by npm scripts in package.json):
  *   npm run i18n:run
  *   npm run i18n:run -- --locale=pt-BR
- *   npm run i18n:run -- --files=CLAUDE.md,docs/ARCHITECTURE.md
+ *   npm run i18n:run -- --files=AGENTS.md,docs/01-system-overview.md
  *   npm run i18n:run -- --force
  *   npm run i18n:run:dry
  *   npm run i18n:run -- --adopt   (rebuild .i18n-state.json from disk, no API calls)
@@ -116,19 +116,17 @@ const DOCS_DIR = path.join(ROOT, "docs");
 // list — they are handled by `scripts/check-docs-sync.mjs` rules and are kept
 // in sync by other tooling. Adding them here would conflict with that script.
 const ROOT_DOC_SOURCES = [
-  "CLAUDE.md",
-  "GEMINI.md",
   "AGENTS.md",
-  "CONTRIBUTING.md",
-  "SECURITY.md",
-  "CODE_OF_CONDUCT.md",
+  "01-contributing-guide.md",
+  "03-security-policy.md",
+  "02-code-of-conduct.md",
   "README.md",
 ];
 
 // File names inside `docs/` that should NOT be translated. Anything else with
 // a `.md` extension at the top of `docs/` is treated as a source.
 const DOCS_EXCLUDED_NAMES = new Set([
-  "I18N.md", // Translator tooling docs — kept English-only for operators.
+  "22-i18n-guide.md", // Translator tooling docs — kept English-only for operators.
   "README.md", // Section index files — auto-generated, not prose translation targets.
 ]);
 
@@ -273,7 +271,7 @@ async function collectAllSources() {
 }
 
 function targetPathFor(relSource, locale) {
-  // Root MDs (`CLAUDE.md`, …) → `docs/i18n/<loc>/CLAUDE.md`
+  // Root MDs (`AGENTS.md`, …) → `docs/i18n/<loc>/AGENTS.md`
   if (!relSource.includes("/")) {
     return path.join(DOCS_I18N_DIR, locale, relSource);
   }
@@ -297,7 +295,7 @@ function requireEnv(name) {
   const v = process.env[name];
   if (!v || !v.trim()) {
     throw new Error(
-      `Missing required env var: ${name}. Set it in .env (see docs/guides/I18N.md → "Translation pipeline").`
+      `Missing required env var: ${name}. Set it in .env (see docs/guides/22-i18n-guide.md → "Translation pipeline").`
     );
   }
   return v.trim();

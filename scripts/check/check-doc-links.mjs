@@ -123,7 +123,7 @@ function extractLinks(content) {
 }
 
 function resolveTarget(sourceFile, target) {
-  // /docs/foo.md, /foo, /reference/ENVIRONMENT.md → project-rooted.
+  // /docs/foo.md, /foo, /reference/03-environment-variables.md → project-rooted.
   if (target.startsWith("/")) {
     return path.join(REPO_ROOT, target.replace(/^\/+/, ""));
   }

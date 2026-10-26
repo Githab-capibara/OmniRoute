@@ -88,14 +88,14 @@ tags:
       MITM proxy manager for 9 IDE agents (Antigravity, Kiro, Copilot, Codex, Cursor, Zed,
       Claude Code, Open Code, Trae). Controls server lifecycle, DNS/model mappings, bypass list,
       and cert management. All routes are LOCAL_ONLY + SPAWN_CAPABLE (hard rules #15, #17).
-      See docs/frameworks/AGENTBRIDGE.md.
+      See docs/frameworks/04-agentbridge-ide-integration.md.
   - name: Traffic Inspector
     description: >-
       LLM-aware HTTPS traffic debugger with 4 capture modes (AgentBridge, Custom Hosts,
       HTTP_PROXY :8080, System-wide). Provides real-time WebSocket stream, session recording,
       HAR export, SSE merge, and conversation normalization.
       All routes are LOCAL_ONLY + SPAWN_CAPABLE (hard rules #15, #17).
-      See docs/frameworks/TRAFFIC_INSPECTOR.md.
+      See docs/frameworks/21-traffic-inspector.md.
 
 paths:
   # --- Playground + Search Tools (plans 17+18) ---
@@ -3104,7 +3104,7 @@ paths:
 
   # ─── Embedded Services ─────────────────────────────────────────
   # All routes LOCAL_ONLY (loopback only) — hard rule #17.
-  # See docs/frameworks/EMBEDDED-SERVICES.md for full reference.
+  # See docs/frameworks/13-embedded-sidecar-services.md for full reference.
 
   /api/services/9router/install:
     post:
@@ -5292,14 +5292,14 @@ components:
         Two bearer families are accepted. Inference API keys (typically `sk-…`)
         authorize `/v1/*`. Management routes also accept `oma_live_…` Access Tokens
         (Settings → Access Tokens / `omniroute connect`) and API keys whose metadata
-        includes `manage` or `admin` scope. See docs/guides/MANAGEMENT-AUTH.md.
+        includes `manage` or `admin` scope. See docs/guides/21-management-auth.md.
         Bearer credentials are accepted on management routes that use this scheme;
         they are not rejected solely for being Bearer.
     ManagementSessionAuth:
       type: apiKey
       in: cookie
       name: auth_token
-      description: Dashboard management session cookie (auth_token) for protected management routes. Distinct from Bearer Access Tokens and API keys. See docs/guides/MANAGEMENT-AUTH.md.
+      description: Dashboard management session cookie (auth_token) for protected management routes. Distinct from Bearer Access Tokens and API keys. See docs/guides/21-management-auth.md.
 
   parameters:
     ResourceId:

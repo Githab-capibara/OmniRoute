@@ -80,7 +80,7 @@ test("the WAL size guard rejects sub-1MB values that would floor to a 0-byte gua
 });
 
 test("the new env vars are documented", () => {
-  const docs = readSource("docs/reference/ENVIRONMENT.md");
+  const docs = readSource("docs/reference/03-environment-variables.md");
   assert.match(docs, /OMNIROUTE_WAL_PASSIVE_INTERVAL_MS/);
   assert.match(docs, /OMNIROUTE_WAL_GUARD_MAX_MB/);
   assert.match(docs, /OMNIROUTE_VACUUM_MIN_DELETED_ROWS/);

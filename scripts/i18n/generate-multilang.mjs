@@ -25,13 +25,13 @@ const DOCS_I18N_DIR = path.join(DOCS_DIR, "i18n");
 const PLACEHOLDER_PREFIX = "__MISSING__:";
 
 const DOC_SOURCE_FILES = [
-  "API_REFERENCE.md",
-  "ARCHITECTURE.md",
-  "CODEBASE_DOCUMENTATION.md",
-  "FEATURES.md",
-  "TROUBLESHOOTING.md",
-  "USER_GUIDE.md",
-  "VM_DEPLOYMENT_GUIDE.md",
+  "01-api-reference.md",
+  "01-system-overview.md",
+  "10-codebase-documentation.md",
+  "03-features-overview.md",
+  "23-troubleshooting.md",
+  "01-user-guide.md",
+  "16-vm-deployment.md",
 ];
 
 const LOCALE_SPECS = [

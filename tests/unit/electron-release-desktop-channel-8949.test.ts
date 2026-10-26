@@ -20,7 +20,7 @@
  *     `--max_old_space_size` does not bound it. On this module graph it outgrows what
  *     the hosted runner can give and the VM is reclaimed mid-compile — the same wall
  *     nightly-compat hit on Node 26 (#8090) and the same documented remedy applies:
- *     the webpack fallback (OMNIROUTE_USE_TURBOPACK=0, docs/reference/ENVIRONMENT.md,
+ *     the webpack fallback (OMNIROUTE_USE_TURBOPACK=0, docs/reference/03-environment-variables.md,
  *     #6409). The identical build passes on a 32 GB machine, peaking past 14 GB.
  *
  *  2. `release` gated on `needs: [validate, build]` with no `if:`, so ONE failing

@@ -14,7 +14,7 @@
  *   flagFileFor(entry)                                    🇬🇷 → "gr.svg"
  *   insertReadmeFlagLink(readmeText, entry, total)        README.md language block
  *   insertDocsIndexRow(indexText, entry, total)           docs/i18n/README.md
- *   insertI18nGuideRow(guideText, entry, total, rtlCodes) docs/guides/I18N.md locale table
+ *   insertI18nGuideRow(guideText, entry, total, rtlCodes) docs/guides/22-i18n-guide.md locale table
  *   bumpCounts(text, total)                               llm.txt counts: "N languages",
  *                                                         "N translated documentation sets",
  *                                                         "N language JSON files",
@@ -140,13 +140,14 @@ export function insertDocsIndexRow(indexText, entry, total) {
 
 export function insertI18nGuideRow(guideText, entry, total, rtlCodes = DEFAULT_RTL_CODES) {
   const code = requireCode(entry);
-  if (!GUIDE_HEADLINE.test(guideText)) throw new Error("docs/guides/I18N.md headline not found");
+  if (!GUIDE_HEADLINE.test(guideText))
+    throw new Error("docs/guides/22-i18n-guide.md headline not found");
   const lines = guideText.replace(GUIDE_HEADLINE, `supports **${total} languages**`).split("\n");
   // The guide has other tables with backticked first cells, so the locale rows
   // are the contiguous block right under the "Supported Locales" table header.
   const header = lines.findIndex((line) => GUIDE_HEADER.test(line));
   if (header === -1 || !TABLE_SEPARATOR.test(lines[header + 1] ?? "")) {
-    throw new Error("docs/guides/I18N.md locale table not found");
+    throw new Error("docs/guides/22-i18n-guide.md locale table not found");
   }
   const rows = [];
   for (let index = header + 2; index < lines.length; index += 1) {
@@ -161,7 +162,7 @@ export function insertI18nGuideRow(guideText, entry, total, rtlCodes = DEFAULT_R
     `\`${code}\``,
   ];
   const row = formatTableRow(cells, tableColumnWidths(lines[header], lines[header + 1]));
-  return insertAmongRows(lines, rows, row, code, "docs/guides/I18N.md").join("\n");
+  return insertAmongRows(lines, rows, row, code, "docs/guides/22-i18n-guide.md").join("\n");
 }
 
 export function bumpCounts(text, total) {
@@ -178,7 +179,7 @@ export function buildMirrorStub({ heading, native, bar, body }) {
 
 // --- markdown table alignment ------------------------------------------------
 //
-// docs/guides/I18N.md is Prettier-formatted, so every cell is padded to its
+// docs/guides/22-i18n-guide.md is Prettier-formatted, so every cell is padded to its
 // column width. A new row is padded the same way when the table is aligned
 // (header cell widths equal the separator dash counts, which is how Prettier
 // emits it); otherwise the compact `| a | b |` form is used.

@@ -21,7 +21,8 @@ describe("Text Tool Call Parsing Fixes", () => {
       choices: [
         {
           delta: {
-            content: '<tool_call>{"name":"Write","arguments":{"file_path":"/tmp/test.txt","content":"hello"}}</tool_call>',
+            content:
+              '<tool_call>{"name":"Write","arguments":{"file_path":"/tmp/test.txt","content":"hello"}}</tool_call>',
           },
           finish_reason: "stop",
         },
@@ -42,7 +43,8 @@ describe("Text Tool Call Parsing Fixes", () => {
       choices: [
         {
           delta: {
-            content: 'TOOL_CALL Read: {"file_path":"/home/ubuntu/codeatlas-mcp-server/SECURITY.md"}',
+            content:
+              'TOOL_CALL Read: {"file_path":"/home/ubuntu/codeatlas-mcp-server/03-security-policy.md"}',
           },
           finish_reason: "stop",
         },
@@ -55,7 +57,10 @@ describe("Text Tool Call Parsing Fixes", () => {
     );
     assert.equal(state._pendingXmlToolCalls.length, 1);
     assert.equal(state._pendingXmlToolCalls[0].name, "Read");
-    assert.equal(state._pendingXmlToolCalls[0].args.file_path, "/home/ubuntu/codeatlas-mcp-server/SECURITY.md");
+    assert.equal(
+      state._pendingXmlToolCalls[0].args.file_path,
+      "/home/ubuntu/codeatlas-mcp-server/03-security-policy.md"
+    );
   });
 
   it("parses standard XML <invoke> blocks in OpenAI content text", () => {
@@ -103,9 +108,9 @@ describe("Text Tool Call Parsing Fixes", () => {
       chunk as unknown as Parameters<typeof geminiToClaudeResponse>[0],
       state as unknown as Parameters<typeof geminiToClaudeResponse>[1]
     );
-    const startEvent = (events as Array<{ type: string; content_block?: { type: string; name: string } }>)?.find(
-      (e) => e.type === "content_block_start" && e.content_block?.type === "tool_use"
-    );
+    const startEvent = (
+      events as Array<{ type: string; content_block?: { type: string; name: string } }>
+    )?.find((e) => e.type === "content_block_start" && e.content_block?.type === "tool_use");
     assert.ok(startEvent, "Should emit tool_use content_block_start");
     assert.equal(startEvent?.content_block?.name, "Bash");
   });

@@ -33,7 +33,7 @@ test("an installed package .env that supplied keys is reported as volatile", () 
 
 test("a development checkout says nothing", () => {
   // Same file name, stable location: `npm install` in a checkout preserves it,
-  // and SETUP_GUIDE.md documents it. Warning here would fire on every start.
+  // and 02-setup-guide.md documents it. Warning here would fire on every start.
   assert.equal(
     describeVolatileEnvWarning({
       envPath: path.join(CHECKOUT_ROOT, ".env"),

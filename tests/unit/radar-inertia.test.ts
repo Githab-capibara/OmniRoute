@@ -3,7 +3,7 @@
  *
  * THE canonical "flag off ⇒ zero behavioral delta" regression guard for Radar.
  *
- * Radar (docs/frameworks/RADAR.md) is an optional add-on gated by the
+ * Radar (docs/frameworks/26-radar-free-model-catalog.md) is an optional add-on gated by the
  * `RADAR_ENABLED` feature flag (default off). This file is the single place
  * that asserts, end to end, that a vanilla install with the flag off is
  * byte-identical to an install that never heard of Radar:

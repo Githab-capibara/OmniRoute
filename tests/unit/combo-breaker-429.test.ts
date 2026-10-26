@@ -4,7 +4,7 @@ import test from "node:test";
 /**
  * Combo path must NOT trip the whole-provider circuit breaker on a plain rate-limit 429.
  *
- * Documented policy (docs/architecture/RESILIENCE_GUIDE.md + CLAUDE.md): only
+ * Documented policy (docs/architecture/07-resilience-guide.md + CLAUDE.md): only
  * 408/500/502/503/504 trip the whole-provider breaker. A plain 429 is connection-cooldown
  * / model-lockout scope, never a whole-provider outage. The single-model path already
  * excludes 429 via `PROVIDER_BREAKER_FAILURE_STATUSES` (src/sse/handlers/chat.ts:206). This

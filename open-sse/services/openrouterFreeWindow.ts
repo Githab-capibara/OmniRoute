@@ -3,7 +3,7 @@
  *
  * OpenRouter's official monitoring API (`/api/v1/key`, `/api/v1/credits`) reports
  * USD spend, never request counts — so the `:free`-model per-account request
- * windows (docs/reference/FREE_TIERS.md) cannot be read from those endpoints.
+ * windows (docs/reference/06-free-tiers-directory.md) cannot be read from those endpoints.
  * This module tracks them locally instead:
  *
  *   - A UTC-day counter: 50 requests/day at $0 all-time purchased, 1000/day

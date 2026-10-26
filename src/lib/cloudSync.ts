@@ -162,7 +162,7 @@ export async function syncToCloud(machineId, createdKey = null) {
  * `accessToken` / `refreshToken` / `providerSpecificData` are only synced when
  * `OMNIROUTE_CLOUD_SYNC_SECRETS=true`. The default mode syncs non-credential
  * metadata only. Combined with `verifyCloudSignature()` above, this closes the
- * silent-credential-overwrite path. See docs/security/SOCKET_DEV_FINDINGS.md §5.
+ * silent-credential-overwrite path. See docs/security/14-socket-dev-findings.md §5.
  */
 async function updateLocalTokens(cloudProviders: unknown) {
   const cloudProvidersMap = asRecord(cloudProviders);

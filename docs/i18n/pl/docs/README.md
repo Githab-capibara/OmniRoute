@@ -8,7 +8,7 @@ lastUpdated: 2026-06-28
 
 Nawigowalny indeks zestawu dokumentacji OmniRoute. Tematy są pogrupowane według celu, abyś szybko znalazł to, czego potrzebujesz.
 
-> Szukasz przeglądu projektu, kroków instalacji lub informacji o wydaniach? Zobacz główne pliki [README.md](../README.md), [CHANGELOG.md](../CHANGELOG.md) oraz [CONTRIBUTING.md](../CONTRIBUTING.md).
+> Szukasz przeglądu projektu, kroków instalacji lub informacji o wydaniach? Zobacz główne pliki [README.md](../README.md), [CHANGELOG.md](../CHANGELOG.md) oraz [01-contributing-guide.md](../01-contributing-guide.md).
 
 ---
 
@@ -18,33 +18,33 @@ Proste przewodniki po korzystaniu z OmniRoute — bez wymaganej wiedzy techniczn
 
 ### getting-started/
 
-- [QUICK-START.md](getting-started/QUICK-START.md) — zainstaluj i uruchom OmniRoute w 3 minuty.
-- [AUTO-COMBO-GUIDE.md](getting-started/AUTO-COMBO-GUIDE.md) — pozwól OmniRoute wybrać dla Ciebie najlepsze AI.
-- [PROVIDERS-GUIDE.md](getting-started/PROVIDERS-GUIDE.md) — jak podłączyć dostawców AI.
-- [FREE-TIERS-GUIDE.md](getting-started/FREE-TIERS-GUIDE.md) — darmowe AI bez karty kredytowej.
-- [TROUBLESHOOTING.md](getting-started/TROUBLESHOOTING.md) — rozwiązywanie typowych problemów.
+- [01-quick-start.md](getting-started/01-quick-start.md) — zainstaluj i uruchom OmniRoute w 3 minuty.
+- [03-auto-combo-guide.md](getting-started/03-auto-combo-guide.md) — pozwól OmniRoute wybrać dla Ciebie najlepsze AI.
+- [02-providers-guide.md](getting-started/02-providers-guide.md) — jak podłączyć dostawców AI.
+- [04-free-tiers-guide.md](getting-started/04-free-tiers-guide.md) — darmowe AI bez karty kredytowej.
+- [23-troubleshooting.md](getting-started/23-troubleshooting.md) — rozwiązywanie typowych problemów.
 
 ### guides/
 
-- [SETUP_GUIDE.md](guides/SETUP_GUIDE.md) — pierwsza konfiguracja OmniRoute.
-- [USER_GUIDE.md](guides/USER_GUIDE.md) — codzienne korzystanie z panelu i API.
-- [FEATURES.md](guides/FEATURES.md) — galeria funkcji panelu.
-- [TIERS.md](guides/TIERS.md) — poziomy OmniRoute wyjaśnione (przewodnik użytkownika).
-- [USAGE_QUOTA_GUIDE.md](guides/USAGE_QUOTA_GUIDE.md) — śledzenie użycia, limitów (quota) i wydatków.
-- [COST_TRACKING.md](guides/COST_TRACKING.md) — śledzenie kosztów i wydatków.
-- [FREE_PROVIDER_RANKINGS.md](guides/FREE_PROVIDER_RANKINGS.md) — rankingi darmowych dostawców (Arena ELO).
-- [DOCKER_GUIDE.md](guides/DOCKER_GUIDE.md) — uruchamianie OmniRoute w Dockerze.
-- [ELECTRON_GUIDE.md](guides/ELECTRON_GUIDE.md) — buildy desktopowe (Electron).
-- [TERMUX_GUIDE.md](guides/TERMUX_GUIDE.md) — uruchamianie na Androidzie przez Termux.
-- [PWA_GUIDE.md](guides/PWA_GUIDE.md) — instalacja panelu jako PWA.
-- [REMOTE-MODE.md](guides/REMOTE-MODE.md) — udostępnianie OmniRoute zdalnie + tokeny z zakresem (scoped tokens).
-- [CLI-INTEGRATIONS.md](guides/CLI-INTEGRATIONS.md) — główna tabela integracji CLI `setup-*`.
-- [CLAUDE-CODE-CONFIGURATION.md](guides/CLAUDE-CODE-CONFIGURATION.md) — Claude Code CLI z OmniRoute.
-- [CODEX-CLI-CONFIGURATION.md](guides/CODEX-CLI-CONFIGURATION.md) — Codex CLI z OmniRoute.
-- [KIRO_SETUP.md](guides/KIRO_SETUP.md) — konfiguracja Kiro.
-- [I18N.md](guides/I18N.md) — workflow tłumaczeń i locale.
-- [TROUBLESHOOTING.md](guides/TROUBLESHOOTING.md) — szczegółowa referencja rozwiązywania problemów.
-- [UNINSTALL.md](guides/UNINSTALL.md) — czyste usuwanie instalacji.
+- [02-setup-guide.md](guides/02-setup-guide.md) — pierwsza konfiguracja OmniRoute.
+- [01-user-guide.md](guides/01-user-guide.md) — codzienne korzystanie z panelu i API.
+- [03-features-overview.md](guides/03-features-overview.md) — galeria funkcji panelu.
+- [06-tiers-overview.md](guides/06-tiers-overview.md) — poziomy OmniRoute wyjaśnione (przewodnik użytkownika).
+- [07-usage-quota-guide.md](guides/07-usage-quota-guide.md) — śledzenie użycia, limitów (quota) i wydatków.
+- [08-cost-tracking.md](guides/08-cost-tracking.md) — śledzenie kosztów i wydatków.
+- [27-free-provider-rankings.md](guides/27-free-provider-rankings.md) — rankingi darmowych dostawców (Arena ELO).
+- [09-docker-guide.md](guides/09-docker-guide.md) — uruchamianie OmniRoute w Dockerze.
+- [10-electron-guide.md](guides/10-electron-guide.md) — buildy desktopowe (Electron).
+- [11-termux-guide.md](guides/11-termux-guide.md) — uruchamianie na Androidzie przez Termux.
+- [12-pwa-guide.md](guides/12-pwa-guide.md) — instalacja panelu jako PWA.
+- [13-remote-mode.md](guides/13-remote-mode.md) — udostępnianie OmniRoute zdalnie + tokeny z zakresem (scoped tokens).
+- [14-cli-integrations.md](guides/14-cli-integrations.md) — główna tabela integracji CLI `setup-*`.
+- [16-claude-code-configuration.md](guides/16-claude-code-configuration.md) — Claude Code CLI z OmniRoute.
+- [17-codex-cli-configuration.md](guides/17-codex-cli-configuration.md) — Codex CLI z OmniRoute.
+- [20-kiro-setup.md](guides/20-kiro-setup.md) — konfiguracja Kiro.
+- [22-i18n-guide.md](guides/22-i18n-guide.md) — workflow tłumaczeń i locale.
+- [23-troubleshooting.md](guides/23-troubleshooting.md) — szczegółowa referencja rozwiązywania problemów.
+- [24-uninstall.md](guides/24-uninstall.md) — czyste usuwanie instalacji.
 
 ---
 
@@ -56,120 +56,120 @@ Dokumentacja techniczna dla deweloperów i współtwórców.
 
 Jak zbudowany jest system — przeczytaj te materiały, aby zrozumieć runtime, układ kodu i model odporności.
 
-- [ARCHITECTURE.md](architecture/ARCHITECTURE.md) — wysokopoziomowa architektura systemu (potok żądań, warstwy, moduły).
-- [CODEBASE_DOCUMENTATION.md](architecture/CODEBASE_DOCUMENTATION.md) — referencja inżynierska bazy kodu.
-- [REPOSITORY_MAP.md](architecture/REPOSITORY_MAP.md) — przewodnik nawigacji katalog po katalogu.
-- [AUTHZ_GUIDE.md](architecture/AUTHZ_GUIDE.md) — potok autoryzacji (klasyfikator tras + silnik polityk).
-- [RESILIENCE_GUIDE.md](architecture/RESILIENCE_GUIDE.md) — circuit breaker dostawcy, cooldown połączeń i lockout modeli.
-- [QUALITY_GATES.md](architecture/QUALITY_GATES.md) — inwentarz skryptów bramek jakości i jobów CI.
-- [MONITORING_SECTIONS.md](architecture/MONITORING_SECTIONS.md) — nawigacja panelu monitoringu/kosztów.
-- [cluster-decisions.md](architecture/cluster-decisions.md) — opcjonalne decyzje profili sidecar/klaster.
+- [01-system-overview.md](architecture/01-system-overview.md) — wysokopoziomowa architektura systemu (potok żądań, warstwy, moduły).
+- [10-codebase-documentation.md](architecture/10-codebase-documentation.md) — referencja inżynierska bazy kodu.
+- [11-repository-map.md](architecture/11-repository-map.md) — przewodnik nawigacji katalog po katalogu.
+- [04-authorization-pipeline.md](architecture/04-authorization-pipeline.md) — potok autoryzacji (klasyfikator tras + silnik polityk).
+- [07-resilience-guide.md](architecture/07-resilience-guide.md) — circuit breaker dostawcy, cooldown połączeń i lockout modeli.
+- [08-quality-gates.md](architecture/08-quality-gates.md) — inwentarz skryptów bramek jakości i jobów CI.
+- [09-monitoring-sections.md](architecture/09-monitoring-sections.md) — nawigacja panelu monitoringu/kosztów.
+- [03-cluster-sidecar-profiles.md](architecture/03-cluster-sidecar-profiles.md) — opcjonalne decyzje profili sidecar/klaster.
 
 ## reference/
 
 Materiały referencyjne — powierzchnia API, zmienne środowiskowe, flagi CLI, katalog dostawców.
 
-- [API_REFERENCE.md](reference/API_REFERENCE.md) — endpointy REST API i kształty danych.
-- [PROVIDER_REFERENCE.md](reference/PROVIDER_REFERENCE.md) — automatycznie generowany katalog dostawców (nie edytuj ręcznie).
-- [PROVIDER_PLUGIN_MANIFEST.md](reference/PROVIDER_PLUGIN_MANIFEST.md) — kontrakt wtyczki dostawcy bezpieczny dla sidecarów przy migracji Bifrost i CLIProxyAPI.
+- [01-api-reference.md](reference/01-api-reference.md) — endpointy REST API i kształty danych.
+- [09-provider-reference.md](reference/09-provider-reference.md) — automatycznie generowany katalog dostawców (nie edytuj ręcznie).
+- [10-provider-plugin-manifest.md](reference/10-provider-plugin-manifest.md) — kontrakt wtyczki dostawcy bezpieczny dla sidecarów przy migracji Bifrost i CLIProxyAPI.
 - [openapi.yaml](openapi.yaml) — specyfikacja OpenAPI publicznego API.
-- [ENVIRONMENT.md](reference/ENVIRONMENT.md) — referencja zmiennych środowiskowych.
-- [FEATURE_FLAGS.md](reference/FEATURE_FLAGS.md) — flagi funkcji i ich wartości domyślne.
-- [CLI-TOOLS.md](reference/CLI-TOOLS.md) — dołączone polecenia CLI.
-- [FREE_TIERS.md](reference/FREE_TIERS.md) — katalog darmowych poziomów dostawców LLM.
+- [03-environment-variables.md](reference/03-environment-variables.md) — referencja zmiennych środowiskowych.
+- [04-feature-flags.md](reference/04-feature-flags.md) — flagi funkcji i ich wartości domyślne.
+- [02-cli-tools.md](reference/02-cli-tools.md) — dołączone polecenia CLI.
+- [06-free-tiers-directory.md](reference/06-free-tiers-directory.md) — katalog darmowych poziomów dostawców LLM.
 
 ## frameworks/
 
 Podsystemy wtykowe udostępniane klientom, agentom i operatorom.
 
-- [MCP-SERVER.md](frameworks/MCP-SERVER.md) — serwer Model Context Protocol.
-- [A2A-SERVER.md](frameworks/A2A-SERVER.md) — serwer Agent-to-Agent (A2A) JSON-RPC.
-- [ACP.md](frameworks/ACP.md) — Agent Client Protocol.
-- [AGENT_PROTOCOLS_GUIDE.md](frameworks/AGENT_PROTOCOLS_GUIDE.md) — przegląd agentów A2A / ACP / Cloud.
-- [AGENTBRIDGE.md](frameworks/AGENTBRIDGE.md) — most agenta IDE.
-- [AGENT-SKILLS.md](frameworks/AGENT-SKILLS.md) — katalog umiejętności agentów.
-- [CLOUD_AGENT.md](frameworks/CLOUD_AGENT.md) — runtime i dostawcy cloud agent.
-- [SKILLS.md](frameworks/SKILLS.md) — framework Skills (piaskownicowe rozszerzenie).
-- [MEMORY.md](frameworks/MEMORY.md) — trwała pamięć (FTS5 + Qdrant).
-- [WEBHOOKS.md](frameworks/WEBHOOKS.md) — zdarzenia webhook i dyspozycja.
-- [EVALS.md](frameworks/EVALS.md) — zestawy ewaluacji.
-- [GAMIFICATION.md](frameworks/GAMIFICATION.md) — system grywalizacji i rankingów.
-- [EMBEDDED-SERVICES.md](frameworks/EMBEDDED-SERVICES.md) — wbudowane usługi sidecar (9Router, CLIProxyAPI).
-- [NOTION_CONTEXT.md](frameworks/NOTION_CONTEXT.md) — źródło kontekstu Notion.
-- [OBSIDIAN_CONTEXT.md](frameworks/OBSIDIAN_CONTEXT.md) — źródło kontekstu Obsidian.
-- [OPENCODE.md](frameworks/OPENCODE.md) — integracja OpenCode.
-- [OPEN_SSE_ARCHITECTURE.md](frameworks/OPEN_SSE_ARCHITECTURE.md) — wnętrze silnika streamingu open-sse.
-- [PLAYGROUND_STUDIO.md](frameworks/PLAYGROUND_STUDIO.md) — UI Playground Studio.
-- [SEARCH_TOOLS_STUDIO.md](frameworks/SEARCH_TOOLS_STUDIO.md) — UI Search Tools Studio.
-- [TRAFFIC_INSPECTOR.md](frameworks/TRAFFIC_INSPECTOR.md) — inspector ruchu (MITM).
-- [PLUGINS.md](frameworks/PLUGINS.md) — przegląd systemu wtyczek CLI.
-- [PLUGIN_SDK.md](frameworks/PLUGIN_SDK.md) — referencja SDK wtyczek.
-- [PLUGIN_MARKETPLACE.md](frameworks/PLUGIN_MARKETPLACE.md) — marketplace wtyczek.
+- [07-mcp-server.md](frameworks/07-mcp-server.md) — serwer Model Context Protocol.
+- [01-a2a-server.md](frameworks/01-a2a-server.md) — serwer Agent-to-Agent (A2A) JSON-RPC.
+- [02-acp-agent-client-protocol.md](frameworks/02-acp-agent-client-protocol.md) — Agent Client Protocol.
+- [03-agent-protocols-guide.md](frameworks/03-agent-protocols-guide.md) — przegląd agentów A2A / ACP / Cloud.
+- [04-agentbridge-ide-integration.md](frameworks/04-agentbridge-ide-integration.md) — most agenta IDE.
+- [05-agent-skills-catalog.md](frameworks/05-agent-skills-catalog.md) — katalog umiejętności agentów.
+- [06-cloud-agent-runtime.md](frameworks/06-cloud-agent-runtime.md) — runtime i dostawcy cloud agent.
+- [08-skills-framework.md](frameworks/08-skills-framework.md) — framework Skills (piaskownicowe rozszerzenie).
+- [09-persistent-memory.md](frameworks/09-persistent-memory.md) — trwała pamięć (FTS5 + Qdrant).
+- [10-webhooks-dispatch.md](frameworks/10-webhooks-dispatch.md) — zdarzenia webhook i dyspozycja.
+- [11-evals-suites.md](frameworks/11-evals-suites.md) — zestawy ewaluacji.
+- [12-gamification-system.md](frameworks/12-gamification-system.md) — system grywalizacji i rankingów.
+- [13-embedded-sidecar-services.md](frameworks/13-embedded-sidecar-services.md) — wbudowane usługi sidecar (9Router, CLIProxyAPI).
+- [14-notion-context-source.md](frameworks/14-notion-context-source.md) — źródło kontekstu Notion.
+- [15-obsidian-context-source.md](frameworks/15-obsidian-context-source.md) — źródło kontekstu Obsidian.
+- [17-opencode-integration.md](frameworks/17-opencode-integration.md) — integracja OpenCode.
+- [18-open-sse-streaming-engine.md](frameworks/18-open-sse-streaming-engine.md) — wnętrze silnika streamingu open-sse.
+- [19-playground-studio.md](frameworks/19-playground-studio.md) — UI Playground Studio.
+- [20-search-tools-studio.md](frameworks/20-search-tools-studio.md) — UI Search Tools Studio.
+- [21-traffic-inspector.md](frameworks/21-traffic-inspector.md) — inspector ruchu (MITM).
+- [23-plugin-system-overview.md](frameworks/23-plugin-system-overview.md) — przegląd systemu wtyczek CLI.
+- [24-plugin-sdk-reference.md](frameworks/24-plugin-sdk-reference.md) — referencja SDK wtyczek.
+- [25-plugin-marketplace.md](frameworks/25-plugin-marketplace.md) — marketplace wtyczek.
 
 ## routing/
 
 Routing combo, scorowanie i replay.
 
-- [AUTO-COMBO.md](routing/AUTO-COMBO.md) — Auto-Combo (scorowanie 13-czynnikowe, 19 strategii publicznych).
-- [QUOTA_SHARE.md](routing/QUOTA_SHARE.md) — silnik współdzielenia limitów (quota).
-- [REASONING_REPLAY.md](routing/REASONING_REPLAY.md) — cache replay rozumowania (reasoning).
+- [01-auto-combo.md](routing/01-auto-combo.md) — Auto-Combo (scorowanie 13-czynnikowe, 19 strategii publicznych).
+- [03-quota-share.md](routing/03-quota-share.md) — silnik współdzielenia limitów (quota).
+- [04-reasoning-replay-cache.md](routing/04-reasoning-replay-cache.md) — cache replay rozumowania (reasoning).
 
 ## security/
 
 Guardrails, zgodność (compliance), stealth oraz obowiązkowe wzorce obsługi publicznych poświadczeń i komunikatów błędów.
 
-- [GUARDRAILS.md](security/GUARDRAILS.md) — guardrails PII, prompt injection, vision.
-- [COMPLIANCE.md](security/COMPLIANCE.md) — ścieżki audytu i zgodność.
-- [STEALTH_GUIDE.md](security/STEALTH_GUIDE.md) — stealth TLS / fingerprint.
-- [PUBLIC_CREDS.md](security/PUBLIC_CREDS.md) — **obowiązkowy** wzorzec osadzania publicznych upstreamowych OAuth client_id/secret + kluczy Firebase Web bez uruchamiania skanerów sekretów.
-- [ERROR_SANITIZATION.md](security/ERROR_SANITIZATION.md) — **obowiązkowy** wzorzec kierowania każdej odpowiedzi błędu przez `sanitizeErrorMessage`, aby zapobiec ujawnieniu stack-trace.
-- [ROUTE_GUARD_TIERS.md](security/ROUTE_GUARD_TIERS.md) — poziomy klasyfikacji route-guard.
-- [CLI_TOKEN.md](security/CLI_TOKEN.md) — auth tokenu machine-ID CLI (HMAC + legacy SHA-256).
-- [EGRESS_POLICY.md](security/EGRESS_POLICY.md) — polityka rodziny IP egress (IPv4/IPv6).
-- [MITM-TPROXY-DECRYPT.md](security/MITM-TPROXY-DECRYPT.md) — przezroczyste deszyfrowanie MITM.
-- [SUPPLY_CHAIN.md](security/SUPPLY_CHAIN.md) — bramki łańcucha dostaw (SLSA, SBOM, Trivy, osv-scanner, Scorecard).
-- [SOCKET_DEV_FINDINGS.md](security/SOCKET_DEV_FINDINGS.md) — atestacje ustaleń łańcucha dostaw.
+- [01-guardrails.md](security/01-guardrails.md) — guardrails PII, prompt injection, vision.
+- [02-compliance.md](security/02-compliance.md) — ścieżki audytu i zgodność.
+- [03-stealth-guide.md](security/03-stealth-guide.md) — stealth TLS / fingerprint.
+- [04-public-creds-pattern.md](security/04-public-creds-pattern.md) — **obowiązkowy** wzorzec osadzania publicznych upstreamowych OAuth client_id/secret + kluczy Firebase Web bez uruchamiania skanerów sekretów.
+- [05-error-sanitization.md](security/05-error-sanitization.md) — **obowiązkowy** wzorzec kierowania każdej odpowiedzi błędu przez `sanitizeErrorMessage`, aby zapobiec ujawnieniu stack-trace.
+- [06-route-guard-tiers.md](security/06-route-guard-tiers.md) — poziomy klasyfikacji route-guard.
+- [07-cli-token-auth.md](security/07-cli-token-auth.md) — auth tokenu machine-ID CLI (HMAC + legacy SHA-256).
+- [08-egress-policy.md](security/08-egress-policy.md) — polityka rodziny IP egress (IPv4/IPv6).
+- [12-mitm-tproxy-decrypt.md](security/12-mitm-tproxy-decrypt.md) — przezroczyste deszyfrowanie MITM.
+- [13-supply-chain-gates.md](security/13-supply-chain-gates.md) — bramki łańcucha dostaw (SLSA, SBOM, Trivy, osv-scanner, Scorecard).
+- [14-socket-dev-findings.md](security/14-socket-dev-findings.md) — atestacje ustaleń łańcucha dostaw.
 
 ## compression/
 
 Silniki kompresji promptów, reguły i pakiety językowe.
 
-- [COMPRESSION_GUIDE.md](compression/COMPRESSION_GUIDE.md) — ogólny przegląd kompresji.
-- [COMPRESSION_ENGINES.md](compression/COMPRESSION_ENGINES.md) — dostępne silniki kompresji.
-- [COMPRESSION_RULES_FORMAT.md](compression/COMPRESSION_RULES_FORMAT.md) — format pliku reguł.
-- [COMPRESSION_LANGUAGE_PACKS.md](compression/COMPRESSION_LANGUAGE_PACKS.md) — pakiety językowe.
-- [RTK_COMPRESSION.md](compression/RTK_COMPRESSION.md) — dogłębna analiza silnika RTK.
-- [CONTEXT_EDITING.md](compression/CONTEXT_EDITING.md) — delegowana edycja kontekstu (Anthropic).
-- [EXTENDING_COMPRESSION.md](compression/EXTENDING_COMPRESSION.md) — dodawanie własnego silnika kompresji.
+- [01-compression-guide.md](compression/01-compression-guide.md) — ogólny przegląd kompresji.
+- [02-compression-engines.md](compression/02-compression-engines.md) — dostępne silniki kompresji.
+- [03-compression-rules-format.md](compression/03-compression-rules-format.md) — format pliku reguł.
+- [04-compression-language-packs.md](compression/04-compression-language-packs.md) — pakiety językowe.
+- [05-rtk-compression-engine.md](compression/05-rtk-compression-engine.md) — dogłębna analiza silnika RTK.
+- [06-context-editing.md](compression/06-context-editing.md) — delegowana edycja kontekstu (Anthropic).
+- [07-extending-compression.md](compression/07-extending-compression.md) — dodawanie własnego silnika kompresji.
 
 ## providers/
 
 Przewodniki integracji specyficzne dla dostawców.
 
-- [CLAUDE_WEB.md](providers/CLAUDE_WEB.md) — dostawca Claude Web (cookie-auth).
-- [AGENTROUTER.md](providers/AGENTROUTER.md) — konfiguracja AgentRouter.
-- [ZED-DOCKER.md](providers/ZED-DOCKER.md) — integracja Zed IDE w Dockerze.
+- [01-claude-web.md](providers/01-claude-web.md) — dostawca Claude Web (cookie-auth).
+- [04-agentrouter-setup.md](providers/04-agentrouter-setup.md) — konfiguracja AgentRouter.
+- [08-zed-docker.md](providers/08-zed-docker.md) — integracja Zed IDE w Dockerze.
 
 ## comparison/
 
-- [OMNIROUTE_VS_ALTERNATIVES.md](comparison/OMNIROUTE_VS_ALTERNATIVES.md) — jak OmniRoute wypada na tle alternatyw.
+- [01-omniroute-vs-alternatives.md](comparison/01-omniroute-vs-alternatives.md) — jak OmniRoute wypada na tle alternatyw.
 
 ## ops/
 
 Wydania, wdrożenia, proxy, tunele, pokrycie testami, baza danych, monitoring.
 
-- [RELEASE_CHECKLIST.md](ops/RELEASE_CHECKLIST.md) — checklista procesu wydania.
-- [RELEASE_GREEN.md](ops/RELEASE_GREEN.md) — utrzymywanie kolejki PR i gałęzi wydania w stanie green.
-- [QUALITY_GATE_PLAYBOOK.md](ops/QUALITY_GATE_PLAYBOOK.md) — playbook bramek jakości.
-- [BRANCH_PROTECTION_MAIN.md](ops/BRANCH_PROTECTION_MAIN.md) — ochrona gałęzi `main`.
-- [COVERAGE_PLAN.md](ops/COVERAGE_PLAN.md) — plan pokrycia testami.
-- [DATABASE_GUIDE.md](ops/DATABASE_GUIDE.md) — schemat DB i operacje.
-- [SQLITE_RUNTIME.md](ops/SQLITE_RUNTIME.md) — łańcuch rozwiązywania sterownika SQLite.
-- [MONITORING_GUIDE.md](ops/MONITORING_GUIDE.md) — monitoring i obserwowalność.
-- [FLY_IO_DEPLOYMENT_GUIDE.md](ops/FLY_IO_DEPLOYMENT_GUIDE.md) — wdrożenie na Fly.io.
-- [VM_DEPLOYMENT_GUIDE.md](ops/VM_DEPLOYMENT_GUIDE.md) — generyczne wdrożenie na VM.
-- [PROXY_GUIDE.md](ops/PROXY_GUIDE.md) — konfiguracja proxy upstream.
-- [TUNNELS_GUIDE.md](ops/TUNNELS_GUIDE.md) — Cloudflare tunnel i pokrewne.
+- [01-release-checklist.md](ops/01-release-checklist.md) — checklista procesu wydania.
+- [02-release-green-policy.md](ops/02-release-green-policy.md) — utrzymywanie kolejki PR i gałęzi wydania w stanie green.
+- [08-quality-gate-playbook.md](ops/08-quality-gate-playbook.md) — playbook bramek jakości.
+- [04-branch-protection-main.md](ops/04-branch-protection-main.md) — ochrona gałęzi `main`.
+- [10-coverage-plan.md](ops/10-coverage-plan.md) — plan pokrycia testami.
+- [11-database-guide.md](ops/11-database-guide.md) — schemat DB i operacje.
+- [12-sqlite-runtime.md](ops/12-sqlite-runtime.md) — łańcuch rozwiązywania sterownika SQLite.
+- [14-monitoring-observability.md](ops/14-monitoring-observability.md) — monitoring i obserwowalność.
+- [15-fly-io-deployment.md](ops/15-fly-io-deployment.md) — wdrożenie na Fly.io.
+- [16-vm-deployment.md](ops/16-vm-deployment.md) — generyczne wdrożenie na VM.
+- [17-proxy-guide.md](ops/17-proxy-guide.md) — konfiguracja proxy upstream.
+- [18-tunnels-guide.md](ops/18-tunnels-guide.md) — Cloudflare tunnel i pokrewne.
 
 ## diagrams/
 
@@ -187,5 +187,5 @@ Statyczne zrzuty ekranu używane przez panel i README. Nie stanowią części tr
 
 ## Artefakty generowane automatycznie
 
-- [reference/PROVIDER_REFERENCE.md](reference/PROVIDER_REFERENCE.md) jest generowany przez `scripts/docs/gen-provider-reference.ts` z `src/shared/constants/providers.ts`. Nie edytuj ręcznie.
+- [reference/09-provider-reference.md](reference/09-provider-reference.md) jest generowany przez `scripts/docs/gen-provider-reference.ts` z `src/shared/constants/providers.ts`. Nie edytuj ręcznie.
 - UI `/docs` jest oparte na generowaniu źródeł Fumadocs MDX z powyższych podfolderów.

@@ -425,7 +425,7 @@ export async function ensureSystemCertMode(destFile: string, sudoPassword: strin
 // passed to `runElevatedPowerShell` is now written to an on-disk `.ps1` file
 // (see systemCommands.ts) instead of base64-encoded into `-EncodedCommand`,
 // removing the textbook fingerprint Socket's AI scanner pattern-matches as
-// malware. See docs/security/SOCKET_DEV_FINDINGS.md §1 for the full attestation.
+// malware. See docs/security/14-socket-dev-findings.md §1 for the full attestation.
 async function installCertWindows(certPath: string): Promise<void> {
   await runElevatedPowerShell(`
     $certPath = ${quotePowerShell(certPath)};

@@ -3,7 +3,7 @@
  * provider (#6846 Phase 1).
  *
  * NVIDIA NIM's free tier sends no rate-limit headers and has no usage API
- * (see docs/reference/PROVIDER_REFERENCE.md `nvidia` note), so most 429 storms
+ * (see docs/reference/09-provider-reference.md `nvidia` note), so most 429 storms
  * come from parallel bursts against one connection rather than sustained total
  * volume. This reuses the generic `rateLimitSemaphore` FIFO queue (already used
  * by combo round-robin/quota-share dispatch) to serialize concurrent requests

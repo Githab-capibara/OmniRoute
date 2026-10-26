@@ -5,7 +5,7 @@
  * The banner must appear when `/api/settings/authz-inventory` reports
  * `cors.allowAll === true` (i.e. `CORS_ALLOW_ALL=true` at runtime) and stay
  * hidden otherwise. It is the only runtime signal a wildcard-CORS
- * misconfiguration is live. See docs/security/CORS.md.
+ * misconfiguration is live. See docs/security/11-cors-configuration.md.
  */
 import React from "react";
 import { act } from "react";

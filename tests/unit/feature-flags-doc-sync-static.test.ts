@@ -9,12 +9,12 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..", "..");
 
 /**
- * docs/reference/FEATURE_FLAGS.md promises that its catalog matches
+ * docs/reference/04-feature-flags.md promises that its catalog matches
  * FEATURE_FLAG_DEFINITIONS "1:1". Keep that promise checkable: every flag the
  * code defines must be a table row with the same type and default, every table
  * row must be a real flag, and the per-category / total counts must match.
  */
-const doc = readFileSync(join(root, "docs/reference/FEATURE_FLAGS.md"), "utf8");
+const doc = readFileSync(join(root, "docs/reference/04-feature-flags.md"), "utf8");
 const catalog = doc.slice(doc.indexOf("## Flag Catalog"), doc.indexOf("## Toggling Flags"));
 
 interface DocRow {
@@ -50,7 +50,7 @@ function parseCatalog(): DocRow[] {
 const docRows = parseCatalog();
 const docByKey = new Map(docRows.map((row) => [row.key, row]));
 
-test("every defined feature flag has a catalog row in FEATURE_FLAGS.md", () => {
+test("every defined feature flag has a catalog row in 04-feature-flags.md", () => {
   const missing = FEATURE_FLAG_DEFINITIONS.filter((d) => !docByKey.has(d.key)).map((d) => d.key);
   assert.deepEqual(
     missing,
@@ -59,13 +59,13 @@ test("every defined feature flag has a catalog row in FEATURE_FLAGS.md", () => {
   );
 });
 
-test("every catalog row in FEATURE_FLAGS.md is a defined feature flag", () => {
+test("every catalog row in 04-feature-flags.md is a defined feature flag", () => {
   const known = new Set(FEATURE_FLAG_DEFINITIONS.map((d) => d.key));
   const extra = docRows.filter((row) => !known.has(row.key)).map((row) => row.key);
   assert.deepEqual(
     extra,
     [],
-    `doc rows that are not feature flags (env-only knobs belong in ENVIRONMENT.md): ${extra.join(", ")}`
+    `doc rows that are not feature flags (env-only knobs belong in 03-environment-variables.md): ${extra.join(", ")}`
   );
 });
 

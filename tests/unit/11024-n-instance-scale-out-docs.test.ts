@@ -3,11 +3,11 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
 const dockerGuide = readFileSync(
-  new URL("../../docs/guides/DOCKER_GUIDE.md", import.meta.url),
+  new URL("../../docs/guides/09-docker-guide.md", import.meta.url),
   "utf8"
 );
 const envDoc = readFileSync(
-  new URL("../../docs/reference/ENVIRONMENT.md", import.meta.url),
+  new URL("../../docs/reference/03-environment-variables.md", import.meta.url),
   "utf8"
 );
 
@@ -24,7 +24,7 @@ test("DOCKER_GUIDE documents N independent DATA_DIRs as the large-job scale-out 
   );
 });
 
-test("ENVIRONMENT.md points CHAT_MAX_HEAVY_IN_FLIGHT at per-process V8, not host RAM (#11024)", () => {
+test("03-environment-variables.md points CHAT_MAX_HEAVY_IN_FLIGHT at per-process V8, not host RAM (#11024)", () => {
   const row = envDoc
     .split("\n")
     .find((line) => line.includes("`OMNIROUTE_CHAT_MAX_HEAVY_IN_FLIGHT`"));
@@ -43,7 +43,7 @@ test("DOCKER_GUIDE documents the one-process long /v1/responses recipe (healthy-
   assert.match(dockerGuide, /replicas > 1/);
 });
 
-test("ENVIRONMENT.md documents LARGE_BODY_BYTES healthy-headroom and no hard max-2", () => {
+test("03-environment-variables.md documents LARGE_BODY_BYTES healthy-headroom and no hard max-2", () => {
   const large = envDoc
     .split("\n")
     .find((line) => line.startsWith("| `OMNIROUTE_CHAT_LARGE_BODY_BYTES`"));

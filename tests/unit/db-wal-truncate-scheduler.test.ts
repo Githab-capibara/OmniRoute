@@ -67,11 +67,11 @@ test("the scheduler self-gates the same way the DB health-check scheduler does",
 });
 
 test("the new env var is documented", () => {
-  const docs = readSource("docs/reference/ENVIRONMENT.md");
+  const docs = readSource("docs/reference/03-environment-variables.md");
   assert.match(
     docs,
     /OMNIROUTE_WAL_TRUNCATE_INTERVAL_MS/,
-    "docs/reference/ENVIRONMENT.md must document the new env var (check:env-doc-sync)"
+    "docs/reference/03-environment-variables.md must document the new env var (check:env-doc-sync)"
   );
 });
 

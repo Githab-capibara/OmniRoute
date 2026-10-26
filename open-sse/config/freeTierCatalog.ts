@@ -35,7 +35,7 @@ export const FREE_TIER_BUDGETS: Record<string, number> = {
 
 /**
  * Providers whose terms PROHIBIT routing through a self-hosted proxy or forbid
- * non-personal use. Source: ToS attention table in docs/reference/FREE_TIERS.md.
+ * non-personal use. Source: ToS attention table in docs/reference/06-free-tiers-directory.md.
  */
 export const FREE_TIER_TOS: Record<string, TosVerdict> = {
   opencode: "avoid",

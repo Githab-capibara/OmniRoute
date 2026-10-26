@@ -17,14 +17,14 @@ import {
 
 test("normKey: case/separator-insensitive fuzzy key (matches docs basename to curated wiki name)", () => {
   // The wiki names are hand-curated and not deterministic — normKey is what lets us
-  // match e.g. FLY_IO_DEPLOYMENT_GUIDE.md to the existing "Fly-io-Deployment-Guide" page.
-  assert.equal(normKey("FLY_IO_DEPLOYMENT_GUIDE.md"), normKey("Fly-io-Deployment-Guide"));
+  // match e.g. 15-fly-io-deployment.md to the existing "Fly-io-Deployment-Guide" page.
+  assert.equal(normKey("15-fly-io-deployment.md"), normKey("Fly-io-Deployment-Guide"));
   assert.equal(normKey("API_REFERENCE"), normKey("API-Reference"));
-  assert.equal(normKey("A2A-SERVER.md"), "a2aserver");
+  assert.equal(normKey("01-a2a-server.md"), "a2aserver");
 });
 
 test("toWikiName: acronym-aware Title-Case-dashed name for NEW pages", () => {
-  assert.equal(toWikiName("SUPPLY_CHAIN.md"), "Supply-Chain");
+  assert.equal(toWikiName("13-supply-chain-gates.md"), "Supply-Chain");
   assert.equal(toWikiName("API_REFERENCE"), "API-Reference");
   assert.equal(toWikiName("QUOTA_SHARE"), "Quota-Share");
   assert.equal(toWikiName("ACP"), "ACP");
@@ -55,16 +55,16 @@ test("rewriteWikiLinks: converts relative doc links to curated wiki page names",
   const md = `
 # Architecture
 
-See [Auto-Combo](../routing/AUTO-COMBO.md) and [Resilience](./RESILIENCE_GUIDE.md).
-With anchor: [14 Factors](../routing/AUTO-COMBO.md#14-factors).
+See [Auto-Combo](../routing/01-auto-combo.md) and [Resilience](./07-resilience-guide.md).
+With anchor: [14 Factors](../routing/01-auto-combo.md#14-factors).
 Ref style: [MCP][mcp-ref]
-HTML: <a href="../routing/AUTO-COMBO.md#strategies">Strategies</a>
+HTML: <a href="../routing/01-auto-combo.md#strategies">Strategies</a>
 
-[mcp-ref]: ../frameworks/MCP-SERVER.md "MCP Tools"
+[mcp-ref]: ../frameworks/07-mcp-server.md "MCP Tools"
 `;
 
   const out = rewriteWikiLinks(md, {
-    srcFile: "docs/architecture/ARCHITECTURE.md",
+    srcFile: "docs/architecture/01-system-overview.md",
     wikiKeyMap,
   });
 
@@ -82,19 +82,21 @@ Check [Package config](../../package.json) and [Auth Guard](../../src/server/aut
 `;
 
   const out = rewriteWikiLinks(md, {
-    srcFile: "docs/architecture/ARCHITECTURE.md",
+    srcFile: "docs/architecture/01-system-overview.md",
   });
 
   assert.ok(out.includes(`[DB Core](${GITHUB_REPO_URL}/blob/main/src/lib/db/core.ts)`));
   assert.ok(out.includes(`[README](${GITHUB_REPO_URL}/blob/main/docs/README.md)`));
   assert.ok(out.includes(`[Package config](${GITHUB_REPO_URL}/blob/main/package.json)`));
-  assert.ok(out.includes(`[Auth Guard](${GITHUB_REPO_URL}/blob/main/src/server/authz/routeGuard.ts)`));
+  assert.ok(
+    out.includes(`[Auth Guard](${GITHUB_REPO_URL}/blob/main/src/server/authz/routeGuard.ts)`)
+  );
 });
 
 test("rewriteWikiLinks: rewrites image links to GitHub raw content URLs", () => {
   const md = `![Architecture Overview](../diagrams/exported/resilience-3layers.svg "Diagram")`;
   const out = rewriteWikiLinks(md, {
-    srcFile: "docs/architecture/ARCHITECTURE.md",
+    srcFile: "docs/architecture/01-system-overview.md",
   });
   assert.equal(
     out,
@@ -105,16 +107,16 @@ test("rewriteWikiLinks: rewrites image links to GitHub raw content URLs", () => 
 test("rewriteWikiLinks: preserves pure anchor links and external URLs", () => {
   const md = `[Top](#top) and [Website](https://example.com) and [Email](mailto:test@example.com)`;
   const out = rewriteWikiLinks(md, {
-    srcFile: "docs/architecture/ARCHITECTURE.md",
+    srcFile: "docs/architecture/01-system-overview.md",
   });
   assert.equal(out, md);
 });
 
 test("rewriteWikiLinks: prepends locale prefix for localized wiki pages", () => {
   const wikiKeyMap = new Map([["autocombo", "Auto-Combo"]]);
-  const md = `[Auto-Combo](../routing/AUTO-COMBO.md#scoring)`;
+  const md = `[Auto-Combo](../routing/01-auto-combo.md#scoring)`;
   const out = rewriteWikiLinks(md, {
-    srcFile: "docs/i18n/pt-BR/routing/AUTO-COMBO.md",
+    srcFile: "docs/i18n/pt-BR/routing/01-auto-combo.md",
     wikiKeyMap,
     locale: "pt-BR",
   });
@@ -123,7 +125,8 @@ test("rewriteWikiLinks: prepends locale prefix for localized wiki pages", () => 
 });
 
 test("syncHomeCounts: rewrites the cover-page provider/strategy counts", () => {
-  const home = "Connect every AI tool to 177 providers.\n**177 AI Providers** · **14 Routing Strategies**\n";
+  const home =
+    "Connect every AI tool to 177 providers.\n**177 AI Providers** · **14 Routing Strategies**\n";
   const out = syncHomeCounts(home, { providers: 226, strategies: 15, mcpTools: null, locales: 42 });
   assert.ok(out.includes("226 providers"));
   assert.ok(out.includes("**226 AI Providers**"));
@@ -133,7 +136,12 @@ test("syncHomeCounts: rewrites the cover-page provider/strategy counts", () => {
 
 test("syncHomeCounts: leaves text untouched when a count is null (best-effort MCP)", () => {
   const home = "| **MCP Server** | 87 tools |\n";
-  const out = syncHomeCounts(home, { providers: null, strategies: null, mcpTools: null, locales: null });
+  const out = syncHomeCounts(home, {
+    providers: null,
+    strategies: null,
+    mcpTools: null,
+    locales: null,
+  });
   assert.equal(out, home);
 });
 

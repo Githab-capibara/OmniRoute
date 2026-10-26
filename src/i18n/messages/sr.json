@@ -3779,7 +3779,9 @@
     "duplicateAutoComboSnapshotMsg": "Ovo će snimiti trenutno povezane provajdere/modele koji odgovaraju ovom šablonu u kombinaciju koja se može uređivati.",
     "duplicateAutoComboFailedPrefix": "Neuspešno dupliranje auto-kombinacije:",
     "duplicateAutoComboUnknownError": "Nepoznata greška",
-    "duplicateAutoComboTitle": "Kreiraj statičku kombinaciju iz {name}"
+    "duplicateAutoComboTitle": "Kreiraj statičku kombinaciju iz {name}",
+    "quotaWeighted": "Quota-Weighted",
+    "quotaWeightedDesc": "Skip exhausted accounts, then pick among the rest in proportion to leftover, divided by in-flight load. Existing conversations stay pinned."
   },
   "costs": {
     "title": "Troškovi",
@@ -6306,7 +6308,8 @@
       "kiro": "Бесплатни ниво: 50 кредита/месечно (~25К–100К токена). ⚠️ Kiro услови коришћења забрањују коришћење уз посреднике/прокси трећих страна.",
       "codex": "Повежите OpenAI Codex помоћу постојећег OAuth тока.",
       "qwen": "Повежите Qwen Code помоћу постојећег OAuth тока.",
-      "github-models": "Направите GitHub PAT са обимом 'models: read' на github.com/settings/tokens"
+      "github-models": "Направите GitHub PAT са обимом 'models: read' на github.com/settings/tokens",
+      "seekai": "Create an API key at https://seekai.cc, then paste it here as a Bearer token. OpenAI-compatible base URL: https://seekai.cc/v1."
     },
     "passthroughModelsDescription": "{provider} прихвата ID-ове модела нативне за добавача. Увезите из /models или додајте прилагођене ID-ове за рутирање.",
     "bedrockModelsDescription": "Amazon Bedrock модели су ограничени по AWS региону. Увезите из /models или додајте ID-ове Bedrock модела омогућене у изабраном региону.",
@@ -6464,7 +6467,14 @@
     "savedModelEndpointSettings": "Подешавања модел ендпоинта су сачувана",
     "searchByModelAria": "Претрага по моделу",
     "selectSupportedEndpoint": "Изаберите бар једну подржану крајњу тачку",
-    "antigravityClientProfileHarness": "Harness / CLI"
+    "antigravityClientProfileHarness": "Harness / CLI",
+    "importFromFileDownloadTemplate": "Download CSV template",
+    "importFromFileMoreErrors": "+{count} more",
+    "importFromFileSchemaHint": "CSV columns are positional: provider, name, apiKey, baseUrl (optional), priority (optional). The provider column must be an existing managed provider id or an already-registered OpenAI/Anthropic-compatible node id — this import does not create new endpoint nodes.",
+    "dailyQuotaResetTimezoneLabel": "Daily quota reset timezone",
+    "dailyQuotaResetTimezoneHint": "Optional IANA timezone used when the upstream omits X-RateLimit-Reset. Leave empty to keep a short cooldown.",
+    "dailyQuotaResetHourLabel": "Daily quota reset hour",
+    "dailyQuotaResetHourHint": "Local hour 0-23 in the timezone above. Empty means no node-level clock."
   },
   "settings": {
     "title": "Подешавања",
@@ -8343,7 +8353,29 @@
     "cliproxyapiHealth": "Здравствено стање",
     "cliproxyapiPort": "Порт",
     "qdrantHost": "Хост",
-    "qdrantCollection": "Колекција"
+    "qdrantCollection": "Колекција",
+    "quotaWeighted": "Quota-Weighted",
+    "quotaWeightedDesc": "Skip exhausted accounts, then pick among the rest in proportion to leftover, divided by in-flight load. Existing conversations stay pinned.",
+    "jsonImportAuthRequired": "Authentication required to import a legacy JSON configuration. Please sign in or complete setup first.",
+    "databaseSettingsAuthRequiredTitle": "Authentication required",
+    "databaseSettingsAuthRequiredBody": "Database settings and JSON import are only available to an authenticated admin. Sign in or complete setup to view and edit them.",
+    "databaseSettingsAuthRequiredCta": "Sign in",
+    "compressionAdaptiveMode": "Adaptive context budget",
+    "compressionAdaptiveModeOff": "Off (legacy auto-trigger)",
+    "compressionAdaptiveModeFloor": "Floor (always guarantee fit)",
+    "compressionAdaptiveModeReplace": "Replace auto-trigger",
+    "compressionAdaptivePolicy": "Budget policy",
+    "compressionAdaptivePolicyReserve": "Reserve output",
+    "compressionAdaptivePolicyPercentage": "Percentage of window",
+    "compressionAdaptivePolicyAbsolute": "Absolute token budget",
+    "headroomProxyTitle": "Headroom proxy",
+    "headroomProxyDesc": "URL of the optional Headroom token-saver proxy. Empty uses HEADROOM_URL or http://localhost:8787.",
+    "headroomProxyUrl": "Headroom URL",
+    "headroomProxyUrlHint": "Loopback URLs can be started from this page. External URLs are probed only.",
+    "headroomProxySave": "Save",
+    "headroomProxyStart": "Start",
+    "headroomProxyStop": "Stop",
+    "headroomProxyExternalHint": "This URL is not loopback, so OmniRoute will not spawn the local CLI."
   },
   "contextRtk": {
     "title": "RTK Engine",
@@ -10769,7 +10801,7 @@
     "readingFromCursor": "Читање из Cursor IDE-а или cursor-agent-а",
     "tokensAutoDetected": "Токени су успешно аутоматски откривени из Cursor IDE-а!",
     "cursorNotDetected": "Cursor IDE није откривен. Налепите свој приступни токен (и токен за обновљавање ако је доступан).",
-    "dockerImportHint": "Радите у Docker-у? Дајте предност опцији Пријави се преко Cursor-а. Аутоматски увоз из IDE-а и cursor-agent обично нису доступни унутар контејнера. Погледајте docs/providers/CURSOR-DOCKER.md.",
+    "dockerImportHint": "Радите у Docker-у? Дајте предност опцији Пријави се преко Cursor-а. Аутоматски увоз из IDE-а и cursor-agent обично нису доступни унутар контејнера. Погледајте docs/providers/06-cursor-docker.md.",
     "accessToken": "Токен за приступ",
     "refreshToken": "Токен за обнављање",
     "refreshTokenPlaceholder": "Опционо — омогућава аутоматско обнављање токена",
@@ -11387,7 +11419,9 @@
       "detailedPayloadInfo": "Прво омогућите детаљно логовање ако желите приказ пакета у четири фазе клијент/провајдер за нове захтеве.",
       "copyAll": "Копирај све",
       "copiedAll": "Све копирано"
-    }
+    },
+    "columnsReset": "Reset",
+    "columnsResetHint": "Restore the default columns: Status, Model, Provider, Tokens, TPS, Duration"
   },
   "proxyLogger": {
     "filterAll": "Све",
@@ -12984,6 +13018,10 @@
       },
       "SKILLS_SANDBOX_NETWORK_ENABLED": {
         "description": "Омогући мрежни приступ у sandbox окружењу за вештине."
+      },
+      "SERVER_OWNED_TOOL_LOOP_ENABLED": {
+        "label": "Server-Owned Tool Loop",
+        "description": "Continue non-streaming server-owned tool calls until the model returns a client-usable response."
       }
     }
   },
@@ -13149,7 +13187,8 @@
       "ok": "Углавном дозволjeno"
     },
     "allProviders": "Сви провајдери",
-    "noApiKeyRequired": "Није потребан API кључ"
+    "noApiKeyRequired": "Није потребан API кључ",
+    "gated": "~{tokens}/mo more behind a regional identity check (e.g. mainland-China real-name verification) — real quota, not counted in the headline:"
   },
   "providerHealthAutopilot": {
     "title": "Аутопилот здравља провајдера",
@@ -13442,7 +13481,10 @@
     "localStateSaveFailed": "Није успело чување локалних Radar подешавања",
     "guidedCombos": "Вођене комбинације",
     "offers": "Понуде",
-    "intel": "Intel"
+    "intel": "Intel",
+    "limitsUnknownHelp": "Limits reported by Radar feed only; no published limits for this entry",
+    "contextUnknownHelp": "Context window unknown for this entry",
+    "capabilityUnknownHelp": "Capability not reported by the feed"
   },
   "radarCombosPage": {
     "title": "Radar вођене комбинације",
@@ -14021,7 +14063,12 @@
     "compareCost": "Трошак",
     "compareEvents": "Догађаји",
     "compareDeltaLegend": "Δ десно − лево",
-    "noMatches": "Ниједно извршавање не одговара овим филтерима"
+    "noMatches": "Ниједно извршавање не одговара овим филтерима",
+    "drawerMemory": "Memory used",
+    "actionRepeat": "Repeat",
+    "repeatConfirm": "Click again to confirm",
+    "repeatDone": "New run created",
+    "repeatUnavailable": "Original input not available"
   },
   "cliproxyProviderExposure": {
     "title": "Изложеност провајдера",

@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { DEFAULT_DATABASE_SETTINGS } from "../../src/types/databaseSettings.ts";
 
-const guide = readFileSync(new URL("../../docs/ops/DATABASE_GUIDE.md", import.meta.url), "utf8");
+const guide = readFileSync(new URL("../../docs/ops/11-database-guide.md", import.meta.url), "utf8");
 
 test("database guide keeps cache tuning aligned with runtime settings (#11018)", () => {
   const defaultCacheSize = DEFAULT_DATABASE_SETTINGS.optimization.cacheSize;

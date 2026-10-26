@@ -273,7 +273,7 @@ export default function AuthzSection() {
   return (
     <>
       {/* #5602: persistent wildcard-CORS warning — only visible while
-          CORS_ALLOW_ALL=true is live. See docs/security/CORS.md. */}
+          CORS_ALLOW_ALL=true is live. See docs/security/11-cors-configuration.md. */}
       {inventory.cors?.allowAll && (
         <div
           data-testid="cors-wildcard-banner"

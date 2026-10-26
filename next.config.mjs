@@ -107,7 +107,7 @@ function filterKnownInfrastructureWarnings(baseConsole) {
 // modules (MITM cert install, Zed keychain import, Cloud Sync, 9router
 // installer) from the built bundle by aliasing them to feature-disabled stubs.
 // The resulting artifact is intended to be published as `omniroute-secure`
-// for security-sensitive environments. See docs/security/SOCKET_DEV_FINDINGS.md.
+// for security-sensitive environments. See docs/security/14-socket-dev-findings.md.
 const isMinimalBuild = process.env.OMNIROUTE_BUILD_PROFILE === "minimal";
 // Contributor builds validate compilation only and do not need a shippable standalone bundle.
 const isContributorBuild = process.env.OMNIROUTE_BUILD_PROFILE === "contributor";
@@ -526,142 +526,198 @@ const nextConfig = {
       // Architecture
       {
         source: "/docs/architecture",
-        destination: "/docs/architecture/architecture",
+        destination: "/docs/architecture/01-system-overview",
         permanent: true,
       },
       {
         source: "/docs/authz-guide",
-        destination: "/docs/architecture/authz-guide",
+        destination: "/docs/architecture/04-authorization-pipeline",
         permanent: true,
       },
       {
         source: "/docs/codebase-documentation",
-        destination: "/docs/architecture/codebase-documentation",
+        destination: "/docs/architecture/10-codebase-documentation",
         permanent: true,
       },
       {
         source: "/docs/repository-map",
-        destination: "/docs/architecture/repository-map",
+        destination: "/docs/architecture/11-repository-map",
         permanent: true,
       },
       {
         source: "/docs/resilience-guide",
-        destination: "/docs/architecture/resilience-guide",
+        destination: "/docs/architecture/07-resilience-guide",
         permanent: true,
       },
       // Guides
-      { source: "/docs/docker-guide", destination: "/docs/guides/docker-guide", permanent: true },
+      {
+        source: "/docs/docker-guide",
+        destination: "/docs/guides/09-docker-guide",
+        permanent: true,
+      },
       {
         source: "/docs/electron-guide",
-        destination: "/docs/guides/electron-guide",
+        destination: "/docs/guides/10-electron-guide",
         permanent: true,
       },
-      { source: "/docs/features", destination: "/docs/guides/features", permanent: true },
-      { source: "/docs/i18n", destination: "/docs/guides/i18n", permanent: true },
-      { source: "/docs/kiro-setup", destination: "/docs/guides/kiro-setup", permanent: true },
-      { source: "/docs/pwa-guide", destination: "/docs/guides/pwa-guide", permanent: true },
-      { source: "/docs/setup-guide", destination: "/docs/guides/setup-guide", permanent: true },
-      { source: "/docs/termux-guide", destination: "/docs/guides/termux-guide", permanent: true },
+      {
+        source: "/docs/features",
+        destination: "/docs/guides/03-features-overview",
+        permanent: true,
+      },
+      { source: "/docs/i18n", destination: "/docs/guides/22-i18n-guide", permanent: true },
+      { source: "/docs/kiro-setup", destination: "/docs/guides/20-kiro-setup", permanent: true },
+      { source: "/docs/pwa-guide", destination: "/docs/guides/12-pwa-guide", permanent: true },
+      { source: "/docs/setup-guide", destination: "/docs/guides/02-setup-guide", permanent: true },
+      {
+        source: "/docs/termux-guide",
+        destination: "/docs/guides/11-termux-guide",
+        permanent: true,
+      },
       {
         source: "/docs/troubleshooting",
-        destination: "/docs/guides/troubleshooting",
+        destination: "/docs/guides/23-troubleshooting",
         permanent: true,
       },
-      { source: "/docs/uninstall", destination: "/docs/guides/uninstall", permanent: true },
-      { source: "/docs/user-guide", destination: "/docs/guides/user-guide", permanent: true },
+      { source: "/docs/uninstall", destination: "/docs/guides/24-uninstall", permanent: true },
+      { source: "/docs/user-guide", destination: "/docs/guides/01-user-guide", permanent: true },
       // Reference
       {
         source: "/docs/api-reference",
-        destination: "/docs/reference/api-reference",
+        destination: "/docs/reference/01-api-reference",
         permanent: true,
       },
-      { source: "/docs/cli-tools", destination: "/docs/reference/cli-tools", permanent: true },
-      { source: "/docs/environment", destination: "/docs/reference/environment", permanent: true },
-      { source: "/docs/free-tiers", destination: "/docs/reference/free-tiers", permanent: true },
+      { source: "/docs/cli-tools", destination: "/docs/reference/02-cli-tools", permanent: true },
+      {
+        source: "/docs/environment",
+        destination: "/docs/reference/03-environment-variables",
+        permanent: true,
+      },
+      {
+        source: "/docs/free-tiers",
+        destination: "/docs/reference/06-free-tiers-directory",
+        permanent: true,
+      },
       {
         source: "/docs/provider-reference",
-        destination: "/docs/reference/provider-reference",
+        destination: "/docs/reference/09-provider-reference",
         permanent: true,
       },
       // Frameworks
-      { source: "/docs/a2a-server", destination: "/docs/frameworks/a2a-server", permanent: true },
+      {
+        source: "/docs/a2a-server",
+        destination: "/docs/frameworks/01-a2a-server",
+        permanent: true,
+      },
       {
         source: "/docs/agent-protocols-guide",
-        destination: "/docs/frameworks/agent-protocols-guide",
+        destination: "/docs/frameworks/03-agent-protocols-guide",
         permanent: true,
       },
-      { source: "/docs/cloud-agent", destination: "/docs/frameworks/cloud-agent", permanent: true },
-      { source: "/docs/evals", destination: "/docs/frameworks/evals", permanent: true },
+      {
+        source: "/docs/cloud-agent",
+        destination: "/docs/frameworks/06-cloud-agent-runtime",
+        permanent: true,
+      },
+      { source: "/docs/evals", destination: "/docs/frameworks/11-evals-suites", permanent: true },
       {
         source: "/docs/gamification",
-        destination: "/docs/frameworks/gamification",
+        destination: "/docs/frameworks/12-gamification-system",
         permanent: true,
       },
-      { source: "/docs/mcp-server", destination: "/docs/frameworks/mcp-server", permanent: true },
-      { source: "/docs/memory", destination: "/docs/frameworks/memory", permanent: true },
-      { source: "/docs/opencode", destination: "/docs/frameworks/opencode", permanent: true },
-      { source: "/docs/skills", destination: "/docs/frameworks/skills", permanent: true },
-      { source: "/docs/webhooks", destination: "/docs/frameworks/webhooks", permanent: true },
+      {
+        source: "/docs/mcp-server",
+        destination: "/docs/frameworks/07-mcp-server",
+        permanent: true,
+      },
+      {
+        source: "/docs/memory",
+        destination: "/docs/frameworks/09-persistent-memory",
+        permanent: true,
+      },
+      {
+        source: "/docs/opencode",
+        destination: "/docs/frameworks/17-opencode-integration",
+        permanent: true,
+      },
+      {
+        source: "/docs/skills",
+        destination: "/docs/frameworks/08-skills-framework",
+        permanent: true,
+      },
+      {
+        source: "/docs/webhooks",
+        destination: "/docs/frameworks/10-webhooks-dispatch",
+        permanent: true,
+      },
       // Routing
-      { source: "/docs/auto-combo", destination: "/docs/routing/auto-combo", permanent: true },
+      { source: "/docs/auto-combo", destination: "/docs/routing/01-auto-combo", permanent: true },
       {
         source: "/docs/reasoning-replay",
-        destination: "/docs/routing/reasoning-replay",
+        destination: "/docs/routing/04-reasoning-replay-cache",
         permanent: true,
       },
       // Security
-      { source: "/docs/cli-token", destination: "/docs/security/cli-token", permanent: true },
+      {
+        source: "/docs/cli-token",
+        destination: "/docs/security/07-cli-token-auth",
+        permanent: true,
+      },
       {
         source: "/docs/cli-token-auth",
-        destination: "/docs/security/cli-token-auth",
+        destination: "/docs/security/07-cli-token-auth",
         permanent: true,
       },
-      { source: "/docs/compliance", destination: "/docs/security/compliance", permanent: true },
+      { source: "/docs/compliance", destination: "/docs/security/02-compliance", permanent: true },
       {
         source: "/docs/error-sanitization",
-        destination: "/docs/security/error-sanitization",
+        destination: "/docs/security/05-error-sanitization",
         permanent: true,
       },
-      { source: "/docs/guardrails", destination: "/docs/security/guardrails", permanent: true },
-      { source: "/docs/public-creds", destination: "/docs/security/public-creds", permanent: true },
+      { source: "/docs/guardrails", destination: "/docs/security/01-guardrails", permanent: true },
+      {
+        source: "/docs/public-creds",
+        destination: "/docs/security/04-public-creds-pattern",
+        permanent: true,
+      },
       {
         source: "/docs/route-guard-tiers",
-        destination: "/docs/security/route-guard-tiers",
+        destination: "/docs/security/06-route-guard-tiers",
         permanent: true,
       },
       {
         source: "/docs/stealth-guide",
-        destination: "/docs/security/stealth-guide",
+        destination: "/docs/security/03-stealth-guide",
         permanent: true,
       },
       // Compression
       {
         source: "/docs/compression-engines",
-        destination: "/docs/compression/compression-engines",
+        destination: "/docs/compression/02-compression-engines",
         permanent: true,
       },
       {
         source: "/docs/compression-guide",
-        destination: "/docs/compression/compression-guide",
+        destination: "/docs/compression/01-compression-guide",
         permanent: true,
       },
       {
         source: "/docs/compression-language-packs",
-        destination: "/docs/compression/compression-language-packs",
+        destination: "/docs/compression/04-compression-language-packs",
         permanent: true,
       },
       {
         source: "/docs/compression-rules-format",
-        destination: "/docs/compression/compression-rules-format",
+        destination: "/docs/compression/03-compression-rules-format",
         permanent: true,
       },
       {
         source: "/docs/rtk-compression",
-        destination: "/docs/compression/rtk-compression",
+        destination: "/docs/compression/05-rtk-compression-engine",
         permanent: true,
       },
       // Ops
-      { source: "/docs/coverage-plan", destination: "/docs/ops/coverage-plan", permanent: true },
+      { source: "/docs/coverage-plan", destination: "/docs/ops/10-coverage-plan", permanent: true },
       {
         source: "/docs/e2e-dashboard-shakedown-v3.8.0",
         destination: "/docs/ops/e2e-dashboard-shakedown-v3.8.0",
@@ -669,20 +725,24 @@ const nextConfig = {
       },
       {
         source: "/docs/fly-io-deployment-guide",
-        destination: "/docs/ops/fly-io-deployment-guide",
+        destination: "/docs/ops/15-fly-io-deployment",
         permanent: true,
       },
-      { source: "/docs/proxy-guide", destination: "/docs/ops/proxy-guide", permanent: true },
+      { source: "/docs/proxy-guide", destination: "/docs/ops/17-proxy-guide", permanent: true },
       {
         source: "/docs/release-checklist",
-        destination: "/docs/ops/release-checklist",
+        destination: "/docs/ops/01-release-checklist",
         permanent: true,
       },
-      { source: "/docs/sqlite-runtime", destination: "/docs/ops/sqlite-runtime", permanent: true },
-      { source: "/docs/tunnels-guide", destination: "/docs/ops/tunnels-guide", permanent: true },
+      {
+        source: "/docs/sqlite-runtime",
+        destination: "/docs/ops/12-sqlite-runtime",
+        permanent: true,
+      },
+      { source: "/docs/tunnels-guide", destination: "/docs/ops/18-tunnels-guide", permanent: true },
       {
         source: "/docs/vm-deployment-guide",
-        destination: "/docs/ops/vm-deployment-guide",
+        destination: "/docs/ops/16-vm-deployment",
         permanent: true,
       },
       // CLI Pages — Plano 14 (F9)

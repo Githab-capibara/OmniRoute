@@ -173,5 +173,5 @@ Pass scope name as `--scope` arg or via `X-Omniroute-Scope` header.
 
 ## Reference
 
-Full docs: https://github.com/diegosouzapw/OmniRoute/blob/main/docs/frameworks/MCP-SERVER.md
+Full docs: https://github.com/diegosouzapw/OmniRoute/blob/main/docs/frameworks/07-mcp-server.md
 <!-- skill:custom-end -->

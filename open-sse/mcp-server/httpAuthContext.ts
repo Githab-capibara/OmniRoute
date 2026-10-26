@@ -49,7 +49,7 @@ export function getMcpHttpAuthHeadersForInternalFetch(): Record<string, string> 
  * authInfo available", NOT as "zero scopes", so `scopeEnforcement.ts` falls
  * through to its existing `meta` → env fallback chain unchanged. Only the
  * HTTP/SSE transports call this; stdio has no per-caller identity and stays
- * on the env fallback (see `docs/frameworks/MCP-SERVER.md`).
+ * on the env fallback (see `docs/frameworks/07-mcp-server.md`).
  */
 export async function resolveMcpCallerAuthInfo(
   request: Request

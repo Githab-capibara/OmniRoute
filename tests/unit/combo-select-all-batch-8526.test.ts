@@ -2,7 +2,7 @@
 // all"). This is the BLOCKING copy — tests/unit/*.test.ts is collected by
 // `npm run test:unit` (node:test), unlike tests/unit/ui/*.test.tsx which is
 // only collected by the advisory `test:vitest:ui`
-// (see CONTRIBUTING.md "Both test runners must pass").
+// (see 01-contributing-guide.md "Both test runners must pass").
 //
 // It exercises the exact functions `ComboFormModal::handleAddModels` /
 // `handleDeselectModels` (src/app/(dashboard)/dashboard/combos/page.tsx)

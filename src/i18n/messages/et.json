@@ -3779,7 +3779,9 @@
     "duplicateAutoComboSnapshotMsg": "See salvestab hetkel ühendatud ja sellele mallile vastavad teenusepakkujad/mudelid redigeeritavasse kombinatsiooni.",
     "duplicateAutoComboFailedPrefix": "Automaatse kombinatsiooni dubleerimine ebaõnnestus:",
     "duplicateAutoComboUnknownError": "Tundmatu viga",
-    "duplicateAutoComboTitle": "Loo staatiline kombinatsioon mallist {name}"
+    "duplicateAutoComboTitle": "Loo staatiline kombinatsioon mallist {name}",
+    "quotaWeighted": "Quota-Weighted",
+    "quotaWeightedDesc": "Skip exhausted accounts, then pick among the rest in proportion to leftover, divided by in-flight load. Existing conversations stay pinned."
   },
   "costs": {
     "title": "Kulud",
@@ -6306,7 +6308,8 @@
       "kiro": "Tasuta pakett: 50 krediiti kuus (~25K–100K tokenit). ⚠️ Kiro kasutustingimused keelavad kolmanda osapoole puhverserveri või rakenduskesta kasutamise.",
       "codex": "Ühenda OpenAI Codex olemasoleva OAuth-vooga.",
       "qwen": "Ühenda Qwen Code olemasoleva OAuth-vooga.",
-      "github-models": "Loo aadressil github.com/settings/tokens GitHub PAT õigusega „models: read”"
+      "github-models": "Loo aadressil github.com/settings/tokens GitHub PAT õigusega „models: read”",
+      "seekai": "Create an API key at https://seekai.cc, then paste it here as a Bearer token. OpenAI-compatible base URL: https://seekai.cc/v1."
     },
     "passthroughModelsDescription": "{provider} aktsepteerib teenusepakkuja omavormingus mudeli-ID-sid. Impordi need lehelt /models või lisa marsruutimiseks kohandatud ID-d.",
     "bedrockModelsDescription": "Amazon Bedrocki mudelid on seotud AWS-i piirkonnaga. Impordi need lehelt /models või lisa valitud piirkonnas lubatud Bedrocki mudelite ID-d.",
@@ -6464,7 +6467,14 @@
     "savedModelEndpointSettings": "Mudeli lõpp-punkti seaded salvestatud",
     "searchByModelAria": "Otsi mudeli järgi",
     "selectSupportedEndpoint": "Valige vähemalt üks toetatud lõpp-punkt",
-    "antigravityClientProfileHarness": "Rakendusraamistik / CLI"
+    "antigravityClientProfileHarness": "Rakendusraamistik / CLI",
+    "importFromFileDownloadTemplate": "Download CSV template",
+    "importFromFileMoreErrors": "+{count} more",
+    "importFromFileSchemaHint": "CSV columns are positional: provider, name, apiKey, baseUrl (optional), priority (optional). The provider column must be an existing managed provider id or an already-registered OpenAI/Anthropic-compatible node id — this import does not create new endpoint nodes.",
+    "dailyQuotaResetTimezoneLabel": "Daily quota reset timezone",
+    "dailyQuotaResetTimezoneHint": "Optional IANA timezone used when the upstream omits X-RateLimit-Reset. Leave empty to keep a short cooldown.",
+    "dailyQuotaResetHourLabel": "Daily quota reset hour",
+    "dailyQuotaResetHourHint": "Local hour 0-23 in the timezone above. Empty means no node-level clock."
   },
   "settings": {
     "title": "Seaded",
@@ -8343,7 +8353,29 @@
     "cliproxyapiHealth": "Olek",
     "cliproxyapiPort": "Port",
     "qdrantHost": "Host",
-    "qdrantCollection": "Kogumik"
+    "qdrantCollection": "Kogumik",
+    "quotaWeighted": "Quota-Weighted",
+    "quotaWeightedDesc": "Skip exhausted accounts, then pick among the rest in proportion to leftover, divided by in-flight load. Existing conversations stay pinned.",
+    "jsonImportAuthRequired": "Authentication required to import a legacy JSON configuration. Please sign in or complete setup first.",
+    "databaseSettingsAuthRequiredTitle": "Authentication required",
+    "databaseSettingsAuthRequiredBody": "Database settings and JSON import are only available to an authenticated admin. Sign in or complete setup to view and edit them.",
+    "databaseSettingsAuthRequiredCta": "Sign in",
+    "compressionAdaptiveMode": "Adaptive context budget",
+    "compressionAdaptiveModeOff": "Off (legacy auto-trigger)",
+    "compressionAdaptiveModeFloor": "Floor (always guarantee fit)",
+    "compressionAdaptiveModeReplace": "Replace auto-trigger",
+    "compressionAdaptivePolicy": "Budget policy",
+    "compressionAdaptivePolicyReserve": "Reserve output",
+    "compressionAdaptivePolicyPercentage": "Percentage of window",
+    "compressionAdaptivePolicyAbsolute": "Absolute token budget",
+    "headroomProxyTitle": "Headroom proxy",
+    "headroomProxyDesc": "URL of the optional Headroom token-saver proxy. Empty uses HEADROOM_URL or http://localhost:8787.",
+    "headroomProxyUrl": "Headroom URL",
+    "headroomProxyUrlHint": "Loopback URLs can be started from this page. External URLs are probed only.",
+    "headroomProxySave": "Save",
+    "headroomProxyStart": "Start",
+    "headroomProxyStop": "Stop",
+    "headroomProxyExternalHint": "This URL is not loopback, so OmniRoute will not spawn the local CLI."
   },
   "contextRtk": {
     "title": "RTK Engine",
@@ -10769,7 +10801,7 @@
     "readingFromCursor": "Lugemine Cursor IDE-st või cursor-agentist",
     "tokensAutoDetected": "Tõendid tuvastati Cursor IDE-st automaatselt!",
     "cursorNotDetected": "Cursor IDE-d ei tuvastatud. Kleepige oma juurdepääsutõend (ja värskendustõend, kui see on saadaval).",
-    "dockerImportHint": "Kas kasutate Dockerit? Eelistage Cursoriga sisselogimist. IDE-st automaatne importimine ja cursor-agent pole konteineris tavaliselt saadaval. Vaadake docs/providers/CURSOR-DOCKER.md.",
+    "dockerImportHint": "Kas kasutate Dockerit? Eelistage Cursoriga sisselogimist. IDE-st automaatne importimine ja cursor-agent pole konteineris tavaliselt saadaval. Vaadake docs/providers/06-cursor-docker.md.",
     "accessToken": "Juurdepääsutõend",
     "refreshToken": "Värskendustõend",
     "refreshTokenPlaceholder": "Valikuline — võimaldab tõendit automaatselt värskendada",
@@ -11387,7 +11419,9 @@
       "detailedPayloadInfo": "Uute päringute neljaetapilise kliendi ja teenusepakkuja andmekehavaate kasutamiseks lubage esmalt üksikasjalik logimine.",
       "copyAll": "Kopeeri kõik",
       "copiedAll": "Kõik kopeeritud"
-    }
+    },
+    "columnsReset": "Reset",
+    "columnsResetHint": "Restore the default columns: Status, Model, Provider, Tokens, TPS, Duration"
   },
   "proxyLogger": {
     "filterAll": "Kõik",
@@ -12984,6 +13018,10 @@
       },
       "SKILLS_SANDBOX_NETWORK_ENABLED": {
         "description": "Luba oskuste liivakastis võrguühendus."
+      },
+      "SERVER_OWNED_TOOL_LOOP_ENABLED": {
+        "label": "Server-Owned Tool Loop",
+        "description": "Continue non-streaming server-owned tool calls until the model returns a client-usable response."
       }
     }
   },
@@ -13149,7 +13187,8 @@
       "ok": "Üldiselt lubav"
     },
     "allProviders": "Kõik pakkujad",
-    "noApiKeyRequired": "API-võtit pole vaja"
+    "noApiKeyRequired": "API-võtit pole vaja",
+    "gated": "~{tokens}/mo more behind a regional identity check (e.g. mainland-China real-name verification) — real quota, not counted in the headline:"
   },
   "providerHealthAutopilot": {
     "title": "Pakkujate töökindluse autopiloot",
@@ -13442,7 +13481,10 @@
     "localStateSaveFailed": "Radari kohalike seadete salvestamine ebaõnnestus",
     "guidedCombos": "Juhendatud kombinatsioonid",
     "offers": "Pakkumised",
-    "intel": "Teave"
+    "intel": "Teave",
+    "limitsUnknownHelp": "Limits reported by Radar feed only; no published limits for this entry",
+    "contextUnknownHelp": "Context window unknown for this entry",
+    "capabilityUnknownHelp": "Capability not reported by the feed"
   },
   "radarCombosPage": {
     "title": "Radari juhendatud kombinatsioonid",
@@ -14021,7 +14063,12 @@
     "compareCost": "Maksumus",
     "compareEvents": "Sündmused",
     "compareDeltaLegend": "Δ parem − vasak",
-    "noMatches": "Ükski käivitus ei vasta neile filtritele"
+    "noMatches": "Ükski käivitus ei vasta neile filtritele",
+    "drawerMemory": "Memory used",
+    "actionRepeat": "Repeat",
+    "repeatConfirm": "Click again to confirm",
+    "repeatDone": "New run created",
+    "repeatUnavailable": "Original input not available"
   },
   "cliproxyProviderExposure": {
     "title": "Teenusepakkuja nähtavus",

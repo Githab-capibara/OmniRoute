@@ -158,7 +158,7 @@ export function buildCopilotWebSocketUrl(
  * The map is capped at MAX_POOL_SIZE with LRU eviction, so memory remains
  * bounded regardless of how many distinct tokens appear.
  *
- * See docs/security/PUBLIC_CREDS.md for the broader credential-handling
+ * See docs/security/04-public-creds-pattern.md for the broader credential-handling
  * pattern.
  */
 export function sessionPoolKey(token?: string): string {

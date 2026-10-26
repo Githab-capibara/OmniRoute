@@ -3,8 +3,8 @@
  * `OMNIROUTE_BUILD_PROFILE=minimal`. Every function throws
  * `FeatureDisabledError("mitm-cert-install")` at runtime so the privileged
  * code paths (root-CA install, NSS DB manipulation, sudo helpers) are
- * physically absent from the built bundle. See SECURITY.md and
- * docs/security/SOCKET_DEV_FINDINGS.md.
+ * physically absent from the built bundle. See 03-security-policy.md and
+ * docs/security/14-socket-dev-findings.md.
  */
 import { featureDisabledError } from "../../lib/build-profile/featureDisabled.ts";
 
